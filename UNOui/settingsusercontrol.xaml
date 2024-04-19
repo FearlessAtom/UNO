@@ -1,0 +1,97 @@
+﻿<UserControl x:Class="UNOui.settingsusercontrol"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UNOui"
+             mc:Ignorable="d"
+             Loaded="setloadedsettings"
+             x:Name="settingsmenu"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="Button" x:Key="menubutton">
+            <Setter Property="FontSize" Value="25"></Setter>
+            <Setter Property="Margin" Value="2"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="10" Background="{TemplateBinding Background}">
+                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="center" VerticalAlignment="center"></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Button" x:Key="playercount">
+            <Setter Property="Background" Value="Green"></Setter>
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+        </Style>
+    </UserControl.Resources>
+    <Border Padding="5" Margin="20" Background="AliceBlue" CornerRadius="10">
+        <Grid>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="center" FontSize="20" Text="Player count" Grid.ColumnSpan="3"></TextBlock>
+                <Button Click="playercountchange" x:Name="playercounttwo" Grid.Column="0" Grid.Row="1" Style="{StaticResource playercount}" Content="2"></Button>
+                <Button Click="playercountchange" x:Name="playercountthree" Grid.Column="1" Grid.Row="1" Style="{StaticResource playercount}" Content="3"></Button>
+                <Button Click="playercountchange" x:Name="playercountfour" Grid.Column="2" Grid.Row="1" Style="{StaticResource playercount}" Content="4"></Button>
+                <Button Background="LightGray" MouseLeave="buttonmouseleave" MouseEnter="buttonmouseenter" Style="{StaticResource menubutton}" Padding="10" Grid.Row="9" Grid.Column="7" Click="closesettings" Content="Close"></Button>
+                <Button Click="savesettings" Background="LightGray" MouseLeave="buttonmouseleave" MouseEnter="buttonmouseenter" Style="{StaticResource menubutton}" Padding="10" Grid.Row="9" Grid.Column="6" Content="Save"></Button>
+                <Button Click="setloadedsettings" Background="LightGray" MouseLeave="buttonmouseleave" MouseEnter="buttonmouseenter" Style="{StaticResource menubutton}" Padding="10" Grid.Row="9" Grid.Column="5" Content="Reset"></Button>
+                <TextBlock VerticalAlignment="center" Text="Opponent" Grid.ColumnSpan="3" HorizontalAlignment="center" FontSize="20" Grid.Column="0" Grid.Row="2"></TextBlock>
+                <TextBlock Visibility="Hidden" x:Name="unsavedchanges" Foreground="OrangeRed" VerticalAlignment="Bottom" Grid.ColumnSpan="3" FontSize="30" Grid.Row="9" Grid.Column="0" Text="Unsaved changes"></TextBlock>
+                <TextBlock VerticalAlignment="center" HorizontalAlignment="center" Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="4" FontSize="20" Text="Starting cards count"></TextBlock>
+                <Button Click="cardcountbutton" x:Name="minus" FontSize="25"  Background="LightGreen" BorderThickness="0" Content="-" Grid.Row="5" Grid.Column="0"></Button>
+                <TextBlock x:Name="startingcardscount" FontSize="20" VerticalAlignment="center" HorizontalAlignment="center" Text="7" Grid.Row="5" Grid.Column="1"></TextBlock>
+                <Button x:Name="plus" Click="cardcountbutton" FontSize="25"  Background="LightGreen" BorderThickness="0" Content="+" Grid.Row="5" Grid.Column="2"></Button>
+            </Grid>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                    <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button BorderThickness="0" Background="Green" x:Name="players" BorderBrush="Transparent" Click="setopponentbutton" Content="Players" Grid.Column="0" Grid.Row="3"></Button>
+                <Button BorderThickness="0" Background="Green" x:Name="computer" BorderBrush="Transparent" Click="setopponentbutton" Content="Computer" Grid.Column="1" Grid.Row="3"></Button>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>
