@@ -22,14 +22,12 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style TargetType="Button" x:Key="playercount">
-            <Setter Property="Background" Value="Green"></Setter>
-            <Setter Property="BorderThickness" Value="0"></Setter>
-            <Setter Property="FontSize" Value="20"></Setter>
-        </Style>
     </UserControl.Resources>
     <Border Padding="5" Margin="20" Background="AliceBlue" CornerRadius="10">
-        <Grid>
+        <Grid x:Name="maingridsettings">
+            <!--<Grid.Background>
+                <ImageBrush ImageSource="C:\Users\357\Desktop\HTML\misha\misha.jpg"></ImageBrush>
+            </Grid.Background>-->
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>
@@ -53,19 +51,59 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <TextBlock VerticalAlignment="Center" HorizontalAlignment="center" FontSize="20" Text="Player count" Grid.ColumnSpan="3"></TextBlock>
-                <Button Click="playercountchange" x:Name="playercounttwo" Grid.Column="0" Grid.Row="1" Style="{StaticResource playercount}" Content="2"></Button>
-                <Button Click="playercountchange" x:Name="playercountthree" Grid.Column="1" Grid.Row="1" Style="{StaticResource playercount}" Content="3"></Button>
-                <Button Click="playercountchange" x:Name="playercountfour" Grid.Column="2" Grid.Row="1" Style="{StaticResource playercount}" Content="4"></Button>
+                <TextBlock x:Name="playercounttextblock" VerticalAlignment="Center" HorizontalAlignment="center" FontSize="20" Text="Player count" Grid.ColumnSpan="3"></TextBlock>
+                <Button Background="LightGreen" BorderThickness="0" Click="playercountchange" x:Name="playercounttwo" Grid.Column="0" Grid.Row="1" Content="2"></Button>
+                <Button Background="LightGreen" BorderThickness="0" Click="playercountchange" x:Name="playercountthree" Grid.Column="1" Grid.Row="1" Content="3"></Button>
+                <Button Background="LightGreen" BorderThickness="0" Click="playercountchange" x:Name="playercountfour" Grid.Column="2" Grid.Row="1" Content="4"></Button>
                 <Button Background="LightGray" MouseLeave="buttonmouseleave" MouseEnter="buttonmouseenter" Style="{StaticResource menubutton}" Padding="10" Grid.Row="9" Grid.Column="7" Click="closesettings" Content="Close"></Button>
                 <Button Click="savesettings" Background="LightGray" MouseLeave="buttonmouseleave" MouseEnter="buttonmouseenter" Style="{StaticResource menubutton}" Padding="10" Grid.Row="9" Grid.Column="6" Content="Save"></Button>
                 <Button Click="setloadedsettings" Background="LightGray" MouseLeave="buttonmouseleave" MouseEnter="buttonmouseenter" Style="{StaticResource menubutton}" Padding="10" Grid.Row="9" Grid.Column="5" Content="Reset"></Button>
-                <TextBlock VerticalAlignment="center" Text="Opponent" Grid.ColumnSpan="3" HorizontalAlignment="center" FontSize="20" Grid.Column="0" Grid.Row="2"></TextBlock>
+                <TextBlock x:Name="opponenttextblock" VerticalAlignment="center" Text="Opponent" Grid.ColumnSpan="3" HorizontalAlignment="center" FontSize="20" Grid.Column="0" Grid.Row="2"></TextBlock>
                 <TextBlock Visibility="Hidden" x:Name="unsavedchanges" Foreground="OrangeRed" VerticalAlignment="Bottom" Grid.ColumnSpan="3" FontSize="30" Grid.Row="9" Grid.Column="0" Text="Unsaved changes"></TextBlock>
-                <TextBlock VerticalAlignment="center" HorizontalAlignment="center" Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="4" FontSize="20" Text="Starting cards count"></TextBlock>
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="4" FontSize="20">
+                    <Run x:Name="startingcardscountrun" Text="Starting cards count" Foreground="Black"></Run>
+                    <Run Text="[i]" Foreground="Blue" ToolTipService.InitialShowDelay="0">
+                        <ToolTipService.ToolTip>
+                            <ToolTip>
+                                <TextBlock x:Name="startingcardscounttextblock"  Text="Defines how many cards each player is starting with" FontSize="20"></TextBlock>
+                            </ToolTip>
+                        </ToolTipService.ToolTip>
+                    </Run>
+                </TextBlock>
+                <TextBlock FontSize="20" VerticalAlignment="center" HorizontalAlignment="center" Grid.ColumnSpan="3" Grid.Column="5" Grid.Row="4" ToolTipService.InitialShowDelay="0">
+                    <Run x:Name="stackingrun" Text="Stacking" Foreground="Black"></Run>
+                    <Run Text="[i]" Foreground="Blue" ToolTipService.InitialShowDelay="0">
+                        <ToolTipService.ToolTip>
+                            <ToolTip>
+                                <TextBlock x:Name="stackingtextblock" Text="Block draw cards by stacking another one on top" FontSize="20"></TextBlock>
+                            </ToolTip>    
+                        </ToolTipService.ToolTip>
+                    </Run>
+                </TextBlock>
                 <Button Click="cardcountbutton" x:Name="minus" FontSize="25"  Background="LightGreen" BorderThickness="0" Content="-" Grid.Row="5" Grid.Column="0"></Button>
                 <TextBlock x:Name="startingcardscount" FontSize="20" VerticalAlignment="center" HorizontalAlignment="center" Text="7" Grid.Row="5" Grid.Column="1"></TextBlock>
                 <Button x:Name="plus" Click="cardcountbutton" FontSize="25"  Background="LightGreen" BorderThickness="0" Content="+" Grid.Row="5" Grid.Column="2"></Button>
+                <TextBlock VerticalAlignment="center" HorizontalAlignment="center" Grid.ColumnSpan="3" Grid.Column="5" Grid.Row="0" FontSize="20">
+                    <Run x:Name="drawcardsuntilplayablerun" Text="Draw cards until playable one" Foreground="Black"></Run>
+                    <Run Text="[i]" Foreground="Blue" ToolTipService.InitialShowDelay="0">
+                        <ToolTipService.ToolTip>
+                            <ToolTip>
+                                <TextBlock x:Name="drawcardsuntilplayabletextblock" Text="You have to draw cards until you get a playable one" FontSize="20"></TextBlock>
+                            </ToolTip>
+                        </ToolTipService.ToolTip>
+                    </Run>
+                </TextBlock>
+                <TextBlock FontSize="20" HorizontalAlignment="center" VerticalAlignment="center" Grid.ColumnSpan="3" Grid.Row="2" Grid.Column="5">
+                    <Run x:Name="forceplayrun" Text="Force play" Foreground="Black"></Run>
+                    <Run Text="[i]" Foreground="Blue" ToolTipService.InitialShowDelay="0">
+                        <ToolTipService.ToolTip>
+                            <ToolTip>
+                                <TextBlock x:Name="forceplaytextblock" Text="If you draw a playable card, it will be played automatically" FontSize="20"></TextBlock>
+                            </ToolTip>
+                        </ToolTipService.ToolTip>
+                    </Run>
+                </TextBlock>
+                <TextBlock x:Name="languagetextblock" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Text="Language" Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="6"></TextBlock>
             </Grid>
             <Grid>
                 <Grid.RowDefinitions>
@@ -85,13 +123,20 @@
                     <ColumnDefinition Width="1.5*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                    <ColumnDefinition Width="1.5*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button BorderThickness="0" Background="Green" x:Name="players" BorderBrush="Transparent" Click="setopponentbutton" Content="Players" Grid.Column="0" Grid.Row="3"></Button>
-                <Button BorderThickness="0" Background="Green" x:Name="computer" BorderBrush="Transparent" Click="setopponentbutton" Content="Computer" Grid.Column="1" Grid.Row="3"></Button>
-            </Grid>
+                <Button BorderThickness="0" Background="LightGreen" x:Name="players" BorderBrush="Transparent" Click="setopponentbutton" Content="Players" Grid.Column="0" Grid.Row="3"></Button>
+                <Button BorderThickness="0" Background="LightGreen" x:Name="computer" BorderBrush="Transparent" Click="setopponentbutton" Content="Computer" Grid.Column="1" Grid.Row="3"></Button>
+                <Button Click="drawuntilplayablebutton" x:Name="drawuntilplayableon" BorderThickness="0" Grid.Column="4" Grid.Row="1" Background="LightGreen" FontSize="20">On</Button>
+                <Button Click="drawuntilplayablebutton" x:Name="drawuntilplayableoff" BorderThickness="0" Grid.Column="5" Grid.Row="1" Background="Gray" FontSize="20">Off</Button>
+                <Button Click="forceplaybutton" x:Name="forceplayon" BorderThickness="0" Grid.Column="4" Grid.Row="3" Background="LightGreen" FontSize="20">On</Button>
+                <Button Click="forceplaybutton" x:Name="forceplayoff" BorderThickness="0" Grid.Column="5" Grid.Row="3" Background="Gray" FontSize="20"> Off</Button>
+                <Button Click="stackingbutton" x:Name="stackingon" FontSize="20" Grid.Row="5" Grid.Column="4" BorderThickness="0" Background="LightGreen" Content="On"></Button>
+                <Button Click="stackingbutton" x:Name="stackingoff" FontSize="20" Grid.Row="5" Grid.Column="5" BorderThickness="0" Background="Gray" Content="Off"></Button>
+                <Button Click="languagebutton" x:Name="english" Background="LightGreen" Grid.Row="7" Grid.Column="0" FontSize="20" Content="English" BorderThickness="0"></Button>
+                <Button Click="languagebutton" x:Name="ukrainian" Background="LightGreen" Grid.Row="7" Grid.Column="1" FontSize="20" Content="Ukrainian" BorderThickness="0"></Button>
+            </Grid> 
         </Grid>
     </Border>
 </UserControl>

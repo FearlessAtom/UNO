@@ -11,5 +11,10 @@ namespace UNOui
         public static int playercount;
         public static int opponent;
         public static int cardcount;
+        public static int drawuntilplayable;
+        public static int forceplay;
+        public static int stacking;
+        public static int language;
+        public static bool saved;
     }
 }

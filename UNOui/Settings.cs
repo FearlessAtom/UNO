@@ -12,6 +12,12 @@ namespace UNOui
         protected static int playercount;
         protected static int opponent;
         protected static int cardcount;
+        protected static int drawuntilplayable;
+        protected static int forceplay;
+        protected static int stacking;
+        protected static int language;
+        protected static bool settingsopened;
+        protected static bool saved;
         public Settings(int playerCount, int Opponent, int Cardcount)
         {
             playercount = playerCount;
@@ -41,6 +47,54 @@ namespace UNOui
         public static void setcardcount(int Cardcount)
         {
             cardcount = Cardcount;
+        }
+        public static bool getsaved()
+        {
+            return saved;
+        }
+        public static void setsaved(bool Saved)
+        { 
+            saved = Saved;
+        }
+        public static int getdrawuntilplayable()
+        {
+            return drawuntilplayable;
+        }
+        public static void setdrawuntilplayable(int Drawuntilplayble)
+        {
+            drawuntilplayable = Drawuntilplayble;
+        }
+        public static bool getsettingsopened()
+        {
+            return settingsopened;
+        }
+        public static void setsettingsopened(bool SettingsOpened)
+        {
+            settingsopened = SettingsOpened;
+        }
+        public static int getforceplay()
+        {
+            return forceplay;
+        }
+        public static void setforceplay(int Forceplay)
+        {
+            forceplay = Forceplay;
+        }
+        public static int getstacking()
+        {
+            return stacking;
+        }
+        public static void setstacking(int Stacking)
+        {
+            stacking = Stacking;
+        }
+        public static int getlanguage()
+        {
+            return language;
+        }
+        public static void setlanguage(int Language)
+        {
+            language = Language;
         }
     }
 }
