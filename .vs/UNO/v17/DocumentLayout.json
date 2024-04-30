@@ -3,28 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\357\\Desktop\\UNO\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{4959A15C-A26A-444E-A09A-C7640E5B3627}|UNOui\\UNOui.csproj|C:\\Users\\357\\Desktop\\UNO\\unoui\\settingsusercontrol.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4959A15C-A26A-444E-A09A-C7640E5B3627}|UNOui\\UNOui.csproj|solutionrelative:unoui\\settingsusercontrol.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{4959A15C-A26A-444E-A09A-C7640E5B3627}|UNOui\\UNOui.csproj|C:\\Users\\357\\Desktop\\UNO\\unoui\\confirmation.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4959A15C-A26A-444E-A09A-C7640E5B3627}|UNOui\\UNOui.csproj|solutionrelative:unoui\\confirmation.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4959A15C-A26A-444E-A09A-C7640E5B3627}|UNOui\\UNOui.csproj|c:\\users\\357\\desktop\\uno\\unoui\\settingsusercontrol.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{4959A15C-A26A-444E-A09A-C7640E5B3627}|UNOui\\UNOui.csproj|solutionrelative:unoui\\settingsusercontrol.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4959A15C-A26A-444E-A09A-C7640E5B3627}|UNOui\\UNOui.csproj|C:\\Users\\357\\Desktop\\UNO\\unoui\\confirmation.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{4959A15C-A26A-444E-A09A-C7640E5B3627}|UNOui\\UNOui.csproj|solutionrelative:unoui\\confirmation.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4959A15C-A26A-444E-A09A-C7640E5B3627}|UNOui\\UNOui.csproj|c:\\users\\357\\desktop\\uno\\unoui\\settingsusercontrol.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4959A15C-A26A-444E-A09A-C7640E5B3627}|UNOui\\UNOui.csproj|solutionrelative:unoui\\settingsusercontrol.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{4959A15C-A26A-444E-A09A-C7640E5B3627}|UNOui\\UNOui.csproj|C:\\Users\\357\\Desktop\\UNO\\unoui\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{4959A15C-A26A-444E-A09A-C7640E5B3627}|UNOui\\UNOui.csproj|solutionrelative:unoui\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4959A15C-A26A-444E-A09A-C7640E5B3627}|UNOui\\UNOui.csproj|C:\\Users\\357\\Desktop\\UNO\\unoui\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4959A15C-A26A-444E-A09A-C7640E5B3627}|UNOui\\UNOui.csproj|solutionrelative:unoui\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{4959A15C-A26A-444E-A09A-C7640E5B3627}|UNOui\\UNOui.csproj|C:\\Users\\357\\Desktop\\UNO\\unoui\\items.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4959A15C-A26A-444E-A09A-C7640E5B3627}|UNOui\\UNOui.csproj|solutionrelative:unoui\\items.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4959A15C-A26A-444E-A09A-C7640E5B3627}|UNOui\\UNOui.csproj|c:\\users\\357\\desktop\\uno\\unoui\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4959A15C-A26A-444E-A09A-C7640E5B3627}|UNOui\\UNOui.csproj|solutionrelative:unoui\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,20 +46,45 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "settingsusercontrol.xaml",
+              "DocumentMoniker": "C:\\Users\\357\\Desktop\\UNO\\UNOui\\settingsusercontrol.xaml",
+              "RelativeDocumentMoniker": "UNOui\\settingsusercontrol.xaml",
+              "ToolTip": "C:\\Users\\357\\Desktop\\UNO\\UNOui\\settingsusercontrol.xaml",
+              "RelativeToolTip": "UNOui\\settingsusercontrol.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-04-30T18:24:29.417Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "settingsusercontrol.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\357\\Desktop\\UNO\\UNOui\\settingsusercontrol.xaml.cs",
+              "RelativeDocumentMoniker": "UNOui\\settingsusercontrol.xaml.cs",
+              "ToolTip": "C:\\Users\\357\\Desktop\\UNO\\UNOui\\settingsusercontrol.xaml.cs",
+              "RelativeToolTip": "UNOui\\settingsusercontrol.xaml.cs",
+              "ViewState": "AQIAABcAAAAAAAAAAADwv2MAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-04T20:50:19.633Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "confirmation.xaml.cs",
               "DocumentMoniker": "C:\\Users\\357\\Desktop\\UNO\\UNOui\\confirmation.xaml.cs",
               "RelativeDocumentMoniker": "UNOui\\confirmation.xaml.cs",
               "ToolTip": "C:\\Users\\357\\Desktop\\UNO\\UNOui\\confirmation.xaml.cs",
               "RelativeToolTip": "UNOui\\confirmation.xaml.cs",
-              "ViewState": "AQIAAA8AAAAAAAAAAAAuwBoAAAAAAAAA",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAABYAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-30T07:28:33.962Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "confirmation.xaml",
               "DocumentMoniker": "C:\\Users\\357\\Desktop\\UNO\\UNOui\\confirmation.xaml",
               "RelativeDocumentMoniker": "UNOui\\confirmation.xaml",
@@ -67,39 +96,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "settingsusercontrol.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\357\\Desktop\\UNO\\UNOui\\settingsusercontrol.xaml.cs",
-              "RelativeDocumentMoniker": "UNOui\\settingsusercontrol.xaml.cs",
-              "ToolTip": "C:\\Users\\357\\Desktop\\UNO\\UNOui\\settingsusercontrol.xaml.cs",
-              "RelativeToolTip": "UNOui\\settingsusercontrol.xaml.cs",
-              "ViewState": "AQIAAJMBAAAAAAAAAADwv6kBAAAhAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-04T20:50:19.633Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\357\\Desktop\\UNO\\UNOui\\MainWindow.xaml",
               "RelativeDocumentMoniker": "UNOui\\MainWindow.xaml",
               "ToolTip": "C:\\Users\\357\\Desktop\\UNO\\UNOui\\MainWindow.xaml",
               "RelativeToolTip": "UNOui\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-04-27T14:03:10.668Z"
+              "WhenOpened": "2024-04-27T14:03:10.668Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\357\\Desktop\\UNO\\UNOui\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "UNOui\\MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\357\\Desktop\\UNO\\UNOui\\MainWindow.xaml.cs",
               "RelativeToolTip": "UNOui\\MainWindow.xaml.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAH8AAAAbAAAA",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAAG8AAABCAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-02T19:53:44.95Z"
+              "WhenOpened": "2024-04-02T19:53:44.95Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -109,9 +127,10 @@
               "RelativeDocumentMoniker": "UNOui\\Items.cs",
               "ToolTip": "C:\\Users\\357\\Desktop\\UNO\\UNOui\\Items.cs",
               "RelativeToolTip": "UNOui\\Items.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAoAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-27T15:15:40.513Z"
+              "WhenOpened": "2024-04-27T15:15:40.513Z",
+              "EditorCaption": ""
             }
           ]
         }

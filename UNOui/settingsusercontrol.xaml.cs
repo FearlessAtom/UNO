@@ -85,7 +85,8 @@ namespace UNOui
                 Settings.getdrawuntilplayable() == UnsavedSettings.drawuntilplayable &&
                 Settings.getforceplay() == UnsavedSettings.forceplay && 
                 Settings.getstacking() == UnsavedSettings.stacking &&
-                Settings.getlanguage() == UnsavedSettings.language)
+                Settings.getlanguage() == UnsavedSettings.language &&
+                Settings.getjumpin() == UnsavedSettings.jumpin)
             {
                 unsavedchanges.Visibility = Visibility.Hidden;
                 Settings.setsaved(true);
@@ -137,11 +138,7 @@ namespace UNOui
             drawuntilplayable(Settings.getdrawuntilplayable());
             stacking(Settings.getstacking());
             language(Settings.getlanguage());
-            UnsavedSettings.cardcount = Settings.getcardcount();
-            UnsavedSettings.drawuntilplayable = Settings.getdrawuntilplayable();
-            UnsavedSettings.forceplay = Settings.getforceplay();
-            UnsavedSettings.stacking = Settings.getstacking();
-            UnsavedSettings.language = Settings.getlanguage();
+            jumpin(Settings.getjumpin());
             saved();
         }
         public void savesettings(object sender, RoutedEventArgs e)
@@ -153,6 +150,7 @@ namespace UNOui
             Settings.setforceplay(UnsavedSettings.forceplay);
             Settings.setstacking(UnsavedSettings.stacking);
             Settings.setlanguage(UnsavedSettings.language);
+            Settings.setjumpin(UnsavedSettings.jumpin);
             StreamWriter writer = new StreamWriter(path);
             writer.WriteLine(Settings.getplayercount().ToString());
             writer.WriteLine(Settings.getopponent().ToString());
@@ -161,6 +159,7 @@ namespace UNOui
             writer.WriteLine(Settings.getforceplay().ToString());
             writer.WriteLine(Settings.getstacking().ToString());
             writer.WriteLine(Settings.getlanguage().ToString());
+            writer.WriteLine(Settings.getjumpin().ToString());
             writer.Close();
             saved();
         }
@@ -242,7 +241,8 @@ namespace UNOui
                 minus.FontSize = 25;
                 minus.Background = Brushes.LightGreen;
             }
-        startingcardscount.Text = number.ToString();
+            UnsavedSettings.cardcount = number;
+            startingcardscount.Text = number.ToString();
         }
         private void drawuntilplayable(int number)
         {
@@ -265,8 +265,9 @@ namespace UNOui
                 drawuntilplayableoff.Margin = new Thickness(0);
                 drawuntilplayableoff.FontSize = 25;
                 drawuntilplayableoff.Background = Brushes.OrangeRed;
-
             }
+            UnsavedSettings.drawuntilplayable = number;
+            saved();
         }
         private void drawuntilplayablebutton(object sender, RoutedEventArgs e)
         {
@@ -282,7 +283,6 @@ namespace UNOui
                 drawuntilplayable(2);
                 drawuntilplayableoff.Background = Brushes.OrangeRed;
             }
-            saved();
         }
         private void forceplaybutton(object sender, RoutedEventArgs e)
         {
@@ -297,7 +297,6 @@ namespace UNOui
                 UnsavedSettings.forceplay = 2;
                 forceplay(2);
             }
-            saved();
         }
         private void forceplay(int number)
         {
@@ -321,6 +320,8 @@ namespace UNOui
                 forceplayoff.FontSize = 25;
                 forceplayoff.Background = Brushes.OrangeRed;
             }
+            UnsavedSettings.forceplay = number;
+            saved();
         }
         private void stackingbutton(object sender, RoutedEventArgs e)
         {
@@ -335,7 +336,6 @@ namespace UNOui
                 UnsavedSettings.stacking = 2;
                 stacking(2);
             }
-            saved();
         }
         private void stacking(int number)
         {
@@ -359,6 +359,45 @@ namespace UNOui
                 stackingoff.FontSize = 25;
                 stackingoff.Background = Brushes.OrangeRed;
             }
+            UnsavedSettings.stacking = number;
+            saved();
+        }
+        private void jumpinbutton(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            if(button == jumpinon)
+            {
+                jumpin(1);
+            }
+            else
+            {
+                jumpin(2);
+            }
+        }
+        private void jumpin(int number)
+        {
+            if (number == 1)
+            {
+                jumpinon.Margin = new Thickness(0);
+                jumpinon.FontSize = 25;
+                jumpinon.Background = Brushes.LightGreen;
+
+                jumpinoff.Margin = new Thickness(0, 3, 0, 3);
+                jumpinoff.FontSize = 20;
+                jumpinoff.Background = Brushes.Gray;
+            }
+            else
+            {
+                jumpinon.Margin = new Thickness(0, 3, 0, 3);
+                jumpinon.FontSize = 20;
+                jumpinon.Background = Brushes.Gray;
+
+                jumpinoff.Margin = new Thickness(0);
+                jumpinoff.FontSize = 25;
+                jumpinoff.Background = Brushes.OrangeRed;
+            }
+            UnsavedSettings.jumpin = number;
+            saved();
         }
         private void languagebutton(object sender, RoutedEventArgs e)
         {
@@ -399,6 +438,7 @@ namespace UNOui
                 ukrainian.FontSize = 20;
                 ukrainian.Margin = new Thickness(0, 3, 0, 3);
             }
+            UnsavedSettings.language = number;
             saved();
         }
         public void toenglish()
@@ -419,6 +459,8 @@ namespace UNOui
             drawcardsuntilplayablerun.Text = "Draw cards until playable";
             drawcardsuntilplayabletextblock.Text = "You have to draw cards until you get a playable one";
             unsavedchanges.Text = "Unsaved changes";
+            jumpinrun.Text = "Jump in";
+            jumpintextblock.Text = "If a player has the exact same card that is currently being played, they can play the card out of turn";
             Items.mainwindowitem.play.Content = "Play";
             Items.mainwindowitem.exit.Content = "Exit";
             Items.mainwindowitem.settings.Content = "Settings";
@@ -441,9 +483,12 @@ namespace UNOui
             drawcardsuntilplayablerun.Text = "Тягніть до грабельної";
             drawcardsuntilplayabletextblock.Text = "Тягніть карти, поки не отримаєте ту, якою можете походити";
             unsavedchanges.Text = "Незбережені зміни";
+            jumpinrun.Text = "Вступайте";
+            jumpintextblock.Text = "Якщо у гравця є та сама карта, що зараз грається, він може зіграти карту без черги";
             Items.mainwindowitem.play.Content = "Грати";
             Items.mainwindowitem.exit.Content = "Вихід";
             Items.mainwindowitem.settings.Content = "Налаштування";
         }
+
     }
 }

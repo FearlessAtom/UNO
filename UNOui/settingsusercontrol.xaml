@@ -101,6 +101,16 @@
                     </Run>
                 </TextBlock>
                 <TextBlock x:Name="languagetextblock" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Text="Language" Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="6"></TextBlock>
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="3" FontSize="20" Grid.Column="5" Grid.Row="6">
+                    <Run x:Name="jumpinrun" Text="Jump in" Foreground="Black"></Run>
+                    <Run Text="[i]" Foreground="Blue" ToolTipService.InitialShowDelay="0">
+                        <ToolTipService.ToolTip>
+                            <ToolTip>
+                                <TextBlock x:Name="jumpintextblock" Text="If a player has the exact same card that is currently being played, they can play the card out of turn" FontSize="20"></TextBlock>
+                            </ToolTip>
+                        </ToolTipService.ToolTip>
+                    </Run>
+                </TextBlock>
             </Grid>
             <Grid>
                 <Grid.RowDefinitions>
@@ -128,12 +138,14 @@
                 <Button Click="drawuntilplayablebutton" x:Name="drawuntilplayableon" BorderThickness="0" Grid.Column="4" Grid.Row="1" Background="LightGreen" FontSize="20">On</Button>
                 <Button Click="drawuntilplayablebutton" x:Name="drawuntilplayableoff" BorderThickness="0" Grid.Column="5" Grid.Row="1" Background="Gray" FontSize="20">Off</Button>
                 <Button Click="forceplaybutton" x:Name="forceplayon" BorderThickness="0" Grid.Column="4" Grid.Row="3" Background="LightGreen" FontSize="20">On</Button>
-                <Button Click="forceplaybutton" x:Name="forceplayoff" BorderThickness="0" Grid.Column="5" Grid.Row="3" Background="Gray" FontSize="20"> Off</Button>
+                <Button Click="forceplaybutton" x:Name="forceplayoff" BorderThickness="0" Grid.Column="5" Grid.Row="3" Background="Gray" FontSize="20">Off</Button>
                 <Button Click="stackingbutton" x:Name="stackingon" FontSize="20" Grid.Row="5" Grid.Column="4" BorderThickness="0" Background="LightGreen" Content="On"></Button>
                 <Button Click="stackingbutton" x:Name="stackingoff" FontSize="20" Grid.Row="5" Grid.Column="5" BorderThickness="0" Background="Gray" Content="Off"></Button>
                 <Button Click="languagebutton" x:Name="english" Background="LightGreen" Grid.Row="7" Grid.Column="0" FontSize="20" Content="English" BorderThickness="0"></Button>
                 <Button Click="languagebutton" x:Name="ukrainian" Background="LightGreen" Grid.Row="7" Grid.Column="1" FontSize="20" Content="Ukrainian" BorderThickness="0"></Button>
-            </Grid> 
+                <Button x:Name="jumpinon" Click="jumpinbutton" FontSize="20" Content="On" Grid.Row="7" Grid.Column="4" Background="LightGreen" BorderThickness="0" ></Button>
+                <Button x:Name="jumpinoff" Click="jumpinbutton" FontSize="20" Content="Off" Grid.Row="7" Grid.Column="5" Background="Gray" BorderThickness="0" ></Button>
+            </Grid>
         </Grid>
     </Border>
 </UserControl>

@@ -24,7 +24,6 @@ namespace UNOui
         {
             InitializeComponent();
         }
-
         public void cancel(object sender, RoutedEventArgs e)
         {
             Settings.setconfirmation(false);

@@ -16,6 +16,7 @@ namespace UNOui
         protected static int forceplay;
         protected static int stacking;
         protected static int language;
+        protected static int jumpin;
         protected static bool settingsopened;
         protected static bool saved;
         protected static bool confirmation = false;
@@ -104,6 +105,14 @@ namespace UNOui
         public static void setconfirmation(bool Confirmation)
         {
             confirmation = Confirmation;
+        }
+        public static int getjumpin()
+        {
+            return jumpin;
+        }
+        public static void setjumpin(int Jumpin)
+        {
+            jumpin = Jumpin;
         }
     }
 }

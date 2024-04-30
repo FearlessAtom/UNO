@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using System.Collections;
+using System.Threading;
+using System.Windows.Threading;
 namespace UNOui
 {
     /// <summary>
@@ -24,8 +26,14 @@ namespace UNOui
         public MainWindow()
         {
             InitializeComponent();
+            //audio();
         }
-        
+        public void audio()
+        {
+            MediaPlayer music = new MediaPlayer();
+            music.Open(new Uri("C:\\Users\\357\\Desktop\\UNO\\UNOui\\Music\\music.mp3"));
+            music.Play();
+        }
         private void exitmenubutton(object sender, RoutedEventArgs e)
         {
             if (!Settings.getsettingsopened())
@@ -116,6 +124,7 @@ namespace UNOui
             string forceplay = reader.ReadLine();
             string stacking = reader.ReadLine();
             string language = reader.ReadLine();
+            string jumpin = reader.ReadLine();
             Settings.setplayercount(Convert.ToInt16(playercount));
             Settings.setopponent(Convert.ToInt16(opponent));
             Settings.setcardcount(Convert.ToInt16(cardcount));
@@ -123,6 +132,7 @@ namespace UNOui
             Settings.setforceplay(Convert.ToInt16(forceplay));
             Settings.setstacking(Convert.ToInt16(stacking));
             Settings.setlanguage(Convert.ToInt16(language));
+            Settings.setjumpin(Convert.ToInt16(jumpin));
             UnsavedSettings.drawuntilplayable = Settings.getdrawuntilplayable();
             setlanguage();
             reader.Close();

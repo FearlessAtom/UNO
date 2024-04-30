@@ -15,6 +15,7 @@ namespace UNOui
         public static int forceplay;
         public static int stacking;
         public static int language;
+        public static int jumpin;
         public static bool saved;
     }
 }
