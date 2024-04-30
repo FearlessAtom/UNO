@@ -23,11 +23,8 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Border Padding="5" Margin="20" Background="AliceBlue" CornerRadius="10">
-        <Grid x:Name="maingridsettings">
-            <!--<Grid.Background>
-                <ImageBrush ImageSource="C:\Users\357\Desktop\HTML\misha\misha.jpg"></ImageBrush>
-            </Grid.Background>-->
+    <Border BorderThickness="2" BorderBrush="Black" Padding="5" Margin="20" Background="AliceBlue" CornerRadius="10">
+        <Grid  x:Name="maingridsettings">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>
@@ -84,7 +81,7 @@
                 <TextBlock x:Name="startingcardscount" FontSize="20" VerticalAlignment="center" HorizontalAlignment="center" Text="7" Grid.Row="5" Grid.Column="1"></TextBlock>
                 <Button x:Name="plus" Click="cardcountbutton" FontSize="25"  Background="LightGreen" BorderThickness="0" Content="+" Grid.Row="5" Grid.Column="2"></Button>
                 <TextBlock VerticalAlignment="center" HorizontalAlignment="center" Grid.ColumnSpan="3" Grid.Column="5" Grid.Row="0" FontSize="20">
-                    <Run x:Name="drawcardsuntilplayablerun" Text="Draw cards until playable one" Foreground="Black"></Run>
+                    <Run x:Name="drawcardsuntilplayablerun" Text="Draw cards until playable" Foreground="Black"></Run>
                     <Run Text="[i]" Foreground="Blue" ToolTipService.InitialShowDelay="0">
                         <ToolTipService.ToolTip>
                             <ToolTip>

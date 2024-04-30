@@ -33,7 +33,6 @@ namespace UNOui
                 Close();
             }
         }
-
         private void settingsbutton(object sender, RoutedEventArgs e)
         {
             
@@ -55,22 +54,29 @@ namespace UNOui
                 MessageBox.Show("Uno");
             }
         }
-
-        private void buttonmouseenter(object sender, MouseEventArgs e)
+        public void buttonmouseenter(object sender, MouseEventArgs e)
         {
             Button button = (Button)sender;
+            Brush brush = button.Background;
+            SolidColorBrush solidbrush = (SolidColorBrush)brush;
+            Color color = solidbrush.Color;
+            Items.buttoncolor = color;
+            RadialGradientBrush gradient = darkergradient(color);
+            button.Background = gradient;
+        }
+        public void buttonmouseleave(object sender, MouseEventArgs e)
+        {
+            Button button = (Button)sender;
+            button.Background = new SolidColorBrush(Items.buttoncolor);
+        }
+        public RadialGradientBrush darkergradient(Color color)
+        {
             RadialGradientBrush gradient = new RadialGradientBrush();
             gradient.RadiusX = 0.99;
             gradient.RadiusY = 0.99;
-            gradient.GradientStops.Add(new GradientStop(Colors.AliceBlue, 0.0));
+            gradient.GradientStops.Add(new GradientStop(color, 0.0));
             gradient.GradientStops.Add(new GradientStop(Colors.Black, 3.0));
-            button.Background = gradient;
-        }
-        private void buttonmouseleave(object sender, MouseEventArgs e)
-        {
-            Button button = (Button)sender;
-            Brush color = new SolidColorBrush(Colors.Blue);
-            button.Background = Brushes.AliceBlue;
+            return gradient;
         }
         public void setlanguage()
         {
@@ -121,6 +127,5 @@ namespace UNOui
             setlanguage();
             reader.Close();
         }
-
     }
 }

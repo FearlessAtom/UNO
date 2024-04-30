@@ -18,6 +18,7 @@ namespace UNOui
         protected static int language;
         protected static bool settingsopened;
         protected static bool saved;
+        protected static bool confirmation = false;
         public Settings(int playerCount, int Opponent, int Cardcount)
         {
             playercount = playerCount;
@@ -32,7 +33,7 @@ namespace UNOui
         {
             return playercount;
         }
-        public static int getopponent() 
+        public static int getopponent()
         {
             return opponent;
         }
@@ -53,7 +54,7 @@ namespace UNOui
             return saved;
         }
         public static void setsaved(bool Saved)
-        { 
+        {
             saved = Saved;
         }
         public static int getdrawuntilplayable()
@@ -95,6 +96,14 @@ namespace UNOui
         public static void setlanguage(int Language)
         {
             language = Language;
+        }
+        public static bool getconfirmation()
+        {
+            return confirmation;
+        }
+        public static void setconfirmation(bool Confirmation)
+        {
+            confirmation = Confirmation;
         }
     }
 }

@@ -23,3 +23,5 @@ C:\Users\357\Desktop\UNO\UNOui\obj\Debug\net7.0-windows\settingswindow.baml
 C:\Users\357\Desktop\UNO\UNOui\obj\Debug\net7.0-windows\settingsusercontrol.g.cs
 C:\Users\357\Desktop\UNO\UNOui\obj\Debug\net7.0-windows\settingsusercontrol.baml
 C:\Users\357\Desktop\UNO\UNOui\obj\Debug\net7.0-windows\UNOui.sourcelink.json
+C:\Users\357\Desktop\UNO\UNOui\obj\Debug\net7.0-windows\confirmation.g.cs
+C:\Users\357\Desktop\UNO\UNOui\obj\Debug\net7.0-windows\confirmation.baml

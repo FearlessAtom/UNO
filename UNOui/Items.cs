@@ -10,7 +10,7 @@ namespace UNOui
     public class Items
     {
         public static MainWindow mainwindowitem;
-        public static UserControl settingsitem;
+        public static settingsusercontrol settingsitem;
         public static Button playbutton;
         public static Button settingsbutton;
         public static Button exitbutton;

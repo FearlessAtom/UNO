@@ -32,45 +32,38 @@ namespace UNOui
         {
 
         }
-        private void closesettings(object sender, RoutedEventArgs e)
+        public void closesettings(object sender, RoutedEventArgs e)
         {
-            Items.playbutton.Visibility = Visibility.Visible;
-            Items.settingsbutton.Visibility = Visibility.Visible;
-            Items.exitbutton.Visibility = Visibility.Visible;
-            Settings.setsettingsopened(false);
-            setloadedsettings(sender, e);
-            Grid panel = (Grid)this.Parent;
-            panel.Children.Remove(this);
+            if(Settings.getsaved() == false && !Settings.getconfirmation())
+            {
+                UserControl confirmation = new confirmation();
+                maingridsettings.Children.Add(confirmation);
+                Settings.setconfirmation(true);
+            }
+            else
+            {
+                Settings.setconfirmation(false);
+                Items.playbutton.Visibility = Visibility.Visible;
+                Items.settingsbutton.Visibility = Visibility.Visible;
+                Items.exitbutton.Visibility = Visibility.Visible;
+                Settings.setsettingsopened(false);
+                setloadedsettings(sender, e);
+                Grid grid = (Grid)Parent;
+                grid.Children.Remove(this);
+            }
         }
-        private RadialGradientBrush darkergradient(Color color)
-        {
-            RadialGradientBrush gradient = new RadialGradientBrush();
-            gradient.RadiusX = 0.99;
-            gradient.RadiusY = 0.99;
-            gradient.GradientStops.Add(new GradientStop(color, 0.0));
-            gradient.GradientStops.Add(new GradientStop(Colors.Black, 3.0));
-            return gradient;
-        }
-        private Color brushestocolor(Brush brush)
+        public Color brushestocolor(Brush brush)
         {
             SolidColorBrush solidbrush = (SolidColorBrush)brush;
             return solidbrush.Color;
         }
         private void buttonmouseenter(object sender, MouseEventArgs e)
         {
-            Button button = (Button)sender;
-
-            Brush brush = button.Background;
-            SolidColorBrush solidbrush = (SolidColorBrush)brush;
-            Color color = solidbrush.Color;
-            Items.buttoncolor = color;
-            RadialGradientBrush gradient = darkergradient(color);
-            button.Background = gradient;
+            Items.mainwindowitem.buttonmouseenter(sender, e);
         }
         private void buttonmouseleave(object sender, MouseEventArgs e)
         {
-            Button button = (Button)sender;
-            button.Background = new SolidColorBrush(Items.buttoncolor);
+            Items.mainwindowitem.buttonmouseleave(sender, e);
         }
         private void playercountchange(object sender, RoutedEventArgs e)
         {
@@ -423,7 +416,7 @@ namespace UNOui
             forceplaytextblock.Text = "If you draw a playable card, it will be played automatically";
             stackingrun.Text = "Stacking";
             stackingtextblock.Text = "Block draw cards by stacking another one on top";
-            drawcardsuntilplayablerun.Text = "Draw cards until playable one";
+            drawcardsuntilplayablerun.Text = "Draw cards until playable";
             drawcardsuntilplayabletextblock.Text = "You have to draw cards until you get a playable one";
             unsavedchanges.Text = "Unsaved changes";
             Items.mainwindowitem.play.Content = "Play";
