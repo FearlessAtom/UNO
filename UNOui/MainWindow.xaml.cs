@@ -34,17 +34,18 @@ namespace UNOui
             music.Open(new Uri("C:\\Users\\357\\Desktop\\UNO\\UNOui\\Music\\music.mp3"));
             music.Play();
         }
-        private void exitmenubutton(object sender, RoutedEventArgs e)
+        public void exitmenubutton(object sender, RoutedEventArgs e)
         {
             if (!Settings.getsettingsopened())
             {
-                Close();
+                Settings.setexitconfirmationopened(true);
+                UserControl exit = new exitconfirmation();
+                MainGrid.Children.Add(exit);
             }
         }
         private void settingsbutton(object sender, RoutedEventArgs e)
         {
-            
-            if(!Settings.getsettingsopened())
+            if (!Settings.getsettingsopened())
             {
                 UserControl settings = new settingsusercontrol();
                 MainGrid.Children.Add(settings);
@@ -59,7 +60,12 @@ namespace UNOui
         {
             if (!Settings.getsettingsopened())
             {
-                MessageBox.Show("Uno");
+                play.Visibility = Visibility.Hidden;
+                settings.Visibility = Visibility.Hidden;
+                exit.Visibility = Visibility.Hidden;
+                Settings.setgameopened(true);
+                UserControl game = new game();
+                MainGrid.Children.Add(game);
             }
         }
         public void buttonmouseenter(object sender, MouseEventArgs e)
@@ -136,6 +142,35 @@ namespace UNOui
             UnsavedSettings.drawuntilplayable = Settings.getdrawuntilplayable();
             setlanguage();
             reader.Close();
+        }
+        private void keydown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                if (Settings.getgameopened() == true)
+                {
+                    if (Settings.getgamemenuopened() == false)
+                    {
+                        Items.gameitem.menu(sender, e);
+                    }
+                    else
+                    {
+                        Items.gamemenuitem.resume(sender, e);   
+                    }
+                }
+                else if (Settings.getsettingsopened() == true)
+                {
+                    Items.settingsitem.closesettings(sender, e);
+                }
+                else if(Settings.getexitconfirmationopened() == true)
+                {
+                    Items.exitconfirmationitem.cancel(sender, e);
+                }
+                else
+                {
+                    exitmenubutton(sender, e);
+                }
+            }
         }
     }
 }

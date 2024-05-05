@@ -17,7 +17,10 @@ namespace UNOui
         protected static int stacking;
         protected static int language;
         protected static int jumpin;
+        protected static bool gamemenuopened;
+        protected static bool exitconfirmationopened;
         protected static bool settingsopened;
+        protected static bool gameopened;
         protected static bool saved;
         protected static bool confirmation = false;
         public Settings(int playerCount, int Opponent, int Cardcount)
@@ -114,5 +117,30 @@ namespace UNOui
         {
             jumpin = Jumpin;
         }
+        public static bool getgameopened()
+        {
+            return gameopened;
+        }
+        public static void setgameopened(bool Gameopened)
+        {
+            gameopened = Gameopened;
+        }
+        public static bool getexitconfirmationopened()
+        {
+            return exitconfirmationopened;
+        }
+        public static void setexitconfirmationopened(bool Exitconfirmationopened)
+        {
+            exitconfirmationopened = Exitconfirmationopened;
+        }
+        public static bool getgamemenuopened()
+        {
+            return gamemenuopened;
+        }
+        public static void setgamemenuopened(bool Gamemenuopened)
+        {
+            gamemenuopened = Gamemenuopened;
+        }
+
     }
 }

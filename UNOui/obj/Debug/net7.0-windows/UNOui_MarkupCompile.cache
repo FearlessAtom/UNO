@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET7_0;NETCOREAPP
 C:\Users\357\Desktop\UNO\UNOui\App.xaml
-4-2113581599
+6-1948701292
 
-9-496508708
+12201831367
 198-878225571
-confirmation.xaml;MainWindow.xaml;settingsusercontrol.xaml;settingswindow.xaml;
+confirmation.xaml;exitconfirmation.xaml;game.xaml;gamemenu.xaml;MainWindow.xaml;settingsusercontrol.xaml;
 
 False
 

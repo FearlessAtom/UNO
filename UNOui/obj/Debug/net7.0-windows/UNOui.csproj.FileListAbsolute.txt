@@ -18,10 +18,14 @@ C:\Users\357\Desktop\UNO\UNOui\obj\Debug\net7.0-windows\refint\UNOui.dll
 C:\Users\357\Desktop\UNO\UNOui\obj\Debug\net7.0-windows\UNOui.pdb
 C:\Users\357\Desktop\UNO\UNOui\obj\Debug\net7.0-windows\UNOui.genruntimeconfig.cache
 C:\Users\357\Desktop\UNO\UNOui\obj\Debug\net7.0-windows\ref\UNOui.dll
-C:\Users\357\Desktop\UNO\UNOui\obj\Debug\net7.0-windows\settingswindow.g.cs
-C:\Users\357\Desktop\UNO\UNOui\obj\Debug\net7.0-windows\settingswindow.baml
 C:\Users\357\Desktop\UNO\UNOui\obj\Debug\net7.0-windows\settingsusercontrol.g.cs
 C:\Users\357\Desktop\UNO\UNOui\obj\Debug\net7.0-windows\settingsusercontrol.baml
 C:\Users\357\Desktop\UNO\UNOui\obj\Debug\net7.0-windows\UNOui.sourcelink.json
 C:\Users\357\Desktop\UNO\UNOui\obj\Debug\net7.0-windows\confirmation.g.cs
 C:\Users\357\Desktop\UNO\UNOui\obj\Debug\net7.0-windows\confirmation.baml
+C:\Users\357\Desktop\UNO\UNOui\obj\Debug\net7.0-windows\game.g.cs
+C:\Users\357\Desktop\UNO\UNOui\obj\Debug\net7.0-windows\game.baml
+C:\Users\357\Desktop\UNO\UNOui\obj\Debug\net7.0-windows\exitconfirmation.g.cs
+C:\Users\357\Desktop\UNO\UNOui\obj\Debug\net7.0-windows\exitconfirmation.baml
+C:\Users\357\Desktop\UNO\UNOui\obj\Debug\net7.0-windows\gamemenu.g.cs
+C:\Users\357\Desktop\UNO\UNOui\obj\Debug\net7.0-windows\gamemenu.baml

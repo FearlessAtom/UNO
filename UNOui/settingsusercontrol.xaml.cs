@@ -28,13 +28,9 @@ namespace UNOui
         {
             InitializeComponent();
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
         public void closesettings(object sender, RoutedEventArgs e)
         {
-            if(Settings.getsaved() == false && !Settings.getconfirmation())
+            if (Settings.getsaved() == false && !Settings.getconfirmation())
             {
                 UserControl confirmation = new confirmation();
                 maingridsettings.Children.Add(confirmation);
@@ -489,6 +485,5 @@ namespace UNOui
             Items.mainwindowitem.exit.Content = "Вихід";
             Items.mainwindowitem.settings.Content = "Налаштування";
         }
-
     }
 }

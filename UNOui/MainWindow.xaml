@@ -10,6 +10,7 @@
         MinHeight="450"
         MinWidth="800"
         Loaded="setsettings"
+        KeyDown="keydown"
         >
     <Window.Resources>
         <Style TargetType="Button" x:Key="menubutton">

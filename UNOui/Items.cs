@@ -11,6 +11,9 @@ namespace UNOui
     {
         public static MainWindow mainwindowitem;
         public static settingsusercontrol settingsitem;
+        public static game gameitem;
+        public static exitconfirmation exitconfirmationitem;
+        public static gamemenu gamemenuitem;
         public static Button playbutton;
         public static Button settingsbutton;
         public static Button exitbutton;

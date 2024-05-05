@@ -10,10 +10,16 @@
     <Compile Update="confirmation.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="settingsusercontrol.xaml.cs">
+    <Compile Update="exitconfirmation.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="settingswindow.xaml.cs">
+    <Compile Update="game.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="gamemenu.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="settingsusercontrol.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -21,13 +27,19 @@
     <Page Update="confirmation.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="exitconfirmation.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="game.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="gamemenu.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="settingsusercontrol.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="settingswindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
