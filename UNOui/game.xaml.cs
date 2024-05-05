@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Dynamic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -30,12 +31,12 @@ namespace UNOui
         private void loaded(object sender, RoutedEventArgs e)
         {
             Items.gameitem = this;
-            for(int index = 0; index < Settings.getcardcount(); index++)
+            CardsList.topcard = Cards.randomcard();
+            for (int index = 0; index < Settings.getcardcount(); index++)
             {
                 addcard();
             }
         }
-        
         public void closegame()
         {
             Settings.setgameopened(false);
@@ -74,6 +75,8 @@ namespace UNOui
         private void mousedown(object sender, MouseButtonEventArgs e)
         {
             drag = (System.Windows.Controls.Image)sender;
+            gamecanvas.Children.Remove(drag);
+            gamecanvas.Children.Add(drag);
             CardsList.draggedimage = (System.Windows.Controls.Image)drag;
             offset = e.GetPosition(gamecanvas);
             offset.Y = offset.Y - Canvas.GetTop(drag);
@@ -90,13 +93,32 @@ namespace UNOui
         }
         private void mouseup(object sender, MouseButtonEventArgs e)
         {
-            gamecanvas.Children.Remove(CardsList.draggedimage);
-            CardsList.playercards.Remove(CardsList.imagetocard(CardsList.draggedimage));
-            drag = null;
-            gamecanvas.ReleaseMouseCapture();
-            dragging = false;
-            one();
-
+            if(CardsList.draggedimage != null)
+            {
+                double bottom = Canvas.GetTop(CardsList.draggedimage);
+                if (bottom < gamecanvas.ActualHeight * (CardsList.draggedimage.Height / gamecanvas.ActualHeight))                {
+                    
+                    CardsList.topcard.image.Source = CardsList.draggedimage.Source;
+                    
+                    for(int index = 0; index < CardsList.playercards.Count; index++)
+                    {
+                        if (CardsList.playercards[index].image == CardsList.draggedimage)
+                        {
+                            CardsList.topcard.number = CardsList.playercards[index].number;
+                            CardsList.topcard.color = CardsList.playercards[index].color;
+                            CardsList.topcard.listcount = CardsList.playercards[index].listcount;
+                            break;
+                        }
+                    }
+                    gamecanvas.Children.Remove(CardsList.topcard.image);
+                    gamecanvas.Children.Remove(CardsList.draggedimage);
+                    CardsList.playercards.Remove(CardsList.imagetocard(CardsList.draggedimage));
+                }
+                drag = null;
+                gamecanvas.ReleaseMouseCapture();
+                dragging = false;
+                one();
+            }
         }
         private void cardenter(object sender, MouseEventArgs e)
         {
@@ -128,26 +150,95 @@ namespace UNOui
         {
             if (CardsList.playercards.Count != 0)
             {
-                int gap = ((CardsList.playercards.Count * 150 - CardsList.playercards.Count * 100) / 2) - 30;
                 gamecanvas.Children.Clear();
-                if (CardsList.playercards.Count != 0)
+
+                CardsList.topcard.image.Width = CardsList.topcard.image.Height = 150;
+                Canvas.SetTop(CardsList.topcard.image, 0);
+                Canvas.SetLeft(CardsList.topcard.image, gamecanvas.ActualWidth / 2 - CardsList.topcard.image.Width / 2);
+                gamecanvas.Children.Add(CardsList.topcard.image);
+                int gap = ((CardsList.playercards.Count * 150 - CardsList.playercards.Count * 100) / 2) - 30;
+                for (int index = 0; index < CardsList.playercards.Count; index++)
                 {
-                    for (int index = 0; index < CardsList.playercards.Count; index++)
-                    {
-                        int currentindex = index;
-                        System.Windows.Controls.Image image = CardsList.playercards[index].image;
-                        image.Width = 150;
-                        image.Height = 150;
-                        Canvas.SetTop(image, (int)gamecanvas.ActualHeight - image.Width);
-                        Canvas.SetLeft(image, (int)gamecanvas.ActualWidth / 2 - (image.Width / 2) + index * 50 - gap);
-                        gamecanvas.Children.Add(image);
-                    }
+                    System.Windows.Controls.Image image = CardsList.playercards[index].image;
+                    image.Width = 150;
+                    image.Height = 150;
+                    Canvas.SetTop(image, (int)gamecanvas.ActualHeight - image.Width);
+                    Canvas.SetLeft(image, (int)gamecanvas.ActualWidth / 2 - (image.Width / 2) + index * 50 - gap);
+                    gamecanvas.Children.Add(image);
                 }
             }
         }
+        public Cards getcard()
+        {
+            List<Cards> cards = new List<Cards>
+            {
+                //Draw cards
+                new Cards(Items.gameitem.getcardimage("drawfour"), -1, "none", 0),
+                new Cards(Items.gameitem.getcardimage("wildcard"), -1, "none", 0),
+
+                //Yellow
+                new Cards(Items.gameitem.getcardimage("yellowreverse"), -1, "Yellow", 0),
+                new Cards(Items.gameitem.getcardimage("yellowdrawtwo"), -1, "Yellow", 0),
+                new Cards(Items.gameitem.getcardimage("yellowblock"), -1, "Yellow", 0),
+                new Cards(Items.gameitem.getcardimage("yellowone"), 1, "Yellow", 0),
+                new Cards(Items.gameitem.getcardimage("yellowtwo"), 2, "Yellow", 0),
+                new Cards(Items.gameitem.getcardimage("yellowthree"), 3, "Yellow", 0),
+                new Cards(Items.gameitem.getcardimage("yellowfour"), 4, "Yellow", 0),
+                new Cards(Items.gameitem.getcardimage("yellowfive"), 5, "Yellow", 0),
+                new Cards(Items.gameitem.getcardimage("yellowsix"), 6, "Yellow", 0),
+                new Cards(Items.gameitem.getcardimage("yellowseven"), 7, "Yellow", 0),
+                new Cards(Items.gameitem.getcardimage("yelloweight"), 8, "Yellow", 0),
+                new Cards(Items.gameitem.getcardimage("yellownine"), 9, "Yellow", 0),
+                
+                //Blue
+                new Cards(Items.gameitem.getcardimage("bluereverse"), -1, "Blue", 0),
+                new Cards(Items.gameitem.getcardimage("bluedrawtwo"), -1, "Blue", 0),
+                new Cards(Items.gameitem.getcardimage("blueblock"), -1, "Blue", 0),
+                new Cards(Items.gameitem.getcardimage("blueone"), 1, "Blue", 0),
+                new Cards(Items.gameitem.getcardimage("bluetwo"), 2, "Blue", 0),
+                new Cards(Items.gameitem.getcardimage("bluethree"), 3, "Blue", 0),
+                new Cards(Items.gameitem.getcardimage("bluefour"), 4, "Blue", 0),
+                new Cards(Items.gameitem.getcardimage("bluefive"), 5, "Blue", 0),
+                new Cards(Items.gameitem.getcardimage("bluesix"), 6, "Blue", 0),
+                new Cards(Items.gameitem.getcardimage("blueseven"), 7, "Blue", 0),
+                new Cards(Items.gameitem.getcardimage("blueeight"), 8, "Blue", 0),
+                new Cards(Items.gameitem.getcardimage("bluenine"), 9, "Blue", 0),
+                
+                //Red
+                new Cards(Items.gameitem.getcardimage("redreverse"), -1, "Red", 0),
+                new Cards(Items.gameitem.getcardimage("reddrawtwo"), -1, "Red", 0),
+                new Cards(Items.gameitem.getcardimage("redblock"), -1, "Red", 0),
+                new Cards(Items.gameitem.getcardimage("redone"), 1, "Red", 0),
+                new Cards(Items.gameitem.getcardimage("redtwo"), 2, "Red", 0),
+                new Cards(Items.gameitem.getcardimage("redthree"), 3, "Red", 0),
+                new Cards(Items.gameitem.getcardimage("redfour"), 4, "Red", 0),
+                new Cards(Items.gameitem.getcardimage("redfive"), 5, "Red", 0),
+                new Cards(Items.gameitem.getcardimage("redsix"), 6, "Red", 0),
+                new Cards(Items.gameitem.getcardimage("redseven"), 7, "Red", 0),
+                new Cards(Items.gameitem.getcardimage("redeight"), 8, "Red", 0),
+                new Cards(Items.gameitem.getcardimage("rednine"), 9, "Red", 0),
+
+                //Green
+                new Cards(Items.gameitem.getcardimage("greenreverse"), -1, "Green", 0),
+                new Cards(Items.gameitem.getcardimage("greendrawtwo"), -1, "Green", 0),
+                new Cards(Items.gameitem.getcardimage("greenblock"), -1, "Green", 0),
+                new Cards(Items.gameitem.getcardimage("greenone"), 1, "Green", 0),
+                new Cards(Items.gameitem.getcardimage("greentwo"), 2, "Green", 0),
+                new Cards(Items.gameitem.getcardimage("greenthree"), 3, "Green", 0),
+                new Cards(Items.gameitem.getcardimage("greenfour"), 4, "Green", 0),
+                new Cards(Items.gameitem.getcardimage("greenfive"), 5, "Green", 0),
+                new Cards(Items.gameitem.getcardimage("greensix"), 6, "Green", 0),
+                new Cards(Items.gameitem.getcardimage("greenseven"), 7, "Green", 0),
+                new Cards(Items.gameitem.getcardimage("greeneight"), 8, "Green", 0),
+                new Cards(Items.gameitem.getcardimage("greennine"), 9, "Green", 0),
+            };
+            Random random = new Random();
+            return cards[random.Next(0, cards.Count)];
+        }
         public void addcard()
         {
-            Cards card = new Cards();
+
+            Cards card = Cards.randomcard();
             card.listcount = CardsList.playercards.Count + 1;
             card.image.MouseEnter += cardenter;
             card.image.MouseLeave += cardleave;

@@ -11,6 +11,7 @@ namespace UNOui
     {
         public static List<Cards> playercards = new List<Cards>();
         public static Cards dragggedcard;
+        public static Cards topcard = new Cards();
         public static Image draggedimage;
 
         public static Cards imagetocard(Image image)
@@ -38,8 +39,9 @@ namespace UNOui
             this.color = color;
             this.listcount = listcount;
         }
-        public Cards randomcard()
-        {
+        
+        public static Cards randomcard()
+        { 
             List<Cards> cards = new List<Cards>
             {
                 //Draw cards
@@ -102,16 +104,16 @@ namespace UNOui
                 new Cards(Items.gameitem.getcardimage("greeneight"), 8, "Green", 0),
                 new Cards(Items.gameitem.getcardimage("greennine"), 9, "Green", 0),
             };
-            Random random = new Random();
-            return cards[random.Next(0, cards.Count)];
+        Random random = new Random();
+        return cards[random.Next(0, cards.Count)];
         }
         public Cards()
         {
-            Cards card = randomcard();
-            image = card.image;
-            number = card.number;
-            color = card.color;
-            listcount = card.listcount;
+            //Cards card = randomcard();
+            //image = card.image;
+            //number = card.number;
+            //color = card.color;
+            //listcount = card.listcount;
         }
     }
 }
