@@ -57,7 +57,7 @@ namespace UNOui
 
         private void settings(object sender, RoutedEventArgs e)
         {
-            //Items.gameitem.removecard(0);
+            Items.gameitem.playable();
         }
     }
 }

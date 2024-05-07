@@ -14,6 +14,7 @@ namespace UNOui
         public static game gameitem;
         public static exitconfirmation exitconfirmationitem;
         public static gamemenu gamemenuitem;
+        public static draworplay draworplayitem;
         public static Button playbutton;
         public static Button settingsbutton;
         public static Button exitbutton;

@@ -7,7 +7,13 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="colorchange.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="confirmation.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="draworplay.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="exitconfirmation.xaml.cs">
@@ -24,7 +30,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="colorchange.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="confirmation.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="draworplay.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="exitconfirmation.xaml">

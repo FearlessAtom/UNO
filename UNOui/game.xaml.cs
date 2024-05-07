@@ -12,6 +12,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -28,10 +29,41 @@ namespace UNOui
         {
             InitializeComponent();
         }
+        int actualgap = 10;
+        public void deckdown(object sender, MouseButtonEventArgs e)
+        {
+            addcard();
+            Cards card = CardsList.playercards[CardsList.playercards.Count - 1];
+            if(comparecard(CardsList.topcard, card))
+            {
+                
+                UserControl draworplay = new draworplay();
+                gamegrid.Children.Add(draworplay);
+            }
+        }
+        public void getdeck(int gap)
+        {
+            System.Windows.Controls.Image deck = new System.Windows.Controls.Image();
+            deck = getcardimage("cardbackground");
+            deck.Width = deck.Height = 150;
+            deck.MouseDown += deckdown;
+            CardsList.deckimage = deck;
+            Canvas.SetTop(deck, 0);
+            Canvas.SetLeft(deck, gamecanvas.ActualWidth / 4 - gap);
+            gamecanvas.Children.Add(deck);
+            if (gap <= actualgap * 3) { getdeck(gap + actualgap); }
+        }
         private void loaded(object sender, RoutedEventArgs e)
         {
             Items.gameitem = this;
             CardsList.topcard = Cards.randomcard();
+            System.Windows.Controls.Image deck2 = new System.Windows.Controls.Image();
+            System.Windows.Controls.Image deck3 = new System.Windows.Controls.Image();
+            if (CardsList.topcard.number == -4 || CardsList.topcard.number == -5)
+            {
+                UserControl colorchange = new colorchange();
+                gamegrid.Children.Add(colorchange);
+            }
             for (int index = 0; index < Settings.getcardcount(); index++)
             {
                 addcard();
@@ -72,11 +104,12 @@ namespace UNOui
         UIElement drag = null;
         bool dragging = false;
         Point offset;
+        int cardzindex;
         private void mousedown(object sender, MouseButtonEventArgs e)
         {
             drag = (System.Windows.Controls.Image)sender;
-            gamecanvas.Children.Remove(drag);
-            gamecanvas.Children.Add(drag);
+            cardzindex = Canvas.GetZIndex(drag);
+            Canvas.SetZIndex(drag, 1);
             CardsList.draggedimage = (System.Windows.Controls.Image)drag;
             offset = e.GetPosition(gamecanvas);
             offset.Y = offset.Y - Canvas.GetTop(drag);
@@ -95,9 +128,9 @@ namespace UNOui
         {
             if(CardsList.draggedimage != null)
             {
+                Canvas.SetZIndex(CardsList.draggedimage, cardzindex);
                 double bottom = Canvas.GetTop(CardsList.draggedimage);
-                if (bottom < gamecanvas.ActualHeight * (CardsList.draggedimage.Height / gamecanvas.ActualHeight))                {
-                    
+                if (bottom < gamecanvas.ActualHeight * (CardsList.draggedimage.Height / gamecanvas.ActualHeight) && comparecard(CardsList.topcard, imagetocard(CardsList.draggedimage))){
                     CardsList.topcard.image.Source = CardsList.draggedimage.Source;
                     
                     for(int index = 0; index < CardsList.playercards.Count; index++)
@@ -107,6 +140,11 @@ namespace UNOui
                             CardsList.topcard.number = CardsList.playercards[index].number;
                             CardsList.topcard.color = CardsList.playercards[index].color;
                             CardsList.topcard.listcount = CardsList.playercards[index].listcount;
+                            if ((CardsList.playercards[index].number == -4 || CardsList.playercards[index].number == -5) && CardsList.playercards[index].color == "none")
+                            {
+                                UserControl changecolor = new colorchange();
+                                gamegrid.Children.Add(changecolor);
+                            }
                             break;
                         }
                     }
@@ -114,6 +152,7 @@ namespace UNOui
                     gamecanvas.Children.Remove(CardsList.draggedimage);
                     CardsList.playercards.Remove(CardsList.imagetocard(CardsList.draggedimage));
                 }
+                Canvas.SetZIndex(CardsList.draggedimage, cardzindex);
                 drag = null;
                 gamecanvas.ReleaseMouseCapture();
                 dragging = false;
@@ -134,6 +173,7 @@ namespace UNOui
             {
                 System.Windows.Controls.Image image = (System.Windows.Controls.Image)sender;
                 Canvas.SetTop(image, (int)gamecanvas.ActualHeight - image.Width);
+                one();
             }
         }
         private void resize(object sender, SizeChangedEventArgs e)
@@ -151,7 +191,6 @@ namespace UNOui
             if (CardsList.playercards.Count != 0)
             {
                 gamecanvas.Children.Clear();
-
                 CardsList.topcard.image.Width = CardsList.topcard.image.Height = 150;
                 Canvas.SetTop(CardsList.topcard.image, 0);
                 Canvas.SetLeft(CardsList.topcard.image, gamecanvas.ActualWidth / 2 - CardsList.topcard.image.Width / 2);
@@ -166,7 +205,32 @@ namespace UNOui
                     Canvas.SetLeft(image, (int)gamecanvas.ActualWidth / 2 - (image.Width / 2) + index * 50 - gap);
                     gamecanvas.Children.Add(image);
                 }
+                getdeck(0);
+                playable();
             }
+        }
+        public void playable()
+        {
+            Cards topcard = CardsList.topcard;
+            bool playable = false; ;
+            if(topcard == null) { return; }
+            for(int index = 0; index < CardsList.playercards.Count; ++index)
+            {
+                if(CardsList.playercards[index].color == "none" || topcard.color == CardsList.playercards[index].color || topcard.number == CardsList.playercards[index].number)
+                {
+                    Canvas.SetTop(CardsList.playercards[index].image, (int)gamecanvas.ActualHeight - CardsList.playercards[index].image.Width - 7);
+                    playable = true;
+                }
+            }
+            System.Windows.Controls.Image image = new System.Windows.Controls.Image();
+            DropShadowEffect dropShadowEffect = new DropShadowEffect
+            {
+                Color = Colors.LightYellow,
+                Direction = 135,
+                ShadowDepth = 5,
+                Opacity = 0.7
+            };
+            if (!playable) { CardsList.deckimage.Effect = dropShadowEffect; }
         }
         public Cards getcard()
         {
@@ -237,7 +301,6 @@ namespace UNOui
         }
         public void addcard()
         {
-
             Cards card = Cards.randomcard();
             card.listcount = CardsList.playercards.Count + 1;
             card.image.MouseEnter += cardenter;
@@ -248,6 +311,21 @@ namespace UNOui
             card.image.MouseDown += mousedown;
             CardsList.playercards.Add(card);
             one();
+        }
+        public Cards imagetocard(System.Windows.Controls.Image image)
+        {
+            for(int index = 0; index < CardsList.playercards.Count; index++)
+            {
+                if (CardsList.playercards[index].image == image)
+                {
+                    return CardsList.playercards[index];
+                }
+            }
+            return new Cards();
+        }
+        public bool comparecard(Cards topcard, Cards draggedcard)
+        {
+            return draggedcard.color == topcard.color || draggedcard.number == topcard.number || ((draggedcard.number == -4 || draggedcard.number == -5) && draggedcard.color == "none");
         }
     }
 }

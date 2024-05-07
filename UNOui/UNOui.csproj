@@ -11,7 +11,9 @@
     <None Remove="assets\icon.ico" />
     <None Remove="assets\menubackground.png" />
     <None Remove="assets\unobackground.png" />
+    <None Remove="assets\UNOcards\blue.png" />
     <None Remove="assets\UNOcards\blueblock.png" />
+    <None Remove="assets\UNOcards\bluedrawfour.png" />
     <None Remove="assets\UNOcards\bluedrawtwo.png" />
     <None Remove="assets\UNOcards\blueeight.png" />
     <None Remove="assets\UNOcards\bluefive.png" />
@@ -23,9 +25,12 @@
     <None Remove="assets\UNOcards\bluesix.png" />
     <None Remove="assets\UNOcards\bluethree.png" />
     <None Remove="assets\UNOcards\bluetwo.png" />
+    <None Remove="assets\UNOcards\bluewildcard.png" />
     <None Remove="assets\UNOcards\drawfour.png" />
     <None Remove="assets\UNOcards\empty.png" />
+    <None Remove="assets\UNOcards\green.png" />
     <None Remove="assets\UNOcards\greenblock.png" />
+    <None Remove="assets\UNOcards\greendrawfour.png" />
     <None Remove="assets\UNOcards\greendrawtwo.png" />
     <None Remove="assets\UNOcards\greeneight.png" />
     <None Remove="assets\UNOcards\greenfive.png" />
@@ -37,8 +42,11 @@
     <None Remove="assets\UNOcards\greensix.png" />
     <None Remove="assets\UNOcards\greenthree.png" />
     <None Remove="assets\UNOcards\greentwo.png" />
+    <None Remove="assets\UNOcards\greenwildcard.png" />
     <None Remove="assets\UNOcards\greenzero.png" />
+    <None Remove="assets\UNOcards\red.png" />
     <None Remove="assets\UNOcards\redblock.png" />
+    <None Remove="assets\UNOcards\reddrawfour.png" />
     <None Remove="assets\UNOcards\reddrawtwo.png" />
     <None Remove="assets\UNOcards\redeight.png" />
     <None Remove="assets\UNOcards\redfive.png" />
@@ -50,9 +58,12 @@
     <None Remove="assets\UNOcards\redsix.png" />
     <None Remove="assets\UNOcards\redthree.png" />
     <None Remove="assets\UNOcards\redtwo.png" />
+    <None Remove="assets\UNOcards\redwildcard.png" />
     <None Remove="assets\UNOcards\redzero.png" />
     <None Remove="assets\UNOcards\wildcard.png" />
+    <None Remove="assets\UNOcards\yellow.png" />
     <None Remove="assets\UNOcards\yellowblock.png" />
+    <None Remove="assets\UNOcards\yellowdrawfour.png" />
     <None Remove="assets\UNOcards\yellowdrawtwo.png" />
     <None Remove="assets\UNOcards\yelloweight.png" />
     <None Remove="assets\UNOcards\yellowfive.png" />
@@ -64,14 +75,26 @@
     <None Remove="assets\UNOcards\yellowsix.png" />
     <None Remove="assets\UNOcards\yellowthree.png" />
     <None Remove="assets\UNOcards\yellowtwo.png" />
+    <None Remove="assets\UNOcards\yellowwildcard.png" />
     <None Remove="assets\UNOcards\yellowzero.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="assets\UNOcards\bluewildcard.png" />
+    <Resource Include="assets\UNOcards\greendrawfour.png" />
+    <Resource Include="assets\UNOcards\greenwildcard.png" />
+    <Resource Include="assets\UNOcards\reddrawfour.png" />
+    <Resource Include="assets\UNOcards\redwildcard.png" />
+    <Resource Include="assets\UNOcards\yellowdrawfour.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="assets\icon.ico" />
     <Resource Include="assets\menubackground.png" />
     <Resource Include="assets\unobackground.png" />
+    <Resource Include="assets\UNOcards\blue.png" />
     <Resource Include="assets\UNOcards\blueblock.png" />
+    <Resource Include="assets\UNOcards\bluedrawfour.png" />
     <Resource Include="assets\UNOcards\bluedrawtwo.png" />
     <Resource Include="assets\UNOcards\blueeight.png" />
     <Resource Include="assets\UNOcards\bluefive.png" />
@@ -85,6 +108,7 @@
     <Resource Include="assets\UNOcards\bluetwo.png" />
     <Resource Include="assets\UNOcards\drawfour.png" />
     <Resource Include="assets\UNOcards\empty.png" />
+    <Resource Include="assets\UNOcards\green.png" />
     <Resource Include="assets\UNOcards\greenblock.png" />
     <Resource Include="assets\UNOcards\greendrawtwo.png" />
     <Resource Include="assets\UNOcards\greeneight.png" />
@@ -98,6 +122,7 @@
     <Resource Include="assets\UNOcards\greenthree.png" />
     <Resource Include="assets\UNOcards\greentwo.png" />
     <Resource Include="assets\UNOcards\greenzero.png" />
+    <Resource Include="assets\UNOcards\red.png" />
     <Resource Include="assets\UNOcards\redblock.png" />
     <Resource Include="assets\UNOcards\reddrawtwo.png" />
     <Resource Include="assets\UNOcards\redeight.png" />
@@ -112,6 +137,7 @@
     <Resource Include="assets\UNOcards\redtwo.png" />
     <Resource Include="assets\UNOcards\redzero.png" />
     <Resource Include="assets\UNOcards\wildcard.png" />
+    <Resource Include="assets\UNOcards\yellow.png" />
     <Resource Include="assets\UNOcards\yellowblock.png" />
     <Resource Include="assets\UNOcards\yellowdrawtwo.png" />
     <Resource Include="assets\UNOcards\yelloweight.png" />
@@ -124,6 +150,7 @@
     <Resource Include="assets\UNOcards\yellowsix.png" />
     <Resource Include="assets\UNOcards\yellowthree.png" />
     <Resource Include="assets\UNOcards\yellowtwo.png" />
+    <Resource Include="assets\UNOcards\yellowwildcard.png" />
     <Resource Include="assets\UNOcards\yellowzero.png" />
   </ItemGroup>
 

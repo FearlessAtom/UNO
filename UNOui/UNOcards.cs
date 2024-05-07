@@ -11,8 +11,9 @@ namespace UNOui
     {
         public static List<Cards> playercards = new List<Cards>();
         public static Cards dragggedcard;
-        public static Cards topcard = new Cards();
+        public static Cards topcard;
         public static Image draggedimage;
+        public static Image deckimage;
 
         public static Cards imagetocard(Image image)
         {
@@ -45,13 +46,13 @@ namespace UNOui
             List<Cards> cards = new List<Cards>
             {
                 //Draw cards
-                new Cards(Items.gameitem.getcardimage("drawfour"), -1, "none", 0),
-                new Cards(Items.gameitem.getcardimage("wildcard"), -1, "none", 0),
+                new Cards(Items.gameitem.getcardimage("drawfour"), -4, "none", 0),
+                new Cards(Items.gameitem.getcardimage("wildcard"), -5, "none", 0),
 
                 //Yellow
                 new Cards(Items.gameitem.getcardimage("yellowreverse"), -1, "Yellow", 0),
-                new Cards(Items.gameitem.getcardimage("yellowdrawtwo"), -1, "Yellow", 0),
-                new Cards(Items.gameitem.getcardimage("yellowblock"), -1, "Yellow", 0),
+                new Cards(Items.gameitem.getcardimage("yellowdrawtwo"), -2, "Yellow", 0),
+                new Cards(Items.gameitem.getcardimage("yellowblock"), -3, "Yellow", 0),
                 new Cards(Items.gameitem.getcardimage("yellowone"), 1, "Yellow", 0),
                 new Cards(Items.gameitem.getcardimage("yellowtwo"), 2, "Yellow", 0),
                 new Cards(Items.gameitem.getcardimage("yellowthree"), 3, "Yellow", 0),
@@ -64,8 +65,8 @@ namespace UNOui
                 
                 //Blue
                 new Cards(Items.gameitem.getcardimage("bluereverse"), -1, "Blue", 0),
-                new Cards(Items.gameitem.getcardimage("bluedrawtwo"), -1, "Blue", 0),
-                new Cards(Items.gameitem.getcardimage("blueblock"), -1, "Blue", 0),
+                new Cards(Items.gameitem.getcardimage("bluedrawtwo"), -2, "Blue", 0),
+                new Cards(Items.gameitem.getcardimage("blueblock"), -3, "Blue", 0),
                 new Cards(Items.gameitem.getcardimage("blueone"), 1, "Blue", 0),
                 new Cards(Items.gameitem.getcardimage("bluetwo"), 2, "Blue", 0),
                 new Cards(Items.gameitem.getcardimage("bluethree"), 3, "Blue", 0),
@@ -78,8 +79,8 @@ namespace UNOui
                 
                 //Red
                 new Cards(Items.gameitem.getcardimage("redreverse"), -1, "Red", 0),
-                new Cards(Items.gameitem.getcardimage("reddrawtwo"), -1, "Red", 0),
-                new Cards(Items.gameitem.getcardimage("redblock"), -1, "Red", 0),
+                new Cards(Items.gameitem.getcardimage("reddrawtwo"), -2, "Red", 0),
+                new Cards(Items.gameitem.getcardimage("redblock"), -3, "Red", 0),
                 new Cards(Items.gameitem.getcardimage("redone"), 1, "Red", 0),
                 new Cards(Items.gameitem.getcardimage("redtwo"), 2, "Red", 0),
                 new Cards(Items.gameitem.getcardimage("redthree"), 3, "Red", 0),
@@ -92,8 +93,8 @@ namespace UNOui
 
                 //Green
                 new Cards(Items.gameitem.getcardimage("greenreverse"), -1, "Green", 0),
-                new Cards(Items.gameitem.getcardimage("greendrawtwo"), -1, "Green", 0),
-                new Cards(Items.gameitem.getcardimage("greenblock"), -1, "Green", 0),
+                new Cards(Items.gameitem.getcardimage("greendrawtwo"), -2, "Green", 0),
+                new Cards(Items.gameitem.getcardimage("greenblock"), -3, "Green", 0),
                 new Cards(Items.gameitem.getcardimage("greenone"), 1, "Green", 0),
                 new Cards(Items.gameitem.getcardimage("greentwo"), 2, "Green", 0),
                 new Cards(Items.gameitem.getcardimage("greenthree"), 3, "Green", 0),
