@@ -46,7 +46,7 @@
                     <Button MouseEnter="mouseenter" MouseLeave="mouseleave" FontSize="30"  Content="Main menu" Grid.Row="0" Click="closegame" Style="{StaticResource menubutton}"></Button>
                     <Button MouseEnter="mouseenter" MouseLeave="mouseleave" FontSize="30" Content="Resume" Grid.Row="4" Click="resume" Style="{StaticResource menubutton}"></Button>
                     <Button MouseEnter="mouseenter" MouseLeave="mouseleave" FontSize="30" Content="Settings" Grid.Row="1" Style="{StaticResource menubutton}" Click="settings"></Button>
-                    <Button MouseEnter="mouseenter" MouseLeave="mouseleave" FontSize="30" Content="something idk" Grid.Row="2" Style="{StaticResource menubutton}" Click="Button_Click"></Button>
+                    <Button MouseEnter="mouseenter" MouseLeave="mouseleave" FontSize="30" Content="something idk" Grid.Row="2" Style="{StaticResource menubutton}" Click="something"></Button>
                 </Grid>
             </Border>
         </Grid>

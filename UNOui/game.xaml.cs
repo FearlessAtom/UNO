@@ -29,6 +29,14 @@ namespace UNOui
         {
             InitializeComponent();
         }
+        public void settings()
+        {
+            for(int index = 0; index < CardsList.topcards.Count; index++)
+            {
+                MessageBox.Show(CardsList.topcards[index].Source.ToString() + CardsList.topcardsrotateangle[index]);
+            }
+            //MessageBox.Show(CardsList.playercards.Count.ToString());
+        }
         int actualgap = 10;
         public void deckdown(object sender, MouseButtonEventArgs e)
         {
@@ -56,9 +64,12 @@ namespace UNOui
         private void loaded(object sender, RoutedEventArgs e)
         {
             Items.gameitem = this;
+            CardsList.topcardsrotateangle.Clear();
+            CardsList.playercards.Clear();
+            CardsList.topcards.Clear();
+            gamecanvas.Children.Clear();
             CardsList.topcard = Cards.randomcard();
-            System.Windows.Controls.Image deck2 = new System.Windows.Controls.Image();
-            System.Windows.Controls.Image deck3 = new System.Windows.Controls.Image();
+            CardsList.topcardsrotateangle.Add(0);
             if (CardsList.topcard.number == -4 || CardsList.topcard.number == -5)
             {
                 UserControl colorchange = new colorchange();
@@ -68,6 +79,7 @@ namespace UNOui
             {
                 addcard();
             }
+            one();
         }
         public void closegame()
         {
@@ -105,6 +117,21 @@ namespace UNOui
         bool dragging = false;
         Point offset;
         int cardzindex;
+        public RotateTransform rotate(int number)
+        {
+            RotateTransform rotate = new RotateTransform(number);
+            rotate.CenterX = CardsList.topcard.image.Width / 2;
+            rotate.CenterY = CardsList.topcard.image.Height / 2 + number;
+            return rotate;
+        }
+        public void addtotopcardsmemory(int randomnumber)
+        {
+            System.Windows.Controls.Image ihateblackpeople = Cards.randomcard().image;
+            ihateblackpeople.Width = ihateblackpeople.Height = 150;
+            ihateblackpeople.Source = CardsList.topcard.image.Source;
+            CardsList.topcards.Add(ihateblackpeople);
+            CardsList.topcardsrotateangle.Add(randomnumber);
+        }
         private void mousedown(object sender, MouseButtonEventArgs e)
         {
             drag = (System.Windows.Controls.Image)sender;
@@ -126,37 +153,54 @@ namespace UNOui
         }
         private void mouseup(object sender, MouseButtonEventArgs e)
         {
-            if(CardsList.draggedimage != null)
+            if (CardsList.draggedimage != null)
             {
                 Canvas.SetZIndex(CardsList.draggedimage, cardzindex);
                 double bottom = Canvas.GetTop(CardsList.draggedimage);
-                if (bottom < gamecanvas.ActualHeight * (CardsList.draggedimage.Height / gamecanvas.ActualHeight) && comparecard(CardsList.topcard, imagetocard(CardsList.draggedimage))){
-                    CardsList.topcard.image.Source = CardsList.draggedimage.Source;
-                    
-                    for(int index = 0; index < CardsList.playercards.Count; index++)
+                if (bottom < gamecanvas.ActualHeight * (CardsList.draggedimage.Height / gamecanvas.ActualHeight) && comparecard(CardsList.topcard, imagetocard(CardsList.draggedimage)))
+                {
+                    Cards draggedcard = imagetocard(CardsList.draggedimage);
+                    Random random = new Random();
+                    int randomnumber = random.Next(-45, 45);
+                    if(CardsList.playercards.Count > 1)
                     {
-                        if (CardsList.playercards[index].image == CardsList.draggedimage)
-                        {
-                            CardsList.topcard.number = CardsList.playercards[index].number;
-                            CardsList.topcard.color = CardsList.playercards[index].color;
-                            CardsList.topcard.listcount = CardsList.playercards[index].listcount;
-                            if ((CardsList.playercards[index].number == -4 || CardsList.playercards[index].number == -5) && CardsList.playercards[index].color == "none")
-                            {
-                                UserControl changecolor = new colorchange();
-                                gamegrid.Children.Add(changecolor);
-                            }
-                            break;
-                        }
+                        addtotopcardsmemory(randomnumber);
+
                     }
-                    gamecanvas.Children.Remove(CardsList.topcard.image);
-                    gamecanvas.Children.Remove(CardsList.draggedimage);
-                    CardsList.playercards.Remove(CardsList.imagetocard(CardsList.draggedimage));
+                    CardsList.topcard.image.RenderTransform = rotate(randomnumber);
+                    CardsList.topcard.image.Source = draggedcard.image.Source;
+                    CardsList.topcard.number = draggedcard.number;
+                    CardsList.topcard.color = draggedcard.color;
+                    CardsList.topcard.listcount = draggedcard.listcount;
+                    Canvas.SetZIndex(CardsList.topcard.image, 1);
+                    if ((draggedcard.number == -4 || draggedcard.number == -5) && draggedcard.color == "none")
+                    {
+                        UserControl changecolor = new colorchange();
+                        gamegrid.Children.Add(changecolor);
+                    }
+                    CardsList.playercards.Remove(draggedcard);
+                    gamecanvas.Children.Remove(draggedcard.image);
+                    Canvas.SetZIndex(CardsList.draggedimage, cardzindex);
                 }
-                Canvas.SetZIndex(CardsList.draggedimage, cardzindex);
                 drag = null;
                 gamecanvas.ReleaseMouseCapture();
                 dragging = false;
                 one();
+            }
+        }
+        private void topcards()
+        {
+            if(CardsList.topcards.Count > 10)
+            {
+                //CardsList.topcards.RemoveAt(0);
+            }
+            for(int index = 0; index < CardsList.topcards.Count; index++)
+            {
+                CardsList.topcards[index].RenderTransform = rotate(CardsList.topcardsrotateangle[index]);
+                Canvas.SetTop(CardsList.topcards[index], 0);
+                Canvas.SetLeft(CardsList.topcards[index], gamecanvas.ActualWidth / 2 - 75);
+                gamecanvas.Children.Remove(CardsList.topcards[index]);
+                gamecanvas.Children.Add(CardsList.topcards[index]);
             }
         }
         private void cardenter(object sender, MouseEventArgs e)
@@ -207,6 +251,7 @@ namespace UNOui
                 }
                 getdeck(0);
                 playable();
+                topcards();
             }
         }
         public void playable()
@@ -231,73 +276,6 @@ namespace UNOui
                 Opacity = 0.7
             };
             if (!playable) { CardsList.deckimage.Effect = dropShadowEffect; }
-        }
-        public Cards getcard()
-        {
-            List<Cards> cards = new List<Cards>
-            {
-                //Draw cards
-                new Cards(Items.gameitem.getcardimage("drawfour"), -1, "none", 0),
-                new Cards(Items.gameitem.getcardimage("wildcard"), -1, "none", 0),
-
-                //Yellow
-                new Cards(Items.gameitem.getcardimage("yellowreverse"), -1, "Yellow", 0),
-                new Cards(Items.gameitem.getcardimage("yellowdrawtwo"), -1, "Yellow", 0),
-                new Cards(Items.gameitem.getcardimage("yellowblock"), -1, "Yellow", 0),
-                new Cards(Items.gameitem.getcardimage("yellowone"), 1, "Yellow", 0),
-                new Cards(Items.gameitem.getcardimage("yellowtwo"), 2, "Yellow", 0),
-                new Cards(Items.gameitem.getcardimage("yellowthree"), 3, "Yellow", 0),
-                new Cards(Items.gameitem.getcardimage("yellowfour"), 4, "Yellow", 0),
-                new Cards(Items.gameitem.getcardimage("yellowfive"), 5, "Yellow", 0),
-                new Cards(Items.gameitem.getcardimage("yellowsix"), 6, "Yellow", 0),
-                new Cards(Items.gameitem.getcardimage("yellowseven"), 7, "Yellow", 0),
-                new Cards(Items.gameitem.getcardimage("yelloweight"), 8, "Yellow", 0),
-                new Cards(Items.gameitem.getcardimage("yellownine"), 9, "Yellow", 0),
-                
-                //Blue
-                new Cards(Items.gameitem.getcardimage("bluereverse"), -1, "Blue", 0),
-                new Cards(Items.gameitem.getcardimage("bluedrawtwo"), -1, "Blue", 0),
-                new Cards(Items.gameitem.getcardimage("blueblock"), -1, "Blue", 0),
-                new Cards(Items.gameitem.getcardimage("blueone"), 1, "Blue", 0),
-                new Cards(Items.gameitem.getcardimage("bluetwo"), 2, "Blue", 0),
-                new Cards(Items.gameitem.getcardimage("bluethree"), 3, "Blue", 0),
-                new Cards(Items.gameitem.getcardimage("bluefour"), 4, "Blue", 0),
-                new Cards(Items.gameitem.getcardimage("bluefive"), 5, "Blue", 0),
-                new Cards(Items.gameitem.getcardimage("bluesix"), 6, "Blue", 0),
-                new Cards(Items.gameitem.getcardimage("blueseven"), 7, "Blue", 0),
-                new Cards(Items.gameitem.getcardimage("blueeight"), 8, "Blue", 0),
-                new Cards(Items.gameitem.getcardimage("bluenine"), 9, "Blue", 0),
-                
-                //Red
-                new Cards(Items.gameitem.getcardimage("redreverse"), -1, "Red", 0),
-                new Cards(Items.gameitem.getcardimage("reddrawtwo"), -1, "Red", 0),
-                new Cards(Items.gameitem.getcardimage("redblock"), -1, "Red", 0),
-                new Cards(Items.gameitem.getcardimage("redone"), 1, "Red", 0),
-                new Cards(Items.gameitem.getcardimage("redtwo"), 2, "Red", 0),
-                new Cards(Items.gameitem.getcardimage("redthree"), 3, "Red", 0),
-                new Cards(Items.gameitem.getcardimage("redfour"), 4, "Red", 0),
-                new Cards(Items.gameitem.getcardimage("redfive"), 5, "Red", 0),
-                new Cards(Items.gameitem.getcardimage("redsix"), 6, "Red", 0),
-                new Cards(Items.gameitem.getcardimage("redseven"), 7, "Red", 0),
-                new Cards(Items.gameitem.getcardimage("redeight"), 8, "Red", 0),
-                new Cards(Items.gameitem.getcardimage("rednine"), 9, "Red", 0),
-
-                //Green
-                new Cards(Items.gameitem.getcardimage("greenreverse"), -1, "Green", 0),
-                new Cards(Items.gameitem.getcardimage("greendrawtwo"), -1, "Green", 0),
-                new Cards(Items.gameitem.getcardimage("greenblock"), -1, "Green", 0),
-                new Cards(Items.gameitem.getcardimage("greenone"), 1, "Green", 0),
-                new Cards(Items.gameitem.getcardimage("greentwo"), 2, "Green", 0),
-                new Cards(Items.gameitem.getcardimage("greenthree"), 3, "Green", 0),
-                new Cards(Items.gameitem.getcardimage("greenfour"), 4, "Green", 0),
-                new Cards(Items.gameitem.getcardimage("greenfive"), 5, "Green", 0),
-                new Cards(Items.gameitem.getcardimage("greensix"), 6, "Green", 0),
-                new Cards(Items.gameitem.getcardimage("greenseven"), 7, "Green", 0),
-                new Cards(Items.gameitem.getcardimage("greeneight"), 8, "Green", 0),
-                new Cards(Items.gameitem.getcardimage("greennine"), 9, "Green", 0),
-            };
-            Random random = new Random();
-            return cards[random.Next(0, cards.Count)];
         }
         public void addcard()
         {

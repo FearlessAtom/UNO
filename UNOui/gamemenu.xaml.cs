@@ -50,14 +50,14 @@ namespace UNOui
             Items.gamemenuitem = this;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void something(object sender, RoutedEventArgs e)
         {
             Items.gameitem.addcard();
         }
 
         private void settings(object sender, RoutedEventArgs e)
         {
-            Items.gameitem.playable();
+            Items.gameitem.settings();
         }
     }
 }

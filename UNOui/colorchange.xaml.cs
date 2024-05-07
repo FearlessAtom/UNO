@@ -35,12 +35,13 @@ namespace UNOui
             CardsList.topcard.color = "Green";
             if (CardsList.topcard.number == -4)
             {
-                CardsList.topcard.image = Items.gameitem.getcardimage("greendrawfour");
+                CardsList.topcard.image.Source = Items.gameitem.getcardimage("greendrawfour").Source;
             }
             else if (CardsList.topcard.number == -5)
             {
-                CardsList.topcard.image = Items.gameitem.getcardimage("greenwildcard");
+                CardsList.topcard.image.Source = Items.gameitem.getcardimage("greenwildcard").Source;
             }
+            Canvas.SetZIndex(CardsList.topcard.image, 1);
             Items.gameitem.one();
         }
         private void redbutton(object sender, RoutedEventArgs e)
@@ -49,12 +50,13 @@ namespace UNOui
             CardsList.topcard.color = "Red";
             if (CardsList.topcard.number == -4)
             {
-                CardsList.topcard.image = Items.gameitem.getcardimage("reddrawfour");
+                CardsList.topcard.image.Source = Items.gameitem.getcardimage("reddrawfour").Source;
             }
             else if (CardsList.topcard.number == -5)
             {
-                CardsList.topcard.image = Items.gameitem.getcardimage("redwildcard");
+                CardsList.topcard.image.Source = Items.gameitem.getcardimage("redwildcard").Source;
             }
+            Canvas.SetZIndex(CardsList.topcard.image, 1);
             Items.gameitem.one();
         }
         private void bluebutton(object sender, RoutedEventArgs e)
@@ -63,12 +65,13 @@ namespace UNOui
             CardsList.topcard.color = "Blue";
             if (CardsList.topcard.number == -4)
             {
-                CardsList.topcard.image = Items.gameitem.getcardimage("bluedrawfour");
+                CardsList.topcard.image.Source = Items.gameitem.getcardimage("bluedrawfour").Source;
             }
             else if (CardsList.topcard.number == -5)
             {
-                CardsList.topcard.image = Items.gameitem.getcardimage("bluewildcard");
+                CardsList.topcard.image.Source = Items.gameitem.getcardimage("bluewildcard").Source;
             }
+            Canvas.SetZIndex(CardsList.topcard.image, 1);
             Items.gameitem.one();
         }
         private void yellowbutton(object sender, RoutedEventArgs e)
@@ -77,12 +80,13 @@ namespace UNOui
             CardsList.topcard.color = "Yellow";
             if(CardsList.topcard.number == -4)
             {
-                CardsList.topcard.image = Items.gameitem.getcardimage("yellowdrawfour");
+                CardsList.topcard.image.Source = Items.gameitem.getcardimage("yellowdrawfour").Source;
             }
             else if (CardsList.topcard.number == -5)
             {
-                CardsList.topcard.image = Items.gameitem.getcardimage("yellowwildcard");
+                CardsList.topcard.image.Source = Items.gameitem.getcardimage("yellowwildcard").Source;
             }
+            Canvas.SetZIndex(CardsList.topcard.image, 1);
             Items.gameitem.one();
         }
 

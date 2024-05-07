@@ -39,10 +39,14 @@ namespace UNOui
         }
         public static void playcard(Cards card)
         {
+            Random random = new Random();
+            int randomnumber = random.Next(-45, 45);
+            Items.gameitem.addtotopcardsmemory(randomnumber);
             CardsList.topcard.image.Source = card.image.Source;
             CardsList.topcard.number = card.number;
             CardsList.topcard.color = card.color;
             CardsList.topcard.listcount = card.listcount;
+            CardsList.topcard.image.RenderTransform = Items.gameitem.rotate(randomnumber);
             CardsList.playercards.Remove(card);
             Items.gameitem.gamecanvas.Children.Remove(card.image);
             Items.gameitem.one();
@@ -51,6 +55,7 @@ namespace UNOui
                 UserControl changecolor = new colorchange();
                 Items.gameitem.gamegrid.Children.Add(changecolor);
             }
+            Canvas.SetZIndex(CardsList.topcard.image, 1);
         }
         public void remove()
         {

@@ -10,11 +10,12 @@ namespace UNOui
     public class CardsList
     {
         public static List<Cards> playercards = new List<Cards>();
+        public static List<Image> topcards = new List<Image>();
+        public static List<int> topcardsrotateangle = new List<int>();
         public static Cards dragggedcard;
         public static Cards topcard;
         public static Image draggedimage;
         public static Image deckimage;
-
         public static Cards imagetocard(Image image)
         {
             for(int index = 0; index < playercards.Count; index++)
@@ -40,7 +41,13 @@ namespace UNOui
             this.color = color;
             this.listcount = listcount;
         }
-        
+        public Cards(Cards card)
+        {
+            image = card.image;
+            number = card.number;
+            color = card.color;
+            listcount = card.listcount;
+        }
         public static Cards randomcard()
         { 
             List<Cards> cards = new List<Cards>
