@@ -147,7 +147,11 @@ namespace UNOui
         {
             if (e.Key == Key.Escape)
             {
-                if (Settings.getgameopened() == true)
+                if (Items.gameitem.gamegrid.Children.Contains(Items.draworplayitem))
+                {
+                    Items.draworplayitem.draw(sender, e);
+                }
+                else if (Settings.getgameopened() == true)
                 {
                     if (Settings.getgamemenuopened() == false)
                     {
@@ -155,7 +159,7 @@ namespace UNOui
                     }
                     else
                     {
-                        Items.gamemenuitem.resume(sender, e);   
+                        Items.gamemenuitem.resume(sender, e);
                     }
                 }
                 else if (Settings.getsettingsopened() == true)

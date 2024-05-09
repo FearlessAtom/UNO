@@ -24,6 +24,14 @@ namespace UNOui
         {
             InitializeComponent();
         }
+        public void addfour()
+        {
+            for (int index = 0; index < 4; index++)
+            {
+                Items.gameitem.addcard(CardsList.allcards[CardsList.turn]);
+            }
+            Items.gameitem.nextturn();
+        }
         private void remove()
         {
             Grid parent = (Grid)Parent;
@@ -36,13 +44,16 @@ namespace UNOui
             if (CardsList.topcard.number == -4)
             {
                 CardsList.topcard.image.Source = Items.gameitem.getcardimage("greendrawfour").Source;
+                addfour();
             }
             else if (CardsList.topcard.number == -5)
             {
                 CardsList.topcard.image.Source = Items.gameitem.getcardimage("greenwildcard").Source;
+                Items.gameitem.botplaycard(CardsList.allcards[CardsList.turn]);
             }
             Canvas.SetZIndex(CardsList.topcard.image, 1);
             Items.gameitem.one();
+            Items.gameitem.nextturn();
         }
         private void redbutton(object sender, RoutedEventArgs e)
         {
@@ -51,13 +62,16 @@ namespace UNOui
             if (CardsList.topcard.number == -4)
             {
                 CardsList.topcard.image.Source = Items.gameitem.getcardimage("reddrawfour").Source;
+                addfour();
             }
             else if (CardsList.topcard.number == -5)
             {
                 CardsList.topcard.image.Source = Items.gameitem.getcardimage("redwildcard").Source;
+                Items.gameitem.botplaycard(CardsList.allcards[CardsList.turn]);
             }
             Canvas.SetZIndex(CardsList.topcard.image, 1);
             Items.gameitem.one();
+            Items.gameitem.nextturn();
         }
         private void bluebutton(object sender, RoutedEventArgs e)
         {
@@ -66,10 +80,12 @@ namespace UNOui
             if (CardsList.topcard.number == -4)
             {
                 CardsList.topcard.image.Source = Items.gameitem.getcardimage("bluedrawfour").Source;
+                addfour();
             }
             else if (CardsList.topcard.number == -5)
             {
                 CardsList.topcard.image.Source = Items.gameitem.getcardimage("bluewildcard").Source;
+                Items.gameitem.botplaycard(CardsList.allcards[CardsList.turn]);
             }
             Canvas.SetZIndex(CardsList.topcard.image, 1);
             Items.gameitem.one();
@@ -81,13 +97,16 @@ namespace UNOui
             if(CardsList.topcard.number == -4)
             {
                 CardsList.topcard.image.Source = Items.gameitem.getcardimage("yellowdrawfour").Source;
+                addfour();
             }
             else if (CardsList.topcard.number == -5)
             {
                 CardsList.topcard.image.Source = Items.gameitem.getcardimage("yellowwildcard").Source;
+                Items.gameitem.botplaycard(CardsList.allcards[CardsList.turn]);
             }
             Canvas.SetZIndex(CardsList.topcard.image, 1);
             Items.gameitem.one();
+            Items.gameitem.nextturn();
         }
 
         private void mouseenter(object sender, MouseEventArgs e)

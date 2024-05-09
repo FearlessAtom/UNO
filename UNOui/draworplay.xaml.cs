@@ -27,7 +27,7 @@ namespace UNOui
         }
         private void loaded(object sender, RoutedEventArgs e)
         {
-            if(Settings.getforceplay() == 1)
+            if (Settings.getforceplay() == 1)
             {
                 playbutton.VerticalAlignment = VerticalAlignment.Center;
                 Grid.SetColumnSpan(playbutton, 2);
@@ -50,25 +50,34 @@ namespace UNOui
             CardsList.playercards.Remove(card);
             Items.gameitem.gamecanvas.Children.Remove(card.image);
             Items.gameitem.one();
-            if(card.number == -4 || card.number == -5)
+            if (card.number == -4 || card.number == -5)
             {
                 UserControl changecolor = new colorchange();
                 Items.gameitem.gamegrid.Children.Add(changecolor);
             }
             Canvas.SetZIndex(CardsList.topcard.image, 1);
+            Items.gameitem.nextturn();
         }
         public void remove()
         {
+            //Items.gameitem.checkforturn();
             Grid parent = (Grid)Parent;
             parent.Children.Remove(this);
         }
-        private void draw(object sender, RoutedEventArgs e)
+        public void draw(object sender, RoutedEventArgs e)
         {
             remove();
         }
         private void play(object sender, RoutedEventArgs e)
         {
-            playcard(CardsList.playercards[CardsList.playercards.Count - 1]);
+            Cards card = CardsList.playercards[CardsList.playercards.Count - 1];
+            Items.gameitem.checkforwildcards(card);
+            Items.gameitem.nextturn();
+            playcard(card);
+            if (card.number != -4 && card.number != -5)
+            {
+                Items.gameitem.checkforturn();
+            }
             remove();
         }
         private void mouseenter(object sender, MouseEventArgs e)

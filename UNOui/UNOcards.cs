@@ -9,7 +9,11 @@ namespace UNOui
 {
     public class CardsList
     {
+        public static List<List<Cards>> allcards = new List<List<Cards>>();
         public static List<Cards> playercards = new List<Cards>();
+        public static List<Cards> botonecards = new List<Cards>();
+        public static bool direction;
+        public static int turn;
         public static List<Image> topcards = new List<Image>();
         public static List<int> topcardsrotateangle = new List<int>();
         public static Cards dragggedcard;

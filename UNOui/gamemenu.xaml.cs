@@ -35,12 +35,10 @@ namespace UNOui
             resume(sender, e);
             Items.gameitem.closegame();
         }
-
         private void mouseenter(object sender, MouseEventArgs e)
         {
             Items.mainwindowitem.buttonmouseenter(sender, e);
         }
-
         private void mouseleave(object sender, MouseEventArgs e)
         {
             Items.mainwindowitem.buttonmouseleave(sender, e);
@@ -49,12 +47,10 @@ namespace UNOui
         {
             Items.gamemenuitem = this;
         }
-
         private void something(object sender, RoutedEventArgs e)
         {
-            Items.gameitem.addcard();
+            MessageBox.Show(CardsList.turn.ToString());
         }
-
         private void settings(object sender, RoutedEventArgs e)
         {
             Items.gameitem.settings();

@@ -7,8 +7,8 @@
       "RelativeMoniker": "D:0:0:{4959A15C-A26A-444E-A09A-C7640E5B3627}|UNOui\\UNOui.csproj|solutionrelative:unoui\\game.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4959A15C-A26A-444E-A09A-C7640E5B3627}|UNOui\\UNOui.csproj|C:\\Users\\357\\Desktop\\UNO\\unoui\\gamemenu.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{4959A15C-A26A-444E-A09A-C7640E5B3627}|UNOui\\UNOui.csproj|solutionrelative:unoui\\gamemenu.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{4959A15C-A26A-444E-A09A-C7640E5B3627}|UNOui\\UNOui.csproj|C:\\Users\\357\\Desktop\\UNO\\unoui\\colorchange.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4959A15C-A26A-444E-A09A-C7640E5B3627}|UNOui\\UNOui.csproj|solutionrelative:unoui\\colorchange.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4959A15C-A26A-444E-A09A-C7640E5B3627}|UNOui\\UNOui.csproj|C:\\Users\\357\\Desktop\\UNO\\unoui\\draworplay.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -25,6 +25,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{4959A15C-A26A-444E-A09A-C7640E5B3627}|UNOui\\UNOui.csproj|C:\\Users\\357\\Desktop\\UNO\\unoui\\colorchange.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{4959A15C-A26A-444E-A09A-C7640E5B3627}|UNOui\\UNOui.csproj|solutionrelative:unoui\\colorchange.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4959A15C-A26A-444E-A09A-C7640E5B3627}|UNOui\\UNOui.csproj|C:\\Users\\357\\Desktop\\UNO\\unoui\\game.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{4959A15C-A26A-444E-A09A-C7640E5B3627}|UNOui\\UNOui.csproj|solutionrelative:unoui\\game.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4959A15C-A26A-444E-A09A-C7640E5B3627}|UNOui\\UNOui.csproj|C:\\Users\\357\\Desktop\\UNO\\unoui\\items.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -47,13 +51,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "gamemenu.xaml",
-              "DocumentMoniker": "C:\\Users\\357\\Desktop\\UNO\\UNOui\\gamemenu.xaml",
-              "RelativeDocumentMoniker": "UNOui\\gamemenu.xaml",
-              "ToolTip": "C:\\Users\\357\\Desktop\\UNO\\UNOui\\gamemenu.xaml",
-              "RelativeToolTip": "UNOui\\gamemenu.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-05-07T15:49:54.204Z"
+              "Title": "colorchange.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\357\\Desktop\\UNO\\UNOui\\colorchange.xaml.cs",
+              "RelativeDocumentMoniker": "UNOui\\colorchange.xaml.cs",
+              "ToolTip": "C:\\Users\\357\\Desktop\\UNO\\UNOui\\colorchange.xaml.cs",
+              "RelativeToolTip": "UNOui\\colorchange.xaml.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAzwBgAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-08T19:26:41.861Z"
             },
             {
               "$type": "Document",
@@ -63,7 +68,7 @@
               "RelativeDocumentMoniker": "UNOui\\game.xaml.cs",
               "ToolTip": "C:\\Users\\357\\Desktop\\UNO\\UNOui\\game.xaml.cs",
               "RelativeToolTip": "UNOui\\game.xaml.cs",
-              "ViewState": "AQIAALMAAAAAAAAAAAAUwMIAAAAxAAAA",
+              "ViewState": "AQIAABIAAAAAAAAAAAA0wCYAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-04T11:31:59.658Z",
               "EditorCaption": ""
@@ -76,21 +81,9 @@
               "RelativeDocumentMoniker": "UNOui\\draworplay.xaml.cs",
               "ToolTip": "C:\\Users\\357\\Desktop\\UNO\\UNOui\\draworplay.xaml.cs",
               "RelativeToolTip": "UNOui\\draworplay.xaml.cs",
-              "ViewState": "AQIAAB8AAAAAAAAAAAA8wC4AAAAxAAAA",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAIwEYAAAA7AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-07T09:00:28.486Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "UNOcards.cs",
-              "DocumentMoniker": "C:\\Users\\357\\Desktop\\UNO\\UNOui\\UNOcards.cs",
-              "RelativeDocumentMoniker": "UNOui\\UNOcards.cs",
-              "ToolTip": "C:\\Users\\357\\Desktop\\UNO\\UNOui\\UNOcards.cs",
-              "RelativeToolTip": "UNOui\\UNOcards.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAA/AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-07T11:22:23.709Z"
+              "WhenOpened": "2024-05-08T19:57:05.932Z"
             },
             {
               "$type": "Document",
@@ -100,9 +93,21 @@
               "RelativeDocumentMoniker": "UNOui\\gamemenu.xaml.cs",
               "ToolTip": "C:\\Users\\357\\Desktop\\UNO\\UNOui\\gamemenu.xaml.cs",
               "RelativeToolTip": "UNOui\\gamemenu.xaml.cs",
-              "ViewState": "AQIAAB4AAAAAAAAAAAAywC0AAAA9AAAA",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAACgAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-06T15:23:06.969Z"
+              "WhenOpened": "2024-05-08T16:49:08.973Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UNOcards.cs",
+              "DocumentMoniker": "C:\\Users\\357\\Desktop\\UNO\\UNOui\\UNOcards.cs",
+              "RelativeDocumentMoniker": "UNOui\\UNOcards.cs",
+              "ToolTip": "C:\\Users\\357\\Desktop\\UNO\\UNOui\\UNOcards.cs",
+              "RelativeToolTip": "UNOui\\UNOcards.cs",
+              "ViewState": "AQIAAC4AAAAAAAAAAAAqwDoAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-07T11:22:23.709Z"
             },
             {
               "$type": "Document",
@@ -117,15 +122,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Items.cs",
               "DocumentMoniker": "C:\\Users\\357\\Desktop\\UNO\\UNOui\\Items.cs",
               "RelativeDocumentMoniker": "UNOui\\Items.cs",
               "ToolTip": "C:\\Users\\357\\Desktop\\UNO\\UNOui\\Items.cs",
               "RelativeToolTip": "UNOui\\Items.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAAA0AAAAkAAAA",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAuwA0AAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-05T06:46:08.822Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "game.xaml",
+              "DocumentMoniker": "C:\\Users\\357\\Desktop\\UNO\\UNOui\\game.xaml",
+              "RelativeDocumentMoniker": "UNOui\\game.xaml",
+              "ToolTip": "C:\\Users\\357\\Desktop\\UNO\\UNOui\\game.xaml",
+              "RelativeToolTip": "UNOui\\game.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-05-08T16:55:48.439Z"
             }
           ]
         }
