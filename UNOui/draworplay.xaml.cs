@@ -35,32 +35,30 @@ namespace UNOui
             }
             Image image = new Image();
             Items.draworplayitem = this;
-            cardimage.Source = CardsList.playercards[CardsList.playercards.Count - 1].image.Source;
+            cardimage.Source = Items.gameitem.player.cards[Items.gameitem.player.cards.Count - 1].image.Source;
         }
         public static void playcard(Cards card)
         {
             Random random = new Random();
             int randomnumber = random.Next(-45, 45);
             Items.gameitem.addtotopcardsmemory(randomnumber);
-            CardsList.topcard.image.Source = card.image.Source;
-            CardsList.topcard.number = card.number;
-            CardsList.topcard.color = card.color;
-            CardsList.topcard.listcount = card.listcount;
-            CardsList.topcard.image.RenderTransform = Items.gameitem.rotate(randomnumber);
-            CardsList.playercards.Remove(card);
+            Table.topcard.image.Source = card.image.Source;
+            Table.topcard.number = card.number;
+            Table.topcard.color = card.color;
+            Table.topcard.image.RenderTransform = Cards.rotate(randomnumber);
+            Items.gameitem.player.cards.Remove(card);
             Items.gameitem.gamecanvas.Children.Remove(card.image);
-            Items.gameitem.one();
+            Table.refreshvisuals();
             if (card.number == -4 || card.number == -5)
             {
                 UserControl changecolor = new colorchange();
                 Items.gameitem.gamegrid.Children.Add(changecolor);
             }
-            Canvas.SetZIndex(CardsList.topcard.image, 1);
-            Items.gameitem.nextturn();
+            Canvas.SetZIndex(Table.topcard.image, 1);
+            Table.nextturn();
         }
         public void remove()
         {
-            //Items.gameitem.checkforturn();
             Grid parent = (Grid)Parent;
             parent.Children.Remove(this);
         }
@@ -70,13 +68,14 @@ namespace UNOui
         }
         private void play(object sender, RoutedEventArgs e)
         {
-            Cards card = CardsList.playercards[CardsList.playercards.Count - 1];
+            Cards card = Items.gameitem.player.cards[Items.gameitem.player.cards.Count - 1];
             Items.gameitem.checkforwildcards(card);
-            Items.gameitem.nextturn();
+            Table.nextturn();
             playcard(card);
             if (card.number != -4 && card.number != -5)
             {
-                Items.gameitem.checkforturn();
+                Table.nextturn();
+                Table.checkforturn();
             }
             remove();
         }

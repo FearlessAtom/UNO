@@ -28,9 +28,9 @@ namespace UNOui
         {
             for (int index = 0; index < 4; index++)
             {
-                Items.gameitem.addcard(CardsList.allcards[CardsList.turn]);
+                CardsList.allcards[Table.turn].addcard();
             }
-            Items.gameitem.nextturn();
+            Table.nextturn();
         }
         private void remove()
         {
@@ -40,73 +40,74 @@ namespace UNOui
         private void greenbutton(object sender, RoutedEventArgs e)
         {
             remove();
-            CardsList.topcard.color = "Green";
-            if (CardsList.topcard.number == -4)
+            Table.topcard.color = "Green";
+            if (Table.topcard.number == -4)
             {
-                CardsList.topcard.image.Source = Items.gameitem.getcardimage("greendrawfour").Source;
+                Table.topcard.image.Source = Cards.getcardimage("greendrawfour").Source;
                 addfour();
             }
-            else if (CardsList.topcard.number == -5)
+            else if (Table.topcard.number == -5)
             {
-                CardsList.topcard.image.Source = Items.gameitem.getcardimage("greenwildcard").Source;
-                Items.gameitem.botplaycard(CardsList.allcards[CardsList.turn]);
+                Table.topcard.image.Source = Cards.getcardimage("greenwildcard").Source;
+                Items.gameitem.botplaycard(CardsList.allcards[Table.turn].cards);
             }
-            Canvas.SetZIndex(CardsList.topcard.image, 1);
-            Items.gameitem.one();
-            Items.gameitem.nextturn();
+            Canvas.SetZIndex(Table.topcard.image, 1);
+            Table.refreshvisuals();
+            Table.nextturn();
         }
         private void redbutton(object sender, RoutedEventArgs e)
         {
             remove();
-            CardsList.topcard.color = "Red";
-            if (CardsList.topcard.number == -4)
+            Table.topcard.color = "Red";
+            if (Table.topcard.number == -4)
             {
-                CardsList.topcard.image.Source = Items.gameitem.getcardimage("reddrawfour").Source;
+                Table.topcard.image.Source = Cards.getcardimage("reddrawfour").Source;
                 addfour();
             }
-            else if (CardsList.topcard.number == -5)
+            else if (Table.topcard.number == -5)
             {
-                CardsList.topcard.image.Source = Items.gameitem.getcardimage("redwildcard").Source;
-                Items.gameitem.botplaycard(CardsList.allcards[CardsList.turn]);
+                Table.topcard.image.Source = Cards.getcardimage("redwildcard").Source;
+                Items.gameitem.botplaycard(CardsList.allcards[Table.turn].cards);
             }
-            Canvas.SetZIndex(CardsList.topcard.image, 1);
-            Items.gameitem.one();
-            Items.gameitem.nextturn();
+            Canvas.SetZIndex(Table.topcard.image, 1);
+            Table.refreshvisuals();
+            Table.nextturn();
         }
         private void bluebutton(object sender, RoutedEventArgs e)
         {
             remove();
-            CardsList.topcard.color = "Blue";
-            if (CardsList.topcard.number == -4)
+            Table.topcard.color = "Blue";
+            if (Table.topcard.number == -4)
             {
-                CardsList.topcard.image.Source = Items.gameitem.getcardimage("bluedrawfour").Source;
+                Table.topcard.image.Source = Cards.getcardimage("bluedrawfour").Source;
                 addfour();
             }
-            else if (CardsList.topcard.number == -5)
+            else if (Table.topcard.number == -5)
             {
-                CardsList.topcard.image.Source = Items.gameitem.getcardimage("bluewildcard").Source;
-                Items.gameitem.botplaycard(CardsList.allcards[CardsList.turn]);
+                Table.topcard.image.Source = Cards.getcardimage("bluewildcard").Source;
+                Items.gameitem.botplaycard(CardsList.allcards[Table.turn].cards);
             }
-            Canvas.SetZIndex(CardsList.topcard.image, 1);
-            Items.gameitem.one();
+            Canvas.SetZIndex(Table.topcard.image, 1);
+            Table.refreshvisuals();
+            Table.nextturn();
         }
         private void yellowbutton(object sender, RoutedEventArgs e)
         {
             remove();
-            CardsList.topcard.color = "Yellow";
-            if(CardsList.topcard.number == -4)
+            Table.topcard.color = "Yellow";
+            if(Table.topcard.number == -4)
             {
-                CardsList.topcard.image.Source = Items.gameitem.getcardimage("yellowdrawfour").Source;
+                Table.topcard.image.Source = Cards.getcardimage("yellowdrawfour").Source;
                 addfour();
             }
-            else if (CardsList.topcard.number == -5)
+            else if (Table.topcard.number == -5)
             {
-                CardsList.topcard.image.Source = Items.gameitem.getcardimage("yellowwildcard").Source;
-                Items.gameitem.botplaycard(CardsList.allcards[CardsList.turn]);
+                Table.topcard.image.Source = Cards.getcardimage("yellowwildcard").Source;
+                Items.gameitem.botplaycard(CardsList.allcards[Table.turn].cards);
             }
-            Canvas.SetZIndex(CardsList.topcard.image, 1);
-            Items.gameitem.one();
-            Items.gameitem.nextturn();
+            Canvas.SetZIndex(Table.topcard.image, 1);
+            Table.refreshvisuals();
+            Table.nextturn();
         }
 
         private void mouseenter(object sender, MouseEventArgs e)

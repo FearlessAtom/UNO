@@ -49,7 +49,7 @@ namespace UNOui
         }
         private void something(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(CardsList.turn.ToString());
+            MessageBox.Show(Table.turn.ToString());
         }
         private void settings(object sender, RoutedEventArgs e)
         {

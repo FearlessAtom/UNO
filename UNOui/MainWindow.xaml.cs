@@ -26,13 +26,11 @@ namespace UNOui
         public MainWindow()
         {
             InitializeComponent();
-            //audio();
         }
-        public void audio()
+        public int randominteger(int min, int max)
         {
-            MediaPlayer music = new MediaPlayer();
-            music.Open(new Uri("C:\\Users\\357\\Desktop\\UNO\\UNOui\\Music\\music.mp3"));
-            music.Play();
+            Random random = new Random();
+            return random.Next(min, max);
         }
         public void exitmenubutton(object sender, RoutedEventArgs e)
         {
