@@ -24,9 +24,29 @@ namespace UNOui
         {
             InitializeComponent();
         }
+        private void toenglish()
+        {
+            maintextblock.Text = "Are you sure?";
+            cancelbutton.Content = "Cancel";
+            exitbutton.Content = "Exit";
+        }
+        private void toukrainian()
+        {
+            maintextblock.Text = "Вы впевнені?";
+            cancelbutton.Content = "Закрити";
+            exitbutton.Content = "Вийти";
+        }
         private void loaded(object sender, RoutedEventArgs e)
         {
             Items.exitconfirmationitem = this;
+            if(Settings.getlanguage() == 2)
+            {
+                toukrainian();
+            }
+            else
+            {
+                toenglish();
+            }
         }
         public void cancel(object sender, RoutedEventArgs e)
         {

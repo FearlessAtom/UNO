@@ -54,7 +54,7 @@ namespace UNOui
         }
         private void loaded(object sender, RoutedEventArgs e)
         {
-            if(Settings.getlanguage() == 1)
+            if(UnsavedSettings.language == 1)
             {
                 toenglish();
             }
@@ -66,10 +66,16 @@ namespace UNOui
         private void toenglish()
         {
             message.Text = "Unsaved changes";
+            savebutton.Content = "Save";
+            dontsavebutton.Content = "Don't save";
+            cancelbutton.Content = "Cancel";
         }
         private void toukrainian()
         {
             message.Text = "Незбережені зміни";
+            savebutton.Content = "Зберегти";
+            dontsavebutton.Content = "Не зберігати";
+            cancelbutton.Content = "Закрити";
         }
     }
 }

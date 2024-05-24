@@ -48,9 +48,10 @@
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <Button MouseLeave="mouseleave" MouseEnter="mouseenter" FontSize="30" Content="Menu" Click="menu" Style="{StaticResource menubutton}" Grid.Column="0" Grid.Row="8"></Button>
+            <Button x:Name="menubutton" MouseLeave="mouseleave" MouseEnter="mouseenter" FontSize="30" Content="Menu" Click="menu" Style="{StaticResource menubutton}" Grid.Column="0" Grid.Row="8"></Button>
         </Grid>
         <Grid>
+            <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="40" x:Name="turntextblock"></TextBlock>
             <Canvas x:Name="gamecanvas"></Canvas>
         </Grid>
     </Grid>

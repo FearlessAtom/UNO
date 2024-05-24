@@ -47,9 +47,9 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBlock x:Name="message" VerticalAlignment="center" FontSize="25"  HorizontalAlignment="center" Grid.Row="0" Grid.ColumnSpan="3" Grid.Column="0" Text="Unsaved changes "></TextBlock>
-                    <Button MouseLeave="buttonmouseleave" MouseEnter="buttonmouseenter" Style="{StaticResource menubutton}" Grid.Row="2" Margin="3" Grid.Column="2" FontSize="23" Content="Cancel" Click="cancel"></Button>
-                    <Button Click="dontsave" MouseLeave="buttonmouseleave" MouseEnter="buttonmouseenter" Style="{StaticResource menubutton}" Grid.Row="2" Margin="3" Grid.Column="1" FontSize="23" Content="Don't save" ></Button>
-                    <Button Click="save" MouseLeave="buttonmouseleave" MouseEnter="buttonmouseenter" Style="{StaticResource menubutton}" Grid.Row="2" Margin="3" Grid.Column="0" FontSize="23" Content="Save" ></Button>
+                    <Button x:Name="savebutton" Click="save" MouseLeave="buttonmouseleave" MouseEnter="buttonmouseenter" Style="{StaticResource menubutton}" Grid.Row="2" Margin="3" Grid.Column="0" FontSize="23" Content="Save" ></Button>
+                    <Button x:Name="dontsavebutton" Click="dontsave" MouseLeave="buttonmouseleave" MouseEnter="buttonmouseenter" Style="{StaticResource menubutton}" Grid.Row="2" Margin="3" Grid.Column="1" FontSize="23" Content="Don't save" ></Button>
+                    <Button x:Name="cancelbutton" MouseLeave="buttonmouseleave" MouseEnter="buttonmouseenter" Style="{StaticResource menubutton}" Grid.Row="2" Margin="3" Grid.Column="2" FontSize="23" Content="Cancel" Click="cancel"></Button>
                 </Grid>
             </Border>
         </Grid>

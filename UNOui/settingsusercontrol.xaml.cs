@@ -460,6 +460,9 @@ namespace UNOui
             Items.mainwindowitem.play.Content = "Play";
             Items.mainwindowitem.exit.Content = "Exit";
             Items.mainwindowitem.settings.Content = "Settings";
+
+            drawuntilplayableon.Content = forceplayon.Content = stackingon.Content = jumpinon.Content = "On";
+            drawuntilplayableoff.Content = forceplayoff.Content = stackingoff.Content = jumpinoff.Content = "Off";
         }
         public void toukrainian()
         {
@@ -484,6 +487,9 @@ namespace UNOui
             Items.mainwindowitem.play.Content = "Грати";
             Items.mainwindowitem.exit.Content = "Вихід";
             Items.mainwindowitem.settings.Content = "Налаштування";
+
+            drawuntilplayableon.Content = forceplayon.Content = stackingon.Content = jumpinon.Content = "Вкл.";
+            drawuntilplayableoff.Content = forceplayoff.Content = stackingoff.Content = jumpinoff.Content = "Викл.";
         }
     }
 }

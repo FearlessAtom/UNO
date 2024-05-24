@@ -16,6 +16,7 @@ using System.IO;
 using System.Collections;
 using System.Threading;
 using System.Windows.Threading;
+using Project.Assets.ControlClasses;
 namespace UNOui
 {
     /// <summary>
@@ -27,10 +28,15 @@ namespace UNOui
         {
             InitializeComponent();
         }
+        Random random = new Random();
         public int randominteger(int min, int max)
         {
-            Random random = new Random();
             return random.Next(min, max);
+        }
+        public double randomdouble(double min, double max)
+        {
+            return random.NextDouble() * (max - min) + min;
+
         }
         public void exitmenubutton(object sender, RoutedEventArgs e)
         {
@@ -43,28 +49,29 @@ namespace UNOui
         }
         private void settingsbutton(object sender, RoutedEventArgs e)
         {
-            if (!Settings.getsettingsopened())
+            if (Settings.getsettingsopened())
             {
-                UserControl settings = new settingsusercontrol();
-                MainGrid.Children.Add(settings);
-                Settings.setsettingsopened(true);
-                Items.playbutton.Visibility = Visibility.Hidden;
-                Items.settingsbutton.Visibility = Visibility.Hidden;
-                Items.exitbutton.Visibility = Visibility.Hidden;
-
+                return;
             }
+            UserControl settings = new settingsusercontrol();
+            MainGrid.Children.Add(settings);
+            Settings.setsettingsopened(true);
+            Items.playbutton.Visibility = Visibility.Hidden;
+            Items.settingsbutton.Visibility = Visibility.Hidden;
+            Items.exitbutton.Visibility = Visibility.Hidden;
         }
         private void playbutton(object sender, RoutedEventArgs e)
         {
-            if (!Settings.getsettingsopened())
+            if (Settings.getsettingsopened())
             {
-                play.Visibility = Visibility.Hidden;
-                settings.Visibility = Visibility.Hidden;
-                exit.Visibility = Visibility.Hidden;
-                Settings.setgameopened(true);
-                UserControl game = new game();
-                MainGrid.Children.Add(game);
+                return;
             }
+            play.Visibility = Visibility.Hidden;
+            settings.Visibility = Visibility.Hidden;
+            exit.Visibility = Visibility.Hidden;
+            Settings.setgameopened(true);
+            UserControl game = new game();
+            MainGrid.Children.Add(game);
         }
         public void buttonmouseenter(object sender, MouseEventArgs e)
         {
@@ -115,6 +122,7 @@ namespace UNOui
         }
         private void setsettings(object sender, RoutedEventArgs e)
         {
+            Audio.playmusic();
             Items.mainwindowitem = this;
             Items.playbutton = play;
             Items.settingsbutton = settings;

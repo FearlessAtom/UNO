@@ -24,6 +24,20 @@ namespace UNOui
         {
             InitializeComponent();
         }
+        public void toenglish()
+        {
+            mainmenubutton.Content = "Main menu";
+            settingsbutton.Content = "Settings";
+            restartbutton.Content = "Restart";
+            resumebutton.Content = "Resume";
+        }
+        public void toukrainian()
+        {
+            mainmenubutton.Content = "Головне меню";
+            settingsbutton.Content = "Налаштування";
+            restartbutton.Content = "Рестарт";
+            resumebutton.Content = "Продовжити";
+        }
         public void resume(object sender, RoutedEventArgs e)
         {
             Settings.setgamemenuopened(false);
@@ -46,10 +60,19 @@ namespace UNOui
         private void loaded(object sender, RoutedEventArgs e)
         {
             Items.gamemenuitem = this;
+            if (Settings.getlanguage() == 2)
+            {
+                toukrainian();
+            }
+            else
+            {
+                toenglish();
+            }
         }
-        private void something(object sender, RoutedEventArgs e)
+        private void restart(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(Table.turn.ToString());
+            resume(sender, e);
+            Items.gameitem.loaded(sender, e);
         }
         private void settings(object sender, RoutedEventArgs e)
         {

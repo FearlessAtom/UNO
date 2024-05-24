@@ -33,3 +33,7 @@ C:\Users\357\Desktop\UNO\UNOui\obj\Debug\net7.0-windows\colorchange.g.cs
 C:\Users\357\Desktop\UNO\UNOui\obj\Debug\net7.0-windows\colorchange.baml
 C:\Users\357\Desktop\UNO\UNOui\obj\Debug\net7.0-windows\draworplay.g.cs
 C:\Users\357\Desktop\UNO\UNOui\obj\Debug\net7.0-windows\draworplay.baml
+C:\Users\357\Desktop\UNO\UNOui\obj\Debug\net7.0-windows\UserControls\ScoreBoard.g.cs
+C:\Users\357\Desktop\UNO\UNOui\obj\Debug\net7.0-windows\UserControls\ScoreBoard.baml
+C:\Users\357\Desktop\UNO\UNOui\obj\Debug\net7.0-windows\UserControls\ScoreBoardItem.g.cs
+C:\Users\357\Desktop\UNO\UNOui\obj\Debug\net7.0-windows\UserControls\ScoreBoardItem.baml

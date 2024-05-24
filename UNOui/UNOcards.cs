@@ -1,23 +1,161 @@
-﻿using System;
+﻿using Project.Assets.ControlClasses;
+using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
+using UNOui.UserControls;
+//using static System.Net.Mime.MediaTypeNames;
+
 namespace UNOui
 {
+    public class Player : CardsList
+    {
+
+    }
+    public class Bot : CardsList
+    {
+        public int points;
+        public int position;
+        public bool itsturn;
+        public string name;
+        public Bot(int position, string name)
+        {
+            this.position = position;
+            this.name = name;
+        }
+        DropShadowEffect dropShadowEffect = new DropShadowEffect()
+        {
+            Color = Colors.Blue,
+            Direction = 135,
+            ShadowDepth = 5,
+            Opacity = 0.7,
+        };
+        public void botplaycard()
+        {
+            if (cards.Count == 0 || Table.getwin()) { return; }
+            itsturn = true;
+            Table.refreshvisuals();
+            int randomnumber = Items.mainwindowitem.randominteger(-45, 45);
+            bool foundplayablecard = false;
+            double delay = Items.mainwindowitem.randomdouble(1, 2);
+            Task.Delay(TimeSpan.FromSeconds(delay)).ContinueWith(task =>
+            {
+                for (int index = 0; index < cards.Count; index++)
+                {
+                    if (cards[index].comparecard())
+                    {
+                        Table.addtotopcards(randomnumber);
+                        cards[index].playcard();
+                        if(Table.topcard.number != -1)
+                        {
+                            Table.nextturn();
+                        }
+                        cards[index].checkforwildcard();
+                        cards.RemoveAt(index);
+                        foundplayablecard = true;
+                        Table.topcard.zindex();
+                        Table.topcard.image.RenderTransform = Cards.rotate(randomnumber);
+                        break;
+                    }
+                }
+                if (!foundplayablecard)
+                {
+                    Cards newcard = Cards.randomcard();
+                    if (newcard.comparecard())
+                    {
+                        Table.addtotopcards(randomnumber);
+                        newcard.playcard();
+                        if (Table.topcard.number != -1)
+                        {
+                            Table.nextturn();
+                        }
+                        newcard.checkforwildcard();
+                        Table.topcard.zindex();
+                        Table.topcard.image.RenderTransform = Cards.rotate(randomnumber);
+                    }
+                    else
+                    {
+                        cards.Add(newcard);
+                        Table.nextturn();
+                        Table.checkforturn();
+                    }
+                }
+                itsturn = false;
+                Table.refreshvisuals();
+            }, TaskScheduler.FromCurrentSynchronizationContext());
+        }
+        public void refreshbotsdeck(int gap)
+        {
+            if (Settings.getplayercount() >= 2)
+            {
+                int initialgap = 4;
+                for (int index = 0; index < cards.Count; index++)
+                {
+                    Image image = new Image();
+                    if (itsturn)
+                    { 
+                        image.Effect = dropShadowEffect;
+                    }
+                    RotateTransform rotate = new RotateTransform(gap - (cards.Count * initialgap) / 4);
+                    image.Width = image.Height = 150;
+                    rotate.CenterX = image.Width * 0.73;
+                    rotate.CenterY = image.Height * 0.89;
+                    image.Source = Cards.getcardimage("cardbackground").Source;
+                    image.RenderTransform = rotate;
+                    switch (position)
+                    {
+                        case 1:
+                            Canvas.SetLeft(image, 20);
+                            Canvas.SetTop(image, Items.gameitem.gamecanvas.ActualHeight / 3);
+                            break;
+                        case 2:
+                            Canvas.SetLeft(image, Items.gameitem.gamecanvas.ActualWidth / 2 - (image.Width / 2));
+                            Canvas.SetTop(image, 20);
+                        break;
+                        case 3:
+                            Canvas.SetLeft(image, Items.gameitem.gamecanvas.ActualWidth - 200);
+                            Canvas.SetTop(image, Items.gameitem.gamecanvas.ActualHeight / 3);
+                            break;
+                    }
+                    TextBlock nickname = new TextBlock()
+                    {
+                        Text = (Settings.getlanguage() == 2 ? "Бот " : "Bot ") + name,
+                        FontSize = 50,
+                        FontWeight = FontWeights.Bold,
+                        Foreground = itsturn ? Brushes.Blue : Brushes.Black,
+                    };
+                    Canvas.SetLeft(nickname, Canvas.GetLeft(image) - image.ActualWidth / 2 + 20);
+                    Canvas.SetTop(nickname, Canvas.GetTop(image) + 140);
+                    Items.gameitem.gamecanvas.Children.Add(nickname);
+                    Items.gameitem.gamecanvas.Children.Add(image);
+                    gap = gap + initialgap;
+                }
+            }
+        }
+    }
     public class CardsList
     {
         public List<Cards> cards = new List<Cards>();
-        public static List<CardsList> allcards = new List<CardsList>();
+        public static List<Bot> allcards = new List<Bot>();
         public CardsList()
         {
 
+        }
+        public void removecard(Cards card)
+        {
+            Items.gameitem.gamecanvas.Children.Remove(card.image);
+            cards.Remove(card);
+            Table.refreshvisuals();
         }
         public void addcard()
         {
@@ -45,6 +183,7 @@ namespace UNOui
         public Image image;
         public int number;
         public string color;
+        public static int nigger;
         public Cards()
         {
 
@@ -61,14 +200,24 @@ namespace UNOui
             number = card.number;
             color = card.color;
         }
+        public void zindex()
+        {
+            Canvas.SetZIndex(image, 1);
+        }
+        public bool wildcard()
+        {
+            return number == -4 || number == -5;
+        }
         public void playcard()
         {
+            Audio.playcardsound();
             Table.topcard.image.Source = image.Source;
             Table.topcard.number = number;
             Table.topcard.color = color;
         }
         public void cardenter(object sender, MouseEventArgs e)
         {
+            if(Table.turn != 1){ return; }
             Canvas.SetTop(image, (int)Items.gameitem.gamecanvas.ActualHeight - image.Width - 30);
         }
         public void cardleave(object sender, MouseEventArgs e)
@@ -80,18 +229,88 @@ namespace UNOui
         {
             return color == Table.topcard.color || number == Table.topcard.number || ((number == -4 || number == -5) && color == "none");
         }
-        public void removecard()
-        {
-            Items.gameitem.gamecanvas.Children.Remove(image);
-            Items.gameitem.player.cards.Remove(this);
-            Table.refreshvisuals();
-        }
         public static Image getcardimage(string card)
         {
             Image image = new Image();
             string source = "C:\\Users\\357\\Desktop\\UNO\\UNOui\\assets\\UNOcards\\" + card + ".png";
             image.Source = new BitmapImage(new Uri(source));
             return image;
+        }
+        public void turndelay()
+        {
+            Task.Delay(TimeSpan.FromSeconds(2)).ContinueWith(task =>
+            {
+                Table.checkforturn();
+            }, TaskScheduler.FromCurrentSynchronizationContext());
+        }
+        public void checkforwildcard()
+        {
+            if(Table.topcard.number == -5)
+            {
+                Table.topcard.color = "Blue";
+                Table.topcard.image = getcardimage("bluewildcard");
+                Table.refreshvisuals();
+                turndelay();
+            }
+            else if(Table.topcard.number == -4)
+            {
+                Table.topcard.color = "Blue";
+                Table.topcard.image = getcardimage("bluedrawfour");
+                Table.refreshvisuals();
+                //Table.nextturn();
+                Task.Delay(TimeSpan.FromSeconds(0.5)).ContinueWith(task =>
+                {
+                    CardsList.allcards[Table.turn - 1].addcard();
+                }, TaskScheduler.FromCurrentSynchronizationContext());
+                Task.Delay(TimeSpan.FromSeconds(1)).ContinueWith(task =>
+                {
+                    CardsList.allcards[Table.turn - 1].addcard();
+                }, TaskScheduler.FromCurrentSynchronizationContext());
+                Task.Delay(TimeSpan.FromSeconds(1.5)).ContinueWith(task =>
+                {
+                    CardsList.allcards[Table.turn - 1].addcard();
+                }, TaskScheduler.FromCurrentSynchronizationContext());
+                Task.Delay(TimeSpan.FromSeconds(2)).ContinueWith(task =>
+                {
+                    CardsList.allcards[Table.turn - 1].addcard();
+                    Table.nextturn();
+                    Table.checkforturn();
+                    Table.refreshvisuals();
+                }, TaskScheduler.FromCurrentSynchronizationContext());
+            }
+            else if (Table.topcard.number == -3)
+            {
+                Table.nextturn();
+                turndelay();
+            }
+            else if(Table.topcard.number == -2)
+            {
+                CardsList.allcards[Table.turn - 1].addcard();
+                
+                Task.Delay(TimeSpan.FromSeconds(0.5)).ContinueWith(task =>
+                {
+                    CardsList.allcards[Table.turn - 1].addcard();
+                    Table.nextturn();
+                    turndelay();
+                }, TaskScheduler.FromCurrentSynchronizationContext());
+            }
+            else if(Table.topcard.number == -1)
+            {
+                if(Settings.getplayercount() == 2)
+                {
+                    Table.nextturn();
+                    Table.nextturn();
+                    Table.checkforturn();
+                    return;
+                }
+                Table.direction = !Table.direction;
+                Table.nextturn();
+                Table.checkforturn();
+            }
+            else
+            {
+                Table.checkforturn();
+            }
         }
         public static Cards randomcard()
         { 
@@ -173,6 +392,10 @@ namespace UNOui
         }
         public static RotateTransform rotate(int number)
         {
+            if(Table.topcard.number == -5 || Table.topcard.number == -4)
+            {
+                nigger = 2;
+            }
             RotateTransform rotate = new RotateTransform(number);
             rotate.CenterX = Table.topcard.image.Width / 2;
             rotate.CenterY = Table.topcard.image.Height / 2 + number;
@@ -181,28 +404,82 @@ namespace UNOui
     }
     public class Table
     {
-        public static bool direction;
+        public static bool direction = true;
         public static int turn;
         public static List<Image> topcards = new List<Image>();
         public static List<int> topcardsrotateangle = new List<int>();
         public static Cards topcard;
         public static Image draggedimage;
         public static Image deckimage;
+        public static bool getwin()
+        {
+            for(int index = 0; index < CardsList.allcards.Count; index++)
+            {
+                if (CardsList.allcards[index].cards.Count == 0)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         public static void nextturn()
         {
-            turn++;
-            if (turn > CardsList.allcards.Count)
+            if (direction)
             {
-                turn = 1;
+                turn++;
+                if (turn > CardsList.allcards.Count)
+                {
+                    turn = 1;
+                }
             }
+            else
+            {
+                turn--;
+                if (turn < 1)
+                {
+                    turn = CardsList.allcards.Count;
+                }
+            }
+            Items.gameitem.turntextblock.Text = turn.ToString();
         }
         public static void checkforturn()
         {
-            if (turn != 1)
+            refreshvisuals();
+            if (getwin())
             {
-                Items.gameitem.botplaycard(CardsList.allcards[turn - 1].cards);
+                Task.Delay(TimeSpan.FromSeconds(1.5)).ContinueWith(task =>
+                {
+                    ScoreBoard board = new ScoreBoard();
+                    Items.gameitem.gamegrid.Children.Add(board);
+                }, TaskScheduler.FromCurrentSynchronizationContext());
+            }
+            else
+            {
+                if (turn != 1)
+                {
+                    Bot.allcards[turn - 1].botplaycard();
+                }
             }
         }
+        public static void clear()
+        {
+            topcards.Clear();
+            topcardsrotateangle.Clear();
+        }
+        public static void settopcard()
+        {
+            topcard = Cards.randomcard();
+            topcardsrotateangle.Add(0);
+        }
+        public static void addtotopcards(int randomnumber)
+        {
+            Image image = Cards.randomcard().image;
+            image.Width = image.Height = 150;
+            image.Source = topcard.image.Source;
+            topcards.Add(image);
+            topcardsrotateangle.Add(randomnumber);
+        }
+        //one
         public static void refreshvisuals()
         {
             if(Items.gameitem == null){return;}
@@ -225,21 +502,23 @@ namespace UNOui
             playable();
             refreshtopcards();
             refreshbotsdeck(0);
+            refreshdirection();
         }
         private static void refreshdeck(int gap)
         {
-            System.Windows.Controls.Image deck = new System.Windows.Controls.Image();
+            Image deck = new Image();
             deck = Cards.getcardimage("cardbackground");
             deck.Width = deck.Height = 150;
             deck.MouseDown += Items.gameitem.deckdown;
-            Table.deckimage = deck;
+            deckimage = deck;
             Canvas.SetTop(deck, Items.gameitem.gamecanvas.ActualHeight / 3);
-            Canvas.SetLeft(deck, Items.gameitem.gamecanvas.ActualWidth / 4 - gap);
+            Canvas.SetLeft(deck, Items.gameitem.gamecanvas.ActualWidth / 3.5 - gap);
             Items.gameitem.gamecanvas.Children.Add(deck);
             if (gap <= Items.gameitem.actualgap * 3) { refreshdeck(gap + Items.gameitem.actualgap); }
         }
         private static void playable()
         {
+            if(turn != 1) { return; }
             Cards topcard = Table.topcard;
             bool playable = false; ;
             if (topcard == null) { return; }
@@ -259,28 +538,28 @@ namespace UNOui
                 ShadowDepth = 5,
                 Opacity = 0.7
             };
-            if (!playable) { deckimage.Effect = dropShadowEffect; }
+            if (!playable && Table.turn == 1) { deckimage.Effect = dropShadowEffect; }
         }
         private static void refreshbotsdeck(int gap)
         {
-            if (Settings.getplayercount() >= 2)
+            Items.gameitem.botone.refreshbotsdeck(gap);
+            if (CardsList.allcards.Count >= 3)
             {
-                int initialgap = 7;
-                for (int index = 0; index < Items.gameitem.botone.cards.Count; index++)
-                {
-                    Image image = new Image();
-                    RotateTransform rotate = new RotateTransform(gap - (Items.gameitem.botone.cards.Count * initialgap) / 4);
-                    image.Width = image.Height = 150;
-                    rotate.CenterX = image.Width * 0.73;
-                    rotate.CenterY = image.Height * 0.89;
-                    image.Source = Cards.getcardimage("cardbackground").Source;
-                    image.RenderTransform = rotate;
-                    Canvas.SetTop(image, 20);
-                    Canvas.SetLeft(image, Items.gameitem.gamecanvas.ActualWidth / 2 - (image.Width / 2));
-                    Items.gameitem.gamecanvas.Children.Add(image);
-                    gap = gap + initialgap;
-                }
+                Items.gameitem.bottwo.refreshbotsdeck(gap);
             }
+            if (CardsList.allcards.Count == 4)
+            {
+                Items.gameitem.botthree.refreshbotsdeck(gap);
+            }
+        }   
+        public static void refreshdirection()
+        {
+            Image image = new Image();
+            image.Source = Cards.getcardimage(direction ? "arrowsclockwise" : "arrowscounterclockwise").Source;
+            image.Width = image.Height = 150;
+            Canvas.SetBottom(image, 180);
+            Canvas.SetLeft(image, Items.gameitem.gamecanvas.ActualWidth / 2 - image.Width / 2);
+            Items.gameitem.gamecanvas.Children.Add(image);
         }
         private static void refreshtopcards()
         {
