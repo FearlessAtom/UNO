@@ -1,13 +1,13 @@
 ﻿
 
-FC:\Users\357\Desktop\UNO\UNOui\confirmation.xaml;;
-FC:\Users\357\Desktop\UNO\UNOui\exitconfirmation.xaml;;
-FC:\Users\357\Desktop\UNO\UNOui\game.xaml;;
-FC:\Users\357\Desktop\UNO\UNOui\gamemenu.xaml;;
 FC:\Users\357\Desktop\UNO\UNOui\MainWindow.xaml;;
-FC:\Users\357\Desktop\UNO\UNOui\settingsusercontrol.xaml;;
-FC:\Users\357\Desktop\UNO\UNOui\colorchange.xaml;;
-FC:\Users\357\Desktop\UNO\UNOui\draworplay.xaml;;
+FC:\Users\357\Desktop\UNO\UNOui\UserControls\AreYouSure.xaml;;
+FC:\Users\357\Desktop\UNO\UNOui\UserControls\ColorChange.xaml;;
+FC:\Users\357\Desktop\UNO\UNOui\UserControls\Confirmation.xaml;;
+FC:\Users\357\Desktop\UNO\UNOui\UserControls\DrawOrPlay.xaml;;
+FC:\Users\357\Desktop\UNO\UNOui\UserControls\Game.xaml;;
+FC:\Users\357\Desktop\UNO\UNOui\UserControls\GameMenu.xaml;;
 FC:\Users\357\Desktop\UNO\UNOui\UserControls\ScoreBoard.xaml;;
 FC:\Users\357\Desktop\UNO\UNOui\UserControls\ScoreBoardItem.xaml;;
+FC:\Users\357\Desktop\UNO\UNOui\UserControls\SettingsUserControl.xaml;;
 

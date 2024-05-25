@@ -40,12 +40,13 @@ namespace UNOui
         }
         public void exitmenubutton(object sender, RoutedEventArgs e)
         {
-            if (!Settings.getsettingsopened())
+            if (Settings.getsettingsopened())
             {
-                Settings.setexitconfirmationopened(true);
-                UserControl exit = new exitconfirmation();
-                MainGrid.Children.Add(exit);
+                return;
             }
+            Settings.setexitconfirmationopened(true);
+            UserControl exit = new exitconfirmation(1);
+            MainGrid.Children.Add(exit); 
         }
         private void settingsbutton(object sender, RoutedEventArgs e)
         {
@@ -122,15 +123,14 @@ namespace UNOui
         }
         private void setsettings(object sender, RoutedEventArgs e)
         {
-            Audio.playmusic();
             Items.mainwindowitem = this;
             Items.playbutton = play;
             Items.settingsbutton = settings;
             Items.exitbutton = exit;
-            const string path = "C:\\Users\\357\\Desktop\\UNO\\UNOui\\data\\settings.txt";
+            const string path = "C:\\Users\\357\\Desktop\\UNO\\UNOui\\Data\\settings.txt";
             StreamReader reader = new StreamReader(path);
             string playercount = reader.ReadLine();
-            string opponent = reader.ReadLine();
+            string fullscreen = reader.ReadLine();
             string cardcount = reader.ReadLine();
             string drawuntilplayable = reader.ReadLine();
             string forceplay = reader.ReadLine();
@@ -138,13 +138,13 @@ namespace UNOui
             string language = reader.ReadLine();
             string jumpin = reader.ReadLine();
             Settings.setplayercount(Convert.ToInt16(playercount));
-            Settings.setopponent(Convert.ToInt16(opponent));
+            Settings.setfullscreen(Convert.ToInt16(fullscreen));
             Settings.setcardcount(Convert.ToInt16(cardcount));
             Settings.setdrawuntilplayable(Convert.ToInt16(drawuntilplayable));
             Settings.setforceplay(Convert.ToInt16(forceplay));
-            Settings.setstacking(Convert.ToInt16(stacking));
+            Settings.setsounds(Convert.ToInt16(stacking));
             Settings.setlanguage(Convert.ToInt16(language));
-            Settings.setjumpin(Convert.ToInt16(jumpin));
+            Settings.setrandomdirection(Convert.ToInt16(jumpin));
             UnsavedSettings.drawuntilplayable = Settings.getdrawuntilplayable();
             setlanguage();
             reader.Close();

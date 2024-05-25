@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET7_0;NETCOREAPP
 C:\Users\357\Desktop\UNO\UNOui\App.xaml
-10-53864681
+102095294398
 
-17-927215204
+17421571100
 198-878225571
-colorchange.xaml;confirmation.xaml;draworplay.xaml;exitconfirmation.xaml;game.xaml;gamemenu.xaml;MainWindow.xaml;settingsusercontrol.xaml;UserControls\ScoreBoard.xaml;UserControls\ScoreBoardItem.xaml;
+MainWindow.xaml;UserControls\AreYouSure.xaml;UserControls\ColorChange.xaml;UserControls\Confirmation.xaml;UserControls\DrawOrPlay.xaml;UserControls\Game.xaml;UserControls\GameMenu.xaml;UserControls\ScoreBoard.xaml;UserControls\ScoreBoardItem.xaml;UserControls\SettingsUserControl.xaml;
 
 False
 

@@ -48,7 +48,7 @@ namespace UNOui.UserControls
                 toenglish();
             }
         }
-        public int getpoints(CardsList thing)
+        public int getpoints(CardHolder thing)
         {
             int result = 0;
             for(int index = 0; index < thing.cards.Count; index++)
@@ -64,19 +64,19 @@ namespace UNOui.UserControls
             }
             return result;
         }
-        public void swap(Bot a, Bot b)
+        public void swap(CardHolder a, CardHolder b)
         {
             string tempname = a.name;
             a.name = b.name;
             b.name = tempname;
-            List<Cards> tempcards = a.cards;
+            List<Card> tempcards = a.cards;
             a.cards = b.cards;
             b.cards = tempcards;
         }
         public static int allpoints = 0;
         public void scoreboard()
         {
-            List<Bot> copy = CardsList.allcards;
+            List<CardHolder> copy = CardHolder.allcards;
             for(int index = 0; index < copy.Count - 1; index++)
             {
                 for(int j = 0; j < copy.Count - 1 - index; j++)
@@ -94,7 +94,6 @@ namespace UNOui.UserControls
                 Bot.allcards[index].points = points;
                 ScoreBoardItem item = new ScoreBoardItem(copy[index].name, copy[index].cards, copy[index].points);
                 stackpanel.Children.Add(item);
-
             }
             stackpanel.SetHorizontalOffset(0);
             stackpanel.SetVerticalOffset(0);

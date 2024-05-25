@@ -6,12 +6,13 @@
         xmlns:local="clr-namespace:UNOui"
         mc:Ignorable="d"
         Title="UNO"
-        Height="750" Width="1000"
-        MinHeight="750" MinWidth="1000"
+        Height="750" Width="1200"
+        MinHeight="750" MinWidth="1200"
         Icon="assets/icon.ico"
         Loaded="setsettings"
         KeyDown="keydown"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None">
     <Window.Resources>
         <Style TargetType="Button" x:Key="menubutton">
             <Setter Property="FontSize" Value="40"></Setter>

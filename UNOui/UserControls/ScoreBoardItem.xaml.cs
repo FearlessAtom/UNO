@@ -21,15 +21,15 @@ namespace UNOui.UserControls
     public partial class ScoreBoardItem : UserControl
     {
         public string name;
-        public List<Cards> cards;
+        public List<Card> cards;
         public int points;
-        public ScoreBoardItem(string name, List<Cards> cards, int points)
+        public ScoreBoardItem(string name, List<Card> cards, int points)
         {
             InitializeComponent();
             this.points = points;
             this.cards = cards;
             this.name = name;
-            nickname.Text = (char.IsDigit(name[0]) ? "Bot " : "") +  name + "(" + points + ")";
+            nickname.Text = (char.IsDigit(name[0]) ? (Settings.getlanguage() == 2 ? "Бот " : "Bot ") : "") + (name == "You" ? (Settings.getlanguage() == 2 ? "Ви" : "You") : name ) + "(" + points + ")";
             addcards();
         }
         public void addcards()
@@ -40,7 +40,7 @@ namespace UNOui.UserControls
                 {
                     FontSize = 40,
                     FontFamily = new FontFamily("Verdana"),
-                    Text = "Winner",
+                    Text = (Settings.getlanguage() == 2 ? "Переможець" : "Winner"),
                     HorizontalAlignment = HorizontalAlignment.Left,
                     VerticalAlignment = VerticalAlignment.Center,
                 };

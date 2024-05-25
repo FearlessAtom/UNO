@@ -7,25 +7,25 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="colorchange.xaml.cs">
+    <Compile Update="UserControls\colorchange.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="confirmation.xaml.cs">
+    <Compile Update="UserControls\confirmation.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="draworplay.xaml.cs">
+    <Compile Update="UserControls\draworplay.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="exitconfirmation.xaml.cs">
+    <Compile Update="UserControls\AreYouSure.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="game.xaml.cs">
+    <Compile Update="UserControls\game.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="gamemenu.xaml.cs">
+    <Compile Update="UserControls\gamemenu.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="settingsusercontrol.xaml.cs">
+    <Compile Update="UserControls\settingsusercontrol.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="UserControls\ScoreBoard.xaml.cs">
@@ -36,28 +36,28 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="colorchange.xaml">
+    <Page Update="UserControls\ColorChange.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="confirmation.xaml">
+    <Page Update="UserControls\Confirmation.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="draworplay.xaml">
+    <Page Update="UserControls\DrawOrPlay.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="exitconfirmation.xaml">
+    <Page Update="UserControls\AreYouSure.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="game.xaml">
+    <Page Update="UserControls\Game.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="gamemenu.xaml">
+    <Page Update="UserControls\GameMenu.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="settingsusercontrol.xaml">
+    <Page Update="UserControls\SettingsUserControl.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UserControls\ScoreBoard.xaml">
