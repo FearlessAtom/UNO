@@ -45,7 +45,7 @@ namespace UNOui
         {
             if (Action == 1)
             {
-                Settings.setexitconfirmationopened(false);
+                Settings.ExitConfirmationOpened = false;
             }
             Grid parent = (Grid)Parent;
             parent.Children.Remove(this);

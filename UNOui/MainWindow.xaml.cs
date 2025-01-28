@@ -33,7 +33,7 @@ namespace UNOui
                 return;
             }
 
-            Settings.setexitconfirmationopened(true);
+            Settings.ExitConfirmationOpened = true;
             UserControl exit = new ExitConfirmation(1);
             MainGrid.Children.Add(exit); 
         }
@@ -56,10 +56,8 @@ namespace UNOui
             {
                 return;
             }
-            play.Visibility = Visibility.Hidden;
-            settings.Visibility = Visibility.Hidden;
-            exit.Visibility = Visibility.Hidden;
-            Settings.setgameopened(true);
+
+            Settings.GameOpened = true;
             UserControl game = new Game();
             MainGrid.Children.Add(game);
         }
@@ -134,14 +132,14 @@ namespace UNOui
             string language = reader.ReadLine();
             string jumpin = reader.ReadLine();
             Settings.PlayerCount = Convert.ToInt16(playercount);
-            Settings.setfullscreen(Convert.ToInt16(fullscreen));
+            Settings.Fullscreen = Convert.ToInt16(fullscreen);
             Settings.CardCount = Convert.ToInt16(cardcount);
             Settings.DrawUntilPlayable = Convert.ToInt16(drawuntilplayable);
             Settings.ForcePlay = Convert.ToInt16(forceplay);
             Settings.Sounds = Convert.ToInt16(stacking);
             Settings.Sounds = Convert.ToInt16(language);
-            Settings.setrandomdirection(Convert.ToInt16(jumpin));
-            UnsavedSettings.DrawUntilPlatable = Settings.DrawUntilPlayable;
+            Settings.RandomDirection = Convert.ToInt16(jumpin);
+            UnsavedSettings.DrawUntilPlayable = Settings.DrawUntilPlayable;
             SetLanguage();
             reader.Close();
         }
@@ -154,9 +152,9 @@ namespace UNOui
                 {
                     Items.DrawOrPlayItem.DrawCard(sender, e);
                 }
-                else if (Settings.getgameopened() == true)
+                else if (Settings.GameOpened == true)
                 {
-                    if (Settings.getgamemenuopened() == false)
+                    if (Settings.GameMenuOpened == false)
                     {
                         Items.GameItem.OpenMenuButton(sender, e);
                     }
@@ -169,7 +167,7 @@ namespace UNOui
                 {
                     Items.SettingsItem.CloseSettings(sender, e);
                 }
-                else if(Settings.getexitconfirmationopened() == true)
+                else if(Settings.ExitConfirmationOpened == true)
                 {
                     Items.ExitConfirmationItem.Close(sender, e);
                 }

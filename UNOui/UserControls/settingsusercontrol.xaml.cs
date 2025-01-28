@@ -16,16 +16,16 @@ namespace UNOui
 
         public void CloseSettings(object sender, RoutedEventArgs e)
         {
-            if (Settings.Saved == false && !Settings.getconfirmation())
+            if (Settings.Saved == false && !Settings.Confirmation)
             {
                 UserControl confirmation = new Confirmation();
                 maingridsettings.Children.Add(confirmation);
-                Settings.setconfirmation(true);
+                Settings.Confirmation = true;
             }
 
             else
             {
-                Settings.setconfirmation(false);
+                Settings.Confirmation = false;
                 Settings.SettingsOpened = false;
                 SetLoadedSettings(sender, e);
                 Grid grid = (Grid)Parent;
@@ -66,13 +66,13 @@ namespace UNOui
         public void Saved()
         {
             if (Settings.CardCount == UnsavedSettings.CardCount &&
-                Settings.getfullscreen() == UnsavedSettings.Opponent &&
+                Settings.Fullscreen == UnsavedSettings.Fullscreen &&
                 Settings.PlayerCount == UnsavedSettings.PlayerCount &&
-                Settings.DrawUntilPlayable == UnsavedSettings.DrawUntilPlatable &&
+                Settings.DrawUntilPlayable == UnsavedSettings.DrawUntilPlayable &&
                 Settings.ForcePlay == UnsavedSettings.ForcePlay && 
                 Settings.Sounds == UnsavedSettings.Stacking &&
                 Settings.Language == UnsavedSettings.Language &&
-                Settings.getrandomdirection() == UnsavedSettings.JumpIn)
+                Settings.RandomDirection == UnsavedSettings.RandomDirection)
             {
                 unsavedchanges.Visibility = Visibility.Hidden;
                 Settings.Saved = true;
@@ -120,35 +120,35 @@ namespace UNOui
         {
             Items.SettingsItem = this;
             PlayerCountLoad(Settings.PlayerCount);
-            Fullscreen(Settings.getfullscreen());
+            Fullscreen(Settings.Fullscreen);
             StartCardChange(Settings.CardCount);
             ForcePlay(Settings.ForcePlay);
             DrawUntilPlayable(Settings.DrawUntilPlayable);
             Stacking(Settings.Sounds);
             Language(Settings.Language);
-            JumpIn(Settings.getrandomdirection());
+            JumpIn(Settings.RandomDirection);
             Saved();
         }
 
         public void SaveSettings(object sender, RoutedEventArgs e)
         {
             Settings.Fullscreen = UnsavedSettings.PlayerCount;
-            Settings.setfullscreen(UnsavedSettings.Opponent);
+            Settings.Fullscreen = UnsavedSettings.Fullscreen;
             Settings.CardCount = UnsavedSettings.CardCount;
-            Settings.DrawUntilPlayable = UnsavedSettings.DrawUntilPlatable;
+            Settings.DrawUntilPlayable = UnsavedSettings.DrawUntilPlayable;
             Settings.ForcePlay = UnsavedSettings.ForcePlay;
             Settings.Sounds = UnsavedSettings.Stacking;
             Settings.Language = UnsavedSettings.Language;
-            Settings.setrandomdirection(UnsavedSettings.JumpIn);
+            Settings.RandomDirection = UnsavedSettings.RandomDirection;
             StreamWriter writer = new StreamWriter(path);
             writer.WriteLine(Settings.PlayerCount.ToString());
-            writer.WriteLine(Settings.getfullscreen().ToString());
+            writer.WriteLine(Settings.Fullscreen.ToString());
             writer.WriteLine(Settings.CardCount.ToString());
             writer.WriteLine(Settings.DrawUntilPlayable.ToString());
             writer.WriteLine(Settings.ForcePlay.ToString());
             writer.WriteLine(Settings.Sounds.ToString());
             writer.WriteLine(Settings.Language.ToString());
-            writer.WriteLine(Settings.getrandomdirection().ToString());
+            writer.WriteLine(Settings.RandomDirection.ToString());
             writer.Close();
             Saved();
         }
@@ -172,7 +172,7 @@ namespace UNOui
         {
             if (opponent == 2)
             {
-                UnsavedSettings.Opponent = 2;
+                UnsavedSettings.Fullscreen = 2;
                 fullscreenoff.Background = Brushes.LightGreen;
                 fullscreenoff.FontSize = 25;
                 fullscreenoff.Margin = new Thickness(0);
@@ -183,7 +183,7 @@ namespace UNOui
             }
             else
             {
-                UnsavedSettings.Opponent = 1;
+                UnsavedSettings.Fullscreen = 1;
 
                 fullscreenon.Background = Brushes.LightGreen;
                 fullscreenon.FontSize = 25;
@@ -262,7 +262,7 @@ namespace UNOui
                 drawuntilplayableoff.FontSize = 25;
                 drawuntilplayableoff.Background = Brushes.OrangeRed;
             }
-            UnsavedSettings.DrawUntilPlatable = number;
+            UnsavedSettings.DrawUntilPlayable = number;
             Saved();
         }
         private void DrawUntilPlayableButton(object sender, RoutedEventArgs e)
@@ -270,12 +270,12 @@ namespace UNOui
             Button button = (Button)sender;
             if(button == drawuntilplayableon)
             {
-                UnsavedSettings.DrawUntilPlatable = 1;
+                UnsavedSettings.DrawUntilPlayable = 1;
                 DrawUntilPlayable(1);
             }
             else
             {
-                UnsavedSettings.DrawUntilPlatable = 2;
+                UnsavedSettings.DrawUntilPlayable = 2;
                 DrawUntilPlayable(2);
                 drawuntilplayableoff.Background = Brushes.OrangeRed;
             }
@@ -395,7 +395,7 @@ namespace UNOui
                 jumpinoff.FontSize = 25;
                 jumpinoff.Background = Brushes.OrangeRed;
             }
-            UnsavedSettings.JumpIn = number;
+            UnsavedSettings.RandomDirection = number;
             Saved();
         }
 

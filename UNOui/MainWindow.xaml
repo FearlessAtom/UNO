@@ -30,7 +30,7 @@
     </Window.Resources>
     <Grid x:Name="MainGrid">
         <Grid.Background>
-            <ImageBrush ImageSource="assets/menubackground.png"></ImageBrush>
+            <ImageBrush ImageSource="assets\menubackground.png"></ImageBrush>
         </Grid.Background>
         <Grid>
             <Grid.RowDefinitions>

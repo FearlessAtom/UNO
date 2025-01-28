@@ -13,7 +13,7 @@ namespace UNOui
 
         public void Cancel(object sender, RoutedEventArgs e)
         {
-            Settings.setconfirmation(false);
+            Settings.Confirmation = false;
             Grid panel = (Grid)Parent;
             panel.Children.Remove(this);
         }

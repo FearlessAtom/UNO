@@ -34,7 +34,7 @@ namespace UNOui
 
         public void OpenMenuButton(object sender, RoutedEventArgs e)
         {
-            Settings.setgamemenuopened(true);
+            Settings.GameMenuOpened = true;
             UserControl menu = new GameMenu();
             gamegrid.Children.Add(menu);
         }
@@ -46,7 +46,7 @@ namespace UNOui
 
         public void CloseGameButton()
         {
-            Settings.setgameopened(false);
+            Settings.GameOpened = false;
             Items.MainWindowItem.play.Visibility = Visibility.Visible;
             Items.MainWindowItem.settings.Visibility = Visibility.Visible;
             Items.MainWindowItem.exit.Visibility = Visibility.Visible;
@@ -75,7 +75,7 @@ namespace UNOui
             CardHolder.AllCards.Clear();
             CardHolder.AllCards.Add(player);
             Random random = new Random();
-            if(Settings.getrandomdirection() == 1)
+            if(Settings.RandomDirection == 1)
             {
                 Table.direction = random .Next(0, 2) == 0 ? true : false;
             }
