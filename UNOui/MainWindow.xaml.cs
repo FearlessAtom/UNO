@@ -119,10 +119,10 @@ namespace UNOui
 
         private void SetSettings(object sender, RoutedEventArgs e)
         {
-            Items.mainwindowitem = this;
-            Items.playbutton = play;
-            Items.settingsbutton = settings;
-            Items.exitbutton = exit;
+            Items.MainWindowItem = this;
+            Items.PlayButton = play;
+            Items.SettingsButton = settings;
+            Items.ExitButton = exit;
             const string path = @"..\..\..\data\settings.txt";
             StreamReader reader = new StreamReader(path);
             string playercount = reader.ReadLine();

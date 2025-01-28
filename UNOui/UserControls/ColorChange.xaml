@@ -27,7 +27,7 @@
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Button MouseLeave="ButtonMouseLeave" MouseEnter="ButtonMouseEnter" BorderThickness="0" Click="ChooseGreenButton" Background="#55aa55" Grid.Column="0" Grid.Row="0">
+                <Button MouseLeave="ButtonMouseLeave" MouseEnter="ButtonMouseEnter" BorderThickness="0" Click="ChooseGreenColor" Background="#55aa55" Grid.Column="0" Grid.Row="0">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Background="{TemplateBinding Background}"
@@ -38,7 +38,7 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <Button MouseLeave="ButtonMouseLeave" MouseEnter="ButtonMouseEnter" BorderThickness="0" Click="redbutton" Background="#ff5555" Grid.Column="1" Grid.Row="0">
+                <Button MouseLeave="ButtonMouseLeave" MouseEnter="ButtonMouseEnter" BorderThickness="0" Click="ChooseBlueColor" Background="#ff5555" Grid.Column="1" Grid.Row="0">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Background="{TemplateBinding Background}"
@@ -49,7 +49,7 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <Button MouseLeave="ButtonMouseLeave" MouseEnter="ButtonMouseEnter" BorderThickness="0" Click="bluebutton" Background="#5454fc" Grid.Column="0" Grid.Row="1">
+                <Button MouseLeave="ButtonMouseLeave" MouseEnter="ButtonMouseEnter" BorderThickness="0" Click="ChooseBlueColor" Background="#5454fc" Grid.Column="0" Grid.Row="1">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Background="{TemplateBinding Background}"
@@ -60,7 +60,7 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <Button x:Name="yellowcolorbutton" MouseLeave="ButtonMouseLeave" MouseEnter="ButtonMouseEnter" BorderThickness="0" Click="yellowbutton" Grid.Column="1" Grid.Row="1" Background="#ffaa00">
+                <Button x:Name="yellowcolorbutton" MouseLeave="ButtonMouseLeave" MouseEnter="ButtonMouseEnter" BorderThickness="0" Click="ChooseYellowColor" Grid.Column="1" Grid.Row="1" Background="#ffaa00">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">

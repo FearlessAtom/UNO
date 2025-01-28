@@ -23,18 +23,18 @@ namespace Project.Assets.ControlClasses
 
         public static void PlayCardSound()
         {
-            playsound(@"..\..\..\Music\cardsound.mp3");
+            PlaySound(@"..\..\..\Music\cardsound.mp3");
         }
 
         public static void PlayCardTakeSound()
         {
-            playsound(@"..\..\..\Music\cardtake.mp3");
+            PlaySound(@"..\..\..\Music\cardtake.mp3");
         }
 
         public static void PlayUNOSound()
         {
             soundplayer.Volume = 0.1;
-            playsound(@"..\..\..\Music\unosound.mp3");
+            PlaySound(@"..\..\..\Music\unosound.mp3");
             soundplayer.Volume = 0.5;
         }
     }

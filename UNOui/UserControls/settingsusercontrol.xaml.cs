@@ -26,9 +26,6 @@ namespace UNOui
             else
             {
                 Settings.setconfirmation(false);
-                Items.PlayButton.Visibility = Visibility.Visible;
-                Items.SettingsButton.Visibility = Visibility.Visible;
-                Items.ExitButton.Visibility = Visibility.Visible;
                 Settings.SettingsOpened = false;
                 SetLoadedSettings(sender, e);
                 Grid grid = (Grid)Parent;

@@ -386,6 +386,7 @@ namespace UNOui
                 }
             }, TaskScheduler.FromCurrentSynchronizationContext());
         }
+
         public void RefreshBotsDeck(int gap)
         {
             if (Settings.PlayerCount >= 2)
