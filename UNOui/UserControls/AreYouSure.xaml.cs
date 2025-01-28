@@ -1,89 +1,83 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace UNOui
 {
-    /// <summary>
-    /// Interaction logic for exitconfirmation.xaml
-    /// </summary>
-    public partial class exitconfirmation : UserControl
+    public partial class ExitConfirmation : UserControl
     {
-        int action;
-        public exitconfirmation(int action)
+        int Action;
+
+        public ExitConfirmation(int action)
         {
             InitializeComponent();
-            this.action = action;
+            this.Action = action;
         }
-        private void toenglish()
+
+        private void ToEnglish()
         {
             maintextblock.Text = "Are you sure?";
             cancelbutton.Content = "Cancel";
-            exitbutton.Content = (action == 2 ? "Restart" : "Exit"); 
+            exitbutton.Content = (Action == 2 ? "Restart" : "Exit"); 
         }
-        private void toukrainian()
+
+        private void ToUkrainian()
         {
             maintextblock.Text = "Вы впевнені?";
             cancelbutton.Content = "Закрити";
-            exitbutton.Content = (action == 2 ? "Рестарт" : "Вийти");
+            exitbutton.Content = (Action == 2 ? "Рестарт" : "Вийти");
         }
-        private void loaded(object sender, RoutedEventArgs e)
+
+        private void Load(object sender, RoutedEventArgs e)
         {
-            Items.exitconfirmationitem = this;
-            if(Settings.getlanguage() == 2)
+            Items.ExitConfirmationItem = this;
+            if(Settings.Language == 2)
             {
-                toukrainian();
+                ToUkrainian();
             }
             else
             {
-                toenglish();
+                ToEnglish();
             }
         }
-        public void cancel(object sender, RoutedEventArgs e)
+
+        public void Close(object sender, RoutedEventArgs e)
         {
-            if (action == 1)
+            if (Action == 1)
             {
                 Settings.setexitconfirmationopened(false);
             }
             Grid parent = (Grid)Parent;
             parent.Children.Remove(this);
         }
-        private void exit(object sender, RoutedEventArgs e)
+
+        private void Exit(object sender, RoutedEventArgs e)
         {
-            switch (action)
+            switch (Action)
             {
                 case 1:
-                    Items.mainwindowitem.Close();
+                    Items.MainWindowItem.Close();
                     break;
                 case 2:
-                    cancel(new object(), new RoutedEventArgs());
-                    Items.gamemenuitem.resume(sender, e);
-                    Items.gameitem.loaded(sender, e);
+                    Close(new object(), new RoutedEventArgs());
+                    Items.GameMenuItem.Resume(sender, e);
+                    Items.GameItem.LoadGame(sender, e);
                     break;
                 case 3:
-                    Items.gamemenuitem.resume(sender, e);
-                    Items.gameitem.closegame();
+                    Items.GameMenuItem.Resume(sender, e);
+                    Items.GameItem.CloseGameButton();
                     break;
             }
         }
-        private void mouseenter(object sender, MouseEventArgs e)
+
+        private void ButtonMouseEnter(object sender, MouseEventArgs e)
         {
-            Items.mainwindowitem.buttonmouseenter(sender, e);
+            Items.MainWindowItem.ButtonMouseEnter(sender, e);
         }
-        private void mouseleave(object sender, MouseEventArgs e)
+
+        private void ButtonMouseLeave(object sender, MouseEventArgs e)
         {
-            Items.mainwindowitem.buttonmouseleave(sender, e);
+            Items.MainWindowItem.ButtonMouseLeave(sender, e);
         }
     }
 }

@@ -1,12 +1,4 @@
-﻿using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Media;
-using Microsoft.SqlServer.Server;
-using System.Windows.Media;
-using System.Threading;
-using System.Windows.Threading;
-using System.Windows;
+﻿using System.Windows.Media;
 using System;
 using UNOui;
 
@@ -18,27 +10,31 @@ namespace Project.Assets.ControlClasses
         {
             Volume = 0.5,
         };
-        public static void playsound(string path)
+
+        public static void PlaySound(string path)
         {
-            if (Settings.getsounds() == 2)
+            if (Settings.Sounds == 2)
             {
                 return;
             }
             soundplayer.Open(new Uri(path));
             soundplayer.Play();
         }
-        public static void playcardsound()
+
+        public static void PlayCardSound()
         {
-            playsound("C:\\Users\\357\\\\Desktop\\UNO\\UNOui\\Music\\cardsound.mp3");
+            PlaySound("C:\\Users\\357\\\\Desktop\\UNO\\UNOui\\Music\\cardsound.mp3");
         }
-        public static void playcardtakesound()
+
+        public static void PlayCardTakeSound()
         {
-            playsound("C:\\Users\\357\\Desktop\\UNO\\UNOui\\Music\\cardtake.mp3");
+            PlaySound("C:\\Users\\357\\Desktop\\UNO\\UNOui\\Music\\cardtake.mp3");
         }
-        public static void playunosound()
+
+        public static void PlayUNOSound()
         {
             soundplayer.Volume = 0.1;
-            playsound("C:\\Users\\357\\Desktop\\UNO\\UNOui\\Music\\unosound.mp3");
+            PlaySound("C:\\Users\\357\\Desktop\\UNO\\UNOui\\Music\\unosound.mp3");
             soundplayer.Volume = 0.5;
         }
     }

@@ -1,81 +1,79 @@
-﻿using Project.Assets.ControlClasses;
-using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Dynamic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Effects;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace UNOui
 {
-    /// <summary>
-    /// Interaction logic for game.xaml
-    /// </summary>
-    public partial class game : UserControl
+    public partial class Game : UserControl
     {
-        public game()
+        public Game()
         {
             InitializeComponent();
         }
-        public void toenglish()
+
+        private void MenuButtonMouseEnter(object sender, MouseEventArgs e)
         {
-            menubutton.Content = "Menu";
+            Items.MainWindowItem.ButtonMouseEnter(sender, e);
         }
-        public void toukrainian()
+
+        private void MenuButtonMouseLeave(object sender, MouseEventArgs e)
         {
-            menubutton.Content = "Меню";
+            Items.MainWindowItem.ButtonMouseLeave(sender, e);
         }
-        public void menu(object sender, RoutedEventArgs e)
+
+        public void ToEnglish()
+        {
+            MenuButton.Content = "Menu";
+        }
+
+        public void ToUkrainian()
+        {
+            MenuButton.Content = "Меню";
+        }
+
+        public void OpenMenuButton(object sender, RoutedEventArgs e)
         {
             Settings.setgamemenuopened(true);
-            UserControl menu = new gamemenu();
+            UserControl menu = new GameMenu();
             gamegrid.Children.Add(menu);
         }
-        private void resize(object sender, SizeChangedEventArgs e)
+
+        private void ResizeWindow(object sender, SizeChangedEventArgs e)
         {
-            Table.refreshvisuals();
+            Table.RefreshVisuals();
         }
-        public void closegame()
+
+        public void CloseGameButton()
         {
             Settings.setgameopened(false);
-            Items.mainwindowitem.play.Visibility = Visibility.Visible;
-            Items.mainwindowitem.settings.Visibility = Visibility.Visible;
-            Items.mainwindowitem.exit.Visibility = Visibility.Visible;
+            Items.MainWindowItem.play.Visibility = Visibility.Visible;
+            Items.MainWindowItem.settings.Visibility = Visibility.Visible;
+            Items.MainWindowItem.exit.Visibility = Visibility.Visible;
             Grid parent = (Grid)Parent;
             parent.Children.Remove(this);
         }
+
         public Player player = new Player("You");
         public Bot botone;
         public Bot bottwo;
         public Bot botthree;
-        public void loaded(object sender, RoutedEventArgs e)
+
+        public void LoadGame(object sender, RoutedEventArgs e)
         {
-            if(Settings.getlanguage() == 2)
+            if(Settings.Language == 2)
             {
-                toukrainian();
+                ToUkrainian();
             }
             else
             {
-                toenglish();
+                ToEnglish();
             }
-            Items.gameitem = this;
+            Items.GameItem = this;
             gamecanvas.Children.Clear();
             Table.turn = 1;
-            CardHolder.allcards.Clear();
-            CardHolder.allcards.Add(player);
+            CardHolder.AllCards.Clear();
+            CardHolder.AllCards.Add(player);
             Random random = new Random();
             if(Settings.getrandomdirection() == 1)
             {
@@ -85,92 +83,89 @@ namespace UNOui
             {
                 Table.direction = true;
             }
-            if(Settings.getplayercount() == 2)
+            if(Settings.PlayerCount == 2)
             {
                 botone = new Bot(2, "1");
-                Bot.allcards.Add(botone);
+                Bot.AllCards.Add(botone);
             }
-            else if (Settings.getplayercount() == 3)
+            else if (Settings.PlayerCount == 3)
             {
                 botone = new Bot(1, "1");
-                Bot.allcards.Add(botone);
+                Bot.AllCards.Add(botone);
                 bottwo = new Bot(3, "2");
-                Bot.allcards.Add(bottwo);
+                Bot.AllCards.Add(bottwo);
             }
-            else if (Settings.getplayercount() == 4)
+            else if (Settings.PlayerCount == 4)
             {
                 botone = new Bot(1, "1");
-                CardHolder.allcards.Add(botone);
+                CardHolder.AllCards.Add(botone);
                 bottwo = new Bot(2, "2");
-                Bot.allcards.Add(bottwo);
+                Bot.AllCards.Add(bottwo);
                 botthree = new Bot(3, "3");
-                Bot.allcards.Add(botthree);
+                Bot.AllCards.Add(botthree);
             }
-            Table.clear();
-            Table.settopcard();
-            if (Table.topcard.wildcard())
+            Table.TopCardsClear();
+            Table.SetRandomTopCard();
+            if (Table.topcard.IsWildCard())
             {
-                UserControl colorchange = new colorchange();
+                UserControl colorchange = new ColorChange();
                 gamegrid.Children.Add(colorchange);
             }
-            player.setcards();
-            botone.setcards();
-            if (Settings.getplayercount() >= 3)
+            player.SetCards();
+            botone.SetCards();
+            if (Settings.PlayerCount >= 3)
             {
-                bottwo.setcards(); 
+                bottwo.SetCards(); 
             }
-            if (Settings.getplayercount() == 4)
+            if (Settings.PlayerCount == 4)
             {
-                botthree.setcards();
+                botthree.SetCards();
             }
-            player.checkforuno();
-            player.refreshuno();
+            player.CheckForUno();
+            player.RefreshUNO();
         }
-        public int actualgap = 10;
-        private void mouseenter(object sender, MouseEventArgs e)
-        {
-            Items.mainwindowitem.buttonmouseenter(sender, e);
-        }
-        private void mouseleave(object sender, MouseEventArgs e)
-        {
-            Items.mainwindowitem.buttonmouseleave(sender, e);
-        }
-        UIElement drag = null;
-        Point offset;
-        public int cardzindex;
-        public void mousedown(object sender, MouseButtonEventArgs e)
+        
+        public int ActualGap = 10;
+        UIElement Drag = null;
+        Point OffSet;
+        public int CardZIndex;
+
+        public void CardMouseDown(object sender, MouseButtonEventArgs e)
         {
             if(Table.turn != 1) { return; }
-            drag = (System.Windows.Controls.Image)sender;
-            cardzindex = Canvas.GetZIndex(drag);
-            Canvas.SetZIndex(drag, 1);
-            Table.draggedimage = (System.Windows.Controls.Image)drag;
-            offset = e.GetPosition(gamecanvas);
-            offset.Y = offset.Y - Canvas.GetTop(drag);
-            offset.X = offset.X - Canvas.GetLeft(drag);
+            Drag = (System.Windows.Controls.Image)sender;
+            CardZIndex = Canvas.GetZIndex(Drag);
+            Canvas.SetZIndex(Drag, 1);
+            Table.draggedimage = (System.Windows.Controls.Image)Drag;
+            OffSet = e.GetPosition(gamecanvas);
+            OffSet.Y = OffSet.Y - Canvas.GetTop(Drag);
+            OffSet.X = OffSet.X - Canvas.GetLeft(Drag);
             gamecanvas.CaptureMouse();
         }
-        public void mousemove(object sender, MouseEventArgs e)
+
+        public void CardMouseMove(object sender, MouseEventArgs e)
         {
-            if(drag == null){return;}
+            if(Drag == null){return;}
             var position = e.GetPosition((IInputElement)sender);
-            Canvas.SetTop(drag, position.Y - offset.Y);
-            Canvas.SetLeft(drag, position.X - offset.X);
+            Canvas.SetTop(Drag, position.Y - OffSet.Y);
+            Canvas.SetLeft(Drag, position.X - OffSet.X);
         }
-        public void mouseup(object sender, MouseButtonEventArgs e)
+
+        public void CardMouseUp(object sender, MouseButtonEventArgs e)
         {
-            if(drag == null)
+            if(Drag == null)
             {
                 return;
             }
-            drag = null;
-            player.playcard();
+            Drag = null;
+            player.PlayCard();
             gamecanvas.ReleaseMouseCapture();
-            Table.refreshvisuals();
+            Table.RefreshVisuals();
         }
-        public void deckdown(object sender, MouseButtonEventArgs e)
+
+        public void DeckDown(object sender, MouseButtonEventArgs e)
         {
-            player.deckdown(sender, e);
+            player.DeckDown(sender, e);
         }
     }
 }
