@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.IO;
+using System.Security.Policy;
 namespace UNOui
 {
     public partial class MainWindow : Window
@@ -121,8 +122,21 @@ namespace UNOui
             Items.PlayButton = play;
             Items.SettingsButton = settings;
             Items.ExitButton = exit;
-            const string path = @"..\..\..\data\settings.txt";
-            StreamReader reader = new StreamReader(path);
+            const string path = Items.SettingsFilePath;
+
+            StreamReader reader;
+            try
+            {
+                reader = new StreamReader(path);
+            }
+
+            catch (Exception exeption)
+            {
+                MessageBox.Show("Error loading the settings!");
+                Close();
+                return;
+            }
+
             string playercount = reader.ReadLine();
             string fullscreen = reader.ReadLine();
             string cardcount = reader.ReadLine();

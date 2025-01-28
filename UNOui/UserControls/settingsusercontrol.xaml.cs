@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -7,7 +8,6 @@ namespace UNOui
 {
     public partial class SettingsUserControl : UserControl
     {
-        const string path = @"..\..\..\data\settings.txt";
 
         public SettingsUserControl()
         {
@@ -140,7 +140,18 @@ namespace UNOui
             Settings.Sounds = UnsavedSettings.Stacking;
             Settings.Language = UnsavedSettings.Language;
             Settings.RandomDirection = UnsavedSettings.RandomDirection;
-            StreamWriter writer = new StreamWriter(path);
+            StreamWriter writer = null;
+
+            try
+            {
+                writer = new StreamWriter(Items.SettingsFilePath);
+            }
+            catch(Exception exeption)
+            {
+                MessageBox.Show("Error saving the settings!");
+                return;
+            }
+
             writer.WriteLine(Settings.PlayerCount.ToString());
             writer.WriteLine(Settings.Fullscreen.ToString());
             writer.WriteLine(Settings.CardCount.ToString());

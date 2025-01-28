@@ -78,6 +78,7 @@
     <None Remove="Assets\UNOcards\yellowtwo.png" />
     <None Remove="Assets\UNOcards\yellowwildcard.png" />
     <None Remove="Assets\UNOcards\yellowzero.png" />
+    <None Remove="data\settings.txt" />
     <None Remove="Music\cardsound.mp3" />
     <None Remove="Music\music.mp3" />
   </ItemGroup>
@@ -156,6 +157,7 @@
     <Resource Include="Assets\UNOcards\yellowtwo.png" />
     <Resource Include="Assets\UNOcards\yellowwildcard.png" />
     <Resource Include="Assets\UNOcards\yellowzero.png" />
+    <Content Include="data\settings.txt" />
     <Resource Include="Music\cardsound.mp3" />
     <Resource Include="Music\music.mp3" />
   </ItemGroup>

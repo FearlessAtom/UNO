@@ -623,7 +623,7 @@ namespace UNOui
         public static Image CardNameToImage(string card)
         {
             Image image = new Image();
-            string source = @"..\..\..\assets\UNOcards\" + card + ".png";
+            string source = Items.UNOCardsFilePath + card + ".png";
             image.Source = new BitmapImage(new Uri(source, UriKind.Relative));
             return image;
         }
@@ -712,6 +712,7 @@ namespace UNOui
                     return Items.GameItem.player.Cards[index];
                 }
             }
+
             return new Card();
         }
 
@@ -752,6 +753,7 @@ namespace UNOui
                     return true;
                 }
             }
+
             return false;
         }
 
