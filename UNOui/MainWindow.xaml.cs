@@ -150,10 +150,10 @@ namespace UNOui
             Settings.CardCount = Convert.ToInt16(cardcount);
             Settings.DrawUntilPlayable = Convert.ToInt16(drawuntilplayable);
             Settings.ForcePlay = Convert.ToInt16(forceplay);
-            Settings.Sounds = Convert.ToInt16(stacking);
-            Settings.Sounds = Convert.ToInt16(language);
+            Settings.AnabledSounds = Convert.ToInt16(stacking);
+            Settings.AnabledSounds = Convert.ToInt16(language);
             Settings.RandomDirection = Convert.ToInt16(jumpin);
-            UnsavedSettings.DrawUntilPlayable = Settings.DrawUntilPlayable;
+            Settings.UnsavedDrawUntilPlayable = Settings.DrawUntilPlayable;
             SetLanguage();
             reader.Close();
         }

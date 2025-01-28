@@ -767,6 +767,7 @@ namespace UNOui
                     turn = 1;
                 }
             }
+
             else
             {
                 turn--;
