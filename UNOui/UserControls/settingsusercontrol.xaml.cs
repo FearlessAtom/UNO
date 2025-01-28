@@ -7,7 +7,7 @@ namespace UNOui
 {
     public partial class SettingsUserControl : UserControl
     {
-        const string path = "C:\\Users\\357\\Desktop\\UNO\\UNOui\\data\\settings.txt";
+        const string path = @"..\..\..\data\settings.txt";
 
         public SettingsUserControl()
         {

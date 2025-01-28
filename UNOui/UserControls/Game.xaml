@@ -24,7 +24,7 @@
     </UserControl.Resources>
     <Grid x:Name="gamegrid">
         <Grid.Background>
-            <ImageBrush ImageSource="C:\Users\357\Desktop\UNO\UNOui\assets\unobackground.png">
+            <ImageBrush ImageSource="\assets\unobackground.png">
             </ImageBrush>
         </Grid.Background>
         <Grid Background="Transparent">
