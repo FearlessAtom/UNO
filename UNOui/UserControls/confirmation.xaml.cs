@@ -39,14 +39,12 @@ namespace UNOui
         {
             Grid panel = (Grid)Parent;
             panel.Children.Remove(this);
-            Items.SettingsItem.SaveSettings(sender, e);
             Items.SettingsItem.CloseSettings(sender, e);
-
         }
 
         private void Load(object sender, RoutedEventArgs e)
         {
-            if(UnsavedSettings.Language == 1)
+            if(Settings.UnsavedLanguage == 1)
             {
                 ToEnglish();
             }
