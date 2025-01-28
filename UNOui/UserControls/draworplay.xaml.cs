@@ -1,95 +1,90 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace UNOui
 {
-    /// <summary>
-    /// Interaction logic for draworplay.xaml
-    /// </summary>
-    public partial class draworplay : UserControl
+    public partial class DrawOrPlay : UserControl
     {
-        public draworplay()
+        public DrawOrPlay()
         {
             InitializeComponent();
         }
-        private void loaded(object sender, RoutedEventArgs e)
+
+        private void Load(object sender, RoutedEventArgs e)
         {
-            if (Settings.getforceplay() == 1)
+            if (Settings.ForcePlay == 1)
             {
                 playbutton.VerticalAlignment = VerticalAlignment.Center;
                 Grid.SetColumnSpan(playbutton, 2);
                 drawbutton.Visibility = Visibility.Hidden;
             }
             Image image = new Image();
-            Items.draworplayitem = this;
-            cardimage.Source = Items.gameitem.player.cards[Items.gameitem.player.cards.Count - 1].image.Source;
+            Items.DrawOrPlayItem = this;
+            cardimage.Source = Items.GameItem.player.Cards[Items.GameItem.player.Cards.Count - 1].image.Source;
         }
-        public void remove()
+
+        public void Close()
         {
             Grid parent = (Grid)Parent;
             parent.Children.Remove(this);
         }
-        public void draw(object sender, RoutedEventArgs e)
+
+        public void DrawCard(object sender, RoutedEventArgs e)
         {
-            Table.nextturn();
-            Table.checkforturn();
-            remove();
+            Table.SetNextTurn();
+            Table.CheckForTurn();
+            Close();
         }
-        private void play(object sender, RoutedEventArgs e)
+
+        private void PlayCard(object sender, RoutedEventArgs e)
         {
-            Card card = Items.gameitem.player.cards[Items.gameitem.player.cards.Count - 1];
+            Card card = Items.GameItem.player.Cards[Items.GameItem.player.Cards.Count - 1];
             Random random = new Random();
             int randomnumber = random.Next(-45, 45);
-            if (Items.gameitem.player.cards.Count > 1)
+
+            if (Items.GameItem.player.Cards.Count > 1)
             {
-                Table.addtotopcards(randomnumber);
+                Table.AddToTopCards(randomnumber);
             }
-            card.playcard();
+
+            card.PlayCard();
             Table.topcard.image.RenderTransform = Card.rotate(randomnumber);
-            Table.topcard.zindex();
-            Items.gameitem.player.cards.Remove(card);
-            Items.gameitem.gamecanvas.Children.Remove(card.image);
+            Table.topcard.SetZIndexToOne();
+            Items.GameItem.player.Cards.Remove(card);
+            Items.GameItem.gamecanvas.Children.Remove(card.image);
+
             if (Table.topcard.number != -1)
             {
-                Table.nextturn();
+                Table.SetNextTurn();
             }
-            remove();
-            Table.refreshvisuals();
+
+            Close();
+            Table.RefreshVisuals();
             Task.Delay(TimeSpan.FromSeconds(0.5)).ContinueWith(task =>
             {
                 if ((card.number == -4 || card.number == -5) && card.color == "none")
                 {
-                    UserControl changecolor = new colorchange();
-                    Items.gameitem.gamegrid.Children.Add(changecolor);
+                    UserControl changecolor = new ColorChange();
+                    Items.GameItem.gamegrid.Children.Add(changecolor);
                 }
                 else
                 {
-                    Items.gameitem.player.checkforwildcard();
+                    Items.GameItem.player.CheckForWildCards();
                 }
             }, TaskScheduler.FromCurrentSynchronizationContext());
         }
-        private void mouseenter(object sender, MouseEventArgs e)
+
+        private void ButtonMouseEnter(object sender, MouseEventArgs e)
         {
-            Items.mainwindowitem.buttonmouseenter(sender, e);
-        }
-        private void mouseleave(object sender, MouseEventArgs e)
-        {
-            Items.mainwindowitem.buttonmouseleave(sender, e);
+            Items.MainWindowItem.ButtonMouseEnter(sender, e);
         }
 
+        private void ButtonMouseLeave(object sender, MouseEventArgs e)
+        {
+            Items.MainWindowItem.ButtonMouseLeave(sender, e);
+        }
     }
 }

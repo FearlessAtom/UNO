@@ -1,100 +1,94 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.IO;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Collections;
-using System.Configuration;
 namespace UNOui
 {
-    /// <summary>
-    /// Interaction logic for settingsusercontrol.xaml
-    /// </summary>
-    public partial class settingsusercontrol : UserControl
+    public partial class SettingsUserControl : UserControl
     {
         const string path = @"..\..\..\data\settings.txt";
-        public settingsusercontrol()
+
+        public SettingsUserControl()
         {
             InitializeComponent();
         }
-        public void closesettings(object sender, RoutedEventArgs e)
+
+        public void CloseSettings(object sender, RoutedEventArgs e)
         {
-            if (Settings.getsaved() == false && !Settings.getconfirmation())
+            if (Settings.Saved == false && !Settings.getconfirmation())
             {
-                UserControl confirmation = new confirmation();
+                UserControl confirmation = new Confirmation();
                 maingridsettings.Children.Add(confirmation);
                 Settings.setconfirmation(true);
             }
+
             else
             {
                 Settings.setconfirmation(false);
-                Items.playbutton.Visibility = Visibility.Visible;
-                Items.settingsbutton.Visibility = Visibility.Visible;
-                Items.exitbutton.Visibility = Visibility.Visible;
-                Settings.setsettingsopened(false);
-                setloadedsettings(sender, e);
+                Items.PlayButton.Visibility = Visibility.Visible;
+                Items.SettingsButton.Visibility = Visibility.Visible;
+                Items.ExitButton.Visibility = Visibility.Visible;
+                Settings.SettingsOpened = false;
+                SetLoadedSettings(sender, e);
                 Grid grid = (Grid)Parent;
                 grid.Children.Remove(this);
             }
         }
-        public Color brushestocolor(Brush brush)
+
+        public Color BrushesToColor(Brush brush)
         {
             SolidColorBrush solidbrush = (SolidColorBrush)brush;
             return solidbrush.Color;
         }
-        private void buttonmouseenter(object sender, MouseEventArgs e)
+
+        private void ButtonMouseEnter(object sender, MouseEventArgs e)
         {
-            Items.mainwindowitem.buttonmouseenter(sender, e);
+            Items.MainWindowItem.ButtonMouseEnter(sender, e);
         }
-        private void buttonmouseleave(object sender, MouseEventArgs e)
+
+        private void ButtonMouseLeave(object sender, MouseEventArgs e)
         {
-            Items.mainwindowitem.buttonmouseleave(sender, e);
+            Items.MainWindowItem.ButtonMouseLeave(sender, e);
         }
-        private void playercountchange(object sender, RoutedEventArgs e)
+
+        private void PlayerCountChange(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
             Button[] array = { playercounttwo, playercountthree, playercountfour };
+
             for (int index = 0; index < array.Length; index++)
             {
                 if (button == array[index])
                 {
-                    playercountload(index + 2);
+                    PlayerCountLoad(index + 2);
                 }
             }
         }
-        public void saved()
+
+        public void Saved()
         {
-            if (Settings.getcardcount() == UnsavedSettings.cardcount &&
-                Settings.getfullscreen() == UnsavedSettings.opponent &&
-                Settings.getplayercount() == UnsavedSettings.playercount &&
-                Settings.getdrawuntilplayable() == UnsavedSettings.drawuntilplayable &&
-                Settings.getforceplay() == UnsavedSettings.forceplay && 
-                Settings.getsounds() == UnsavedSettings.stacking &&
-                Settings.getlanguage() == UnsavedSettings.language &&
-                Settings.getrandomdirection() == UnsavedSettings.jumpin)
+            if (Settings.CardCount == UnsavedSettings.CardCount &&
+                Settings.getfullscreen() == UnsavedSettings.Opponent &&
+                Settings.PlayerCount == UnsavedSettings.PlayerCount &&
+                Settings.DrawUntilPlayable == UnsavedSettings.DrawUntilPlatable &&
+                Settings.ForcePlay == UnsavedSettings.ForcePlay && 
+                Settings.Sounds == UnsavedSettings.Stacking &&
+                Settings.Language == UnsavedSettings.Language &&
+                Settings.getrandomdirection() == UnsavedSettings.JumpIn)
             {
                 unsavedchanges.Visibility = Visibility.Hidden;
-                Settings.setsaved(true);
+                Settings.Saved = true;
             }
             else
             {
                 unsavedchanges.Visibility = Visibility.Visible;
-                Settings.setsaved(false);
+                Settings.Saved = false;
                 MainWindow atom = new MainWindow();
             }
         }
-        private void playercountload(int number)
+
+        private void PlayerCountLoad(int number)
         {
             Button[] array = { playercounttwo, playercountthree, playercountfour };
             double margin = playercounttwo.ActualHeight * 0.05;
@@ -121,63 +115,67 @@ namespace UNOui
                     array[index].FontSize = 20;
                 }
             }
-            UnsavedSettings.playercount = number;
-            saved();
+            UnsavedSettings.PlayerCount = number;
+            Saved();
         }
-        public void setloadedsettings(object sender, RoutedEventArgs e)
+
+        public void SetLoadedSettings(object sender, RoutedEventArgs e)
         {
-            Items.settingsitem = this;
-            playercountload(Settings.getplayercount());
-            fullscreen(Settings.getfullscreen());
-            startcardschange(Settings.getcardcount());
-            forceplay(Settings.getforceplay());
-            drawuntilplayable(Settings.getdrawuntilplayable());
-            stacking(Settings.getsounds());
-            language(Settings.getlanguage());
-            jumpin(Settings.getrandomdirection());
-            saved();
+            Items.SettingsItem = this;
+            PlayerCountLoad(Settings.PlayerCount);
+            Fullscreen(Settings.getfullscreen());
+            StartCardChange(Settings.CardCount);
+            ForcePlay(Settings.ForcePlay);
+            DrawUntilPlayable(Settings.DrawUntilPlayable);
+            Stacking(Settings.Sounds);
+            Language(Settings.Language);
+            JumpIn(Settings.getrandomdirection());
+            Saved();
         }
-        public void savesettings(object sender, RoutedEventArgs e)
+
+        public void SaveSettings(object sender, RoutedEventArgs e)
         {
-            Settings.setplayercount(UnsavedSettings.playercount);
-            Settings.setfullscreen(UnsavedSettings.opponent);
-            Settings.setcardcount(UnsavedSettings.cardcount);
-            Settings.setdrawuntilplayable(UnsavedSettings.drawuntilplayable);
-            Settings.setforceplay(UnsavedSettings.forceplay);
-            Settings.setsounds(UnsavedSettings.stacking);
-            Settings.setlanguage(UnsavedSettings.language);
-            Settings.setrandomdirection(UnsavedSettings.jumpin);
+            Settings.Fullscreen = UnsavedSettings.PlayerCount;
+            Settings.setfullscreen(UnsavedSettings.Opponent);
+            Settings.CardCount = UnsavedSettings.CardCount;
+            Settings.DrawUntilPlayable = UnsavedSettings.DrawUntilPlatable;
+            Settings.ForcePlay = UnsavedSettings.ForcePlay;
+            Settings.Sounds = UnsavedSettings.Stacking;
+            Settings.Language = UnsavedSettings.Language;
+            Settings.setrandomdirection(UnsavedSettings.JumpIn);
             StreamWriter writer = new StreamWriter(path);
-            writer.WriteLine(Settings.getplayercount().ToString());
+            writer.WriteLine(Settings.PlayerCount.ToString());
             writer.WriteLine(Settings.getfullscreen().ToString());
-            writer.WriteLine(Settings.getcardcount().ToString());
-            writer.WriteLine(Settings.getdrawuntilplayable().ToString());
-            writer.WriteLine(Settings.getforceplay().ToString());
-            writer.WriteLine(Settings.getsounds().ToString());
-            writer.WriteLine(Settings.getlanguage().ToString());
+            writer.WriteLine(Settings.CardCount.ToString());
+            writer.WriteLine(Settings.DrawUntilPlayable.ToString());
+            writer.WriteLine(Settings.ForcePlay.ToString());
+            writer.WriteLine(Settings.Sounds.ToString());
+            writer.WriteLine(Settings.Language.ToString());
             writer.WriteLine(Settings.getrandomdirection().ToString());
             writer.Close();
-            saved();
+            Saved();
         }
-        private void setfullscreenbutton(object sender, RoutedEventArgs e)
+
+        private void SetFullscreenButton(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
             if (sender == fullscreenoff)
             {
-                fullscreen(2);
-                Items.mainwindowitem.WindowState = WindowState.Normal;
+                Fullscreen(2);
+                Items.MainWindowItem.WindowState = WindowState.Normal;
             }
             else
             {
-                fullscreen(1);
-                Items.mainwindowitem.WindowState = WindowState.Maximized;
+                Fullscreen(1);
+                Items.MainWindowItem.WindowState = WindowState.Maximized;
             }
         }
-        private void fullscreen(int opponent)
+
+        private void Fullscreen(int opponent)
         {
             if (opponent == 2)
             {
-                UnsavedSettings.opponent = 2;
+                UnsavedSettings.Opponent = 2;
                 fullscreenoff.Background = Brushes.LightGreen;
                 fullscreenoff.FontSize = 25;
                 fullscreenoff.Margin = new Thickness(0);
@@ -188,7 +186,7 @@ namespace UNOui
             }
             else
             {
-                UnsavedSettings.opponent = 1;
+                UnsavedSettings.Opponent = 1;
 
                 fullscreenon.Background = Brushes.LightGreen;
                 fullscreenon.FontSize = 25;
@@ -198,29 +196,31 @@ namespace UNOui
                 fullscreenoff.FontSize = 20;
                 fullscreenoff.Margin = new Thickness(0, 3, 0, 3);
             }
-            saved();
+            Saved();
         }
-        private void cardcountbutton(object sender, RoutedEventArgs e)
+
+        private void CardCountButton(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
             if (button == minus)
                 {
-                    if (UnsavedSettings.cardcount != 1)
+                    if (UnsavedSettings.CardCount != 1)
                     {
-                        UnsavedSettings.cardcount--;
+                        UnsavedSettings.CardCount--;
                     }
                 }
             else
                 {
-                    if (UnsavedSettings.cardcount != 10)
+                    if (UnsavedSettings.CardCount != 10)
                     {
-                        UnsavedSettings.cardcount++;
+                        UnsavedSettings.CardCount++;
                     }
                 }
-            startcardschange(UnsavedSettings.cardcount);
-            saved();
-            }
-        private void startcardschange(int number)
+            StartCardChange(UnsavedSettings.CardCount);
+            Saved();
+        }
+
+        private void StartCardChange(int number)
         {
             if (number == 1)
             {
@@ -239,10 +239,11 @@ namespace UNOui
                 minus.FontSize = 25;
                 minus.Background = Brushes.LightGreen;
             }
-            UnsavedSettings.cardcount = number;
+            UnsavedSettings.CardCount = number;
             startingcardscount.Text = number.ToString();
         }
-        private void drawuntilplayable(int number)
+
+        private void DrawUntilPlayable(int number)
         {
             if(number == 1)
             {
@@ -264,39 +265,39 @@ namespace UNOui
                 drawuntilplayableoff.FontSize = 25;
                 drawuntilplayableoff.Background = Brushes.OrangeRed;
             }
-            UnsavedSettings.drawuntilplayable = number;
-            saved();
+            UnsavedSettings.DrawUntilPlatable = number;
+            Saved();
         }
-        private void drawuntilplayablebutton(object sender, RoutedEventArgs e)
+        private void DrawUntilPlayableButton(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
             if(button == drawuntilplayableon)
             {
-                UnsavedSettings.drawuntilplayable = 1;
-                drawuntilplayable(1);
+                UnsavedSettings.DrawUntilPlatable = 1;
+                DrawUntilPlayable(1);
             }
             else
             {
-                UnsavedSettings.drawuntilplayable = 2;
-                drawuntilplayable(2);
+                UnsavedSettings.DrawUntilPlatable = 2;
+                DrawUntilPlayable(2);
                 drawuntilplayableoff.Background = Brushes.OrangeRed;
             }
         }
-        private void forceplaybutton(object sender, RoutedEventArgs e)
+        private void ForcePlayButton(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
             if(button == forceplayon)
             {
-                UnsavedSettings.forceplay = 1;
-                forceplay(1);
+                UnsavedSettings.ForcePlay = 1;
+                ForcePlay(1);
             }
             else
             {
-                UnsavedSettings.forceplay = 2;
-                forceplay(2);
+                UnsavedSettings.ForcePlay = 2;
+                ForcePlay(2);
             }
         }
-        private void forceplay(int number)
+        private void ForcePlay(int number)
         {
             if (number == 1)
             {
@@ -318,24 +319,25 @@ namespace UNOui
                 forceplayoff.FontSize = 25;
                 forceplayoff.Background = Brushes.OrangeRed;
             }
-            UnsavedSettings.forceplay = number;
-            saved();
+            UnsavedSettings.ForcePlay = number;
+            Saved();
         }
-        private void stackingbutton(object sender, RoutedEventArgs e)
+
+        private void StackingButton(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
             if(button == stackingon)
             {
-                UnsavedSettings.stacking = 1;
-                stacking(1);
+                UnsavedSettings.Stacking = 1;
+                Stacking(1);
             }
             else
             {
-                UnsavedSettings.stacking = 2;
-                stacking(2);
+                UnsavedSettings.Stacking = 2;
+                Stacking(2);
             }
         }
-        private void stacking(int number)
+        private void Stacking(int number)
         {
             if (number == 1)
             {
@@ -357,22 +359,24 @@ namespace UNOui
                 stackingoff.FontSize = 25;
                 stackingoff.Background = Brushes.OrangeRed;
             }
-            UnsavedSettings.stacking = number;
-            saved();
+            UnsavedSettings.Stacking = number;
+            Saved();
         }
-        private void jumpinbutton(object sender, RoutedEventArgs e)
+
+        private void JumpInButton(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
             if(button == jumpinon)
             {
-                jumpin(1);
+                JumpIn(1);
             }
             else
             {
-                jumpin(2);
+                JumpIn(2);
             }
         }
-        private void jumpin(int number)
+
+        private void JumpIn(int number)
         {
             if (number == 1)
             {
@@ -394,27 +398,29 @@ namespace UNOui
                 jumpinoff.FontSize = 25;
                 jumpinoff.Background = Brushes.OrangeRed;
             }
-            UnsavedSettings.jumpin = number;
-            saved();
+            UnsavedSettings.JumpIn = number;
+            Saved();
         }
-        private void languagebutton(object sender, RoutedEventArgs e)
+
+        private void LanguageButton(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
             if(button == english)
             {
-                language(1);
+                Language(1);
             }
             else
             {
-                language(2);
+                Language(2);
             }
         }
-        private void language(int number)
+
+        private void Language(int number)
         {
             if (number == 2)
             {
-                toukrainian();
-                UnsavedSettings.language = 2;
+                ToUkrainian();
+                UnsavedSettings.Language = 2;
                 ukrainian.Background = Brushes.LightGreen;
                 ukrainian.FontSize = 25;
                 ukrainian.Margin = new Thickness(0);
@@ -425,8 +431,8 @@ namespace UNOui
             }
             else
             {
-                toenglish();
-                UnsavedSettings.language = 1;
+                ToEnglish();
+                UnsavedSettings.Language = 1;
 
                 english.Background = Brushes.LightGreen;
                 english.FontSize = 25;
@@ -436,10 +442,11 @@ namespace UNOui
                 ukrainian.FontSize = 20;
                 ukrainian.Margin = new Thickness(0, 3, 0, 3);
             }
-            UnsavedSettings.language = number;
-            saved();
+            UnsavedSettings.Language = number;
+            Saved();
         }
-        public void toenglish()
+
+        public void ToEnglish()
         {
             languagetextblock.Text = "Language";
             english.Content = "English";
@@ -456,13 +463,14 @@ namespace UNOui
             unsavedchanges.Text = "Unsaved changes";
             randomdirectionrun.Text = "Random direction";
             randomdirectiontextblock.Text = "If set to \"on\", the direction of play is randomly determined for each round; if set to \"off\", the direction is always clockwise";
-            Items.mainwindowitem.play.Content = "Play";
-            Items.mainwindowitem.exit.Content = "Exit";
-            Items.mainwindowitem.settings.Content = "Settings";
+            Items.MainWindowItem.play.Content = "Play";
+            Items.MainWindowItem.exit.Content = "Exit";
+            Items.MainWindowItem.settings.Content = "Settings";
             drawuntilplayableon.Content = forceplayon.Content = stackingon.Content = jumpinon.Content = fullscreenon.Content = "On";
             drawuntilplayableoff.Content = forceplayoff.Content = stackingoff.Content = jumpinoff.Content = fullscreenoff.Content = "Off";
         }
-        public void toukrainian()
+
+        public void ToUkrainian()
         {
             languagetextblock.Text = "Мова";
             ukrainian.Content = "Українська";
@@ -479,9 +487,9 @@ namespace UNOui
             unsavedchanges.Text = "Незбережені зміни";
             randomdirectiontextblock.Text = "Якщо \"Вкл.\", напрям гри визначається випадково для кожного раунду; якщо встановлено \"Викл.\", напрям завжди за годинниковою стрілкою";
             randomdirectionrun.Text = "Випадковий напрям";
-            Items.mainwindowitem.play.Content = "Грати";
-            Items.mainwindowitem.exit.Content = "Вихід";
-            Items.mainwindowitem.settings.Content = "Налаштування";
+            Items.MainWindowItem.play.Content = "Грати";
+            Items.MainWindowItem.exit.Content = "Вихід";
+            Items.MainWindowItem.settings.Content = "Налаштування";
             drawuntilplayableon.Content = forceplayon.Content = stackingon.Content = jumpinon.Content = fullscreenon.Content = "Вкл.";
             drawuntilplayableoff.Content = forceplayoff.Content = stackingoff.Content = jumpinoff.Content = fullscreenoff.Content = "Викл.";
         }

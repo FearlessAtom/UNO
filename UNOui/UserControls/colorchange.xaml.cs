@@ -1,98 +1,93 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace UNOui
 {
-    /// <summary>
-    /// Interaction logic for colorchange.xaml
-    /// </summary>
-    public partial class colorchange : UserControl
+    public partial class ColorChange : UserControl
     {
-        public colorchange()
+        public ColorChange()
         {
             InitializeComponent();
         }
-        public void addfour()
+
+        public void AddFour()
         {
-            Table.refreshvisuals();
+            Table.RefreshVisuals();
             Task.Delay(TimeSpan.FromSeconds(0.5)).ContinueWith(task =>
             {
-                CardHolder.allcards[Table.turn - 1].addcard();
+                CardHolder.AllCards[Table.turn - 1].AddCard();
             }, TaskScheduler.FromCurrentSynchronizationContext());
             Task.Delay(TimeSpan.FromSeconds(1)).ContinueWith(task =>
             {
-                CardHolder.allcards[Table.turn - 1].addcard();
+                CardHolder.AllCards[Table.turn - 1].AddCard();
             }, TaskScheduler.FromCurrentSynchronizationContext());
             Task.Delay(TimeSpan.FromSeconds(1.5)).ContinueWith(task =>
             {
-                CardHolder.allcards[Table.turn - 1].addcard();
+                CardHolder.AllCards[Table.turn - 1].AddCard();
             }, TaskScheduler.FromCurrentSynchronizationContext());
             Task.Delay(TimeSpan.FromSeconds(2)).ContinueWith(task =>
             {
-                CardHolder.allcards[Table.turn - 1].addcard();
-                Table.nextturn();
-                Table.checkforturn();
-                Table.refreshvisuals();
+                CardHolder.AllCards[Table.turn - 1].AddCard();
+                Table.SetNextTurn();
+                Table.CheckForTurn();
+                Table.RefreshVisuals();
             }, TaskScheduler.FromCurrentSynchronizationContext());
         }
-        private void remove()
+
+        private void Close()
         {
             Grid parent = (Grid)Parent;
             parent.Children.Remove(this);
         }
-        public void changecolor(string color, string drawfour, string wildcard)
+
+        public void ChangeColor(string color, string drawfour, string wildcard)
         {
-            remove();
+            Close();
             Table.topcard.color = color;
             if (Table.topcard.number == -4)
             {
-                Table.topcard.image.Source = Card.getcardimage(drawfour).Source;
-                addfour();
+                Table.topcard.image.Source = Card.CardNameToImage(drawfour).Source;
+                AddFour();
             }
             else if (Table.topcard.number == -5)
             {
-                Table.topcard.image.Source = Card.getcardimage(wildcard).Source;
-                Table.refreshvisuals();
-                Table.checkforturn();
+                Table.topcard.image.Source = Card.CardNameToImage(wildcard).Source;
+                Table.RefreshVisuals();
+                Table.CheckForTurn();
             }
         }
-        private void greenbutton(object sender, RoutedEventArgs e)
+
+        private void ChooseGreenColor(object sender, RoutedEventArgs e)
         {
-            changecolor("Green","greendrawfour", "greenwildcard");
-        }
-        private void redbutton(object sender, RoutedEventArgs e)
-        {
-            changecolor("Red", "reddrawfour", "redwildcard");
-        }
-        private void bluebutton(object sender, RoutedEventArgs e)
-        {
-            changecolor("Blue", "bluedrawfour", "bluewildcard");
-        }
-        private void yellowbutton(object sender, RoutedEventArgs e)
-        {
-            changecolor("Yellow", "yellowdrawfour", "yellowwildcard");
+            ChangeColor("Green","greendrawfour", "greenwildcard");
         }
 
-        private void mouseenter(object sender, MouseEventArgs e)
+        private void ChooseRedColor(object sender, RoutedEventArgs e)
         {
-            Items.mainwindowitem.buttonmouseenter(sender, e);
+            ChangeColor("Red", "reddrawfour", "redwildcard");
         }
-        private void mouseleave(object sender, MouseEventArgs e)
+
+        private void ChooseBlueColor(object sender, RoutedEventArgs e)
         {
-            Items.mainwindowitem.buttonmouseleave(sender, e);
+            ChangeColor("Blue", "bluedrawfour", "bluewildcard");
+        }
+
+        private void ChooseYellowColor(object sender, RoutedEventArgs e)
+        {
+            ChangeColor("Yellow", "yellowdrawfour", "yellowwildcard");
+        }
+
+        private void ButtonMouseEnter(object sender, MouseEventArgs e)
+        {
+            Items.MainWindowItem.ButtonMouseEnter(sender, e);
+        }
+
+        private void ButtonMouseLeave(object sender, MouseEventArgs e)
+        {
+            Items.MainWindowItem.ButtonMouseLeave(sender, e);
         }
     }
 }

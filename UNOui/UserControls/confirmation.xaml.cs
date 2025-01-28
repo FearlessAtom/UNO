@@ -1,76 +1,70 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace UNOui
 {
-    /// <summary>
-    /// Interaction logic for confirmation.xaml
-    /// </summary>
-    public partial class confirmation : UserControl
+    public partial class Confirmation : UserControl
     {
-        public confirmation()
+        public Confirmation()
         {
             InitializeComponent();
         }
-        public void cancel(object sender, RoutedEventArgs e)
+
+        public void Cancel(object sender, RoutedEventArgs e)
         {
             Settings.setconfirmation(false);
             Grid panel = (Grid)Parent;
             panel.Children.Remove(this);
         }
-        private void buttonmouseenter(object sender, MouseEventArgs e)
+
+        private void ButtonMouseEnter(object sender, MouseEventArgs e)
         {
-            Items.mainwindowitem.buttonmouseenter(sender, e);
+            Items.MainWindowItem.ButtonMouseEnter(sender, e);
         }
-        private void buttonmouseleave(object sender, MouseEventArgs e)
+
+        private void ButtonMouseLeave(object sender, MouseEventArgs e)
         {
-            Items.mainwindowitem.buttonmouseleave(sender, e);
+            Items.MainWindowItem.ButtonMouseLeave(sender, e);
         }
-        private void dontsave(object sender, RoutedEventArgs e)
+
+        private void DontSave(object sender, RoutedEventArgs e)
         {
             Grid panel = (Grid)Parent;
             panel.Children.Remove(this);
-            Items.settingsitem.closesettings(sender, e);
+            Items.SettingsItem.CloseSettings(sender, e);
         }
-        private void save(object sender, RoutedEventArgs e)
+
+        private void Save(object sender, RoutedEventArgs e)
         {
             Grid panel = (Grid)Parent;
             panel.Children.Remove(this);
-            Items.settingsitem.savesettings(sender, e);
-            Items.settingsitem.closesettings(sender, e);
+            Items.SettingsItem.SaveSettings(sender, e);
+            Items.SettingsItem.CloseSettings(sender, e);
 
         }
-        private void loaded(object sender, RoutedEventArgs e)
+
+        private void Load(object sender, RoutedEventArgs e)
         {
-            if(UnsavedSettings.language == 1)
+            if(UnsavedSettings.Language == 1)
             {
-                toenglish();
+                ToEnglish();
             }
             else
             {
-                toukrainian();
+                ToUkrainian();
             }
         }
-        private void toenglish()
+
+        private void ToEnglish()
         {
             message.Text = "Unsaved changes";
             savebutton.Content = "Save";
             dontsavebutton.Content = "Don't save";
             cancelbutton.Content = "Cancel";
         }
-        private void toukrainian()
+
+        private void ToUkrainian()
         {
             message.Text = "Незбережені зміни";
             savebutton.Content = "Зберегти";

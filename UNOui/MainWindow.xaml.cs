@@ -1,69 +1,58 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.IO;
-using System.Collections;
-using System.Threading;
-using System.Windows.Threading;
-using Project.Assets.ControlClasses;
 namespace UNOui
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
         }
+
         Random random = new Random();
-        public int randominteger(int min, int max)
+
+        public int RandomInteger(int min, int max)
         {
             return random.Next(min, max);
         }
-        public double randomdouble(double min, double max)
+
+        public double RandomDouble(double min, double max)
         {
             return random.NextDouble() * (max - min) + min;
 
         }
-        public void exitmenubutton(object sender, RoutedEventArgs e)
+
+        public void ExitMenuButton(object sender, RoutedEventArgs e)
         {
-            if (Settings.getsettingsopened())
+            if (Settings.SettingsOpened)
             {
                 return;
             }
+
             Settings.setexitconfirmationopened(true);
-            UserControl exit = new exitconfirmation(1);
+            UserControl exit = new ExitConfirmation(1);
             MainGrid.Children.Add(exit); 
         }
-        private void settingsbutton(object sender, RoutedEventArgs e)
+
+        private void SettingsButton(object sender, RoutedEventArgs e)
         {
-            if (Settings.getsettingsopened())
+            if (Settings.SettingsOpened)
             {
                 return;
             }
-            UserControl settings = new settingsusercontrol();
+
+            UserControl settings = new SettingsUserControl();
             MainGrid.Children.Add(settings);
-            Settings.setsettingsopened(true);
-            Items.playbutton.Visibility = Visibility.Hidden;
-            Items.settingsbutton.Visibility = Visibility.Hidden;
-            Items.exitbutton.Visibility = Visibility.Hidden;
+            Settings.SettingsOpened = true;
         }
-        private void playbutton(object sender, RoutedEventArgs e)
+
+        private void PlayButton(object sender, RoutedEventArgs e)
         {
-            if (Settings.getsettingsopened())
+            if (Settings.SettingsOpened)
             {
                 return;
             }
@@ -71,25 +60,28 @@ namespace UNOui
             settings.Visibility = Visibility.Hidden;
             exit.Visibility = Visibility.Hidden;
             Settings.setgameopened(true);
-            UserControl game = new game();
+            UserControl game = new Game();
             MainGrid.Children.Add(game);
         }
-        public void buttonmouseenter(object sender, MouseEventArgs e)
+
+        public void ButtonMouseEnter(object sender, MouseEventArgs e)
         {
             Button button = (Button)sender;
             Brush brush = button.Background;
             SolidColorBrush solidbrush = (SolidColorBrush)brush;
             Color color = solidbrush.Color;
-            Items.buttoncolor = color;
-            RadialGradientBrush gradient = darkergradient(color);
+            Items.ButtonColor = color;
+            RadialGradientBrush gradient = GetDarkerGradient(color);
             button.Background = gradient;
         }
-        public void buttonmouseleave(object sender, MouseEventArgs e)
+
+        public void ButtonMouseLeave(object sender, MouseEventArgs e)
         {
             Button button = (Button)sender;
-            button.Background = new SolidColorBrush(Items.buttoncolor);
+            button.Background = new SolidColorBrush(Items.ButtonColor);
         }
-        public RadialGradientBrush darkergradient(Color color)
+
+        public RadialGradientBrush GetDarkerGradient(Color color)
         {
             RadialGradientBrush gradient = new RadialGradientBrush();
             gradient.RadiusX = 0.99;
@@ -98,30 +90,34 @@ namespace UNOui
             gradient.GradientStops.Add(new GradientStop(Colors.Black, 3.0));
             return gradient;
         }
-        public void setlanguage()
+
+        public void SetLanguage()
         {
-            if(Settings.getlanguage() == 1)
+            if(Settings.Language == 1)
             {
-                toenglish();
+                ToEnglish();
             }
             else
             {
-                toukrainian();
+                ToUkrainian();
             }
         }
-        public void toenglish()
+        
+        public void ToEnglish()
         {
-            Items.mainwindowitem.play.Content = "Play";
-            Items.mainwindowitem.exit.Content = "Exit";
-            Items.mainwindowitem.settings.Content = "Settings";
+            Items.MainWindowItem.play.Content = "Play";
+            Items.MainWindowItem.exit.Content = "Exit";
+            Items.MainWindowItem.settings.Content = "Settings";
         }
-        public void toukrainian()
+
+        public void ToUkrainian()
         {
-            Items.mainwindowitem.play.Content = "Грати";
-            Items.mainwindowitem.exit.Content = "Вихід";
-            Items.mainwindowitem.settings.Content = "Налаштування";
+            Items.MainWindowItem.play.Content = "Грати";
+            Items.MainWindowItem.exit.Content = "Вихід";
+            Items.MainWindowItem.settings.Content = "Налаштування";
         }
-        private void setsettings(object sender, RoutedEventArgs e)
+
+        private void SetSettings(object sender, RoutedEventArgs e)
         {
             Items.mainwindowitem = this;
             Items.playbutton = play;
@@ -137,48 +133,49 @@ namespace UNOui
             string stacking = reader.ReadLine();
             string language = reader.ReadLine();
             string jumpin = reader.ReadLine();
-            Settings.setplayercount(Convert.ToInt16(playercount));
+            Settings.PlayerCount = Convert.ToInt16(playercount);
             Settings.setfullscreen(Convert.ToInt16(fullscreen));
-            Settings.setcardcount(Convert.ToInt16(cardcount));
-            Settings.setdrawuntilplayable(Convert.ToInt16(drawuntilplayable));
-            Settings.setforceplay(Convert.ToInt16(forceplay));
-            Settings.setsounds(Convert.ToInt16(stacking));
-            Settings.setlanguage(Convert.ToInt16(language));
+            Settings.CardCount = Convert.ToInt16(cardcount);
+            Settings.DrawUntilPlayable = Convert.ToInt16(drawuntilplayable);
+            Settings.ForcePlay = Convert.ToInt16(forceplay);
+            Settings.Sounds = Convert.ToInt16(stacking);
+            Settings.Sounds = Convert.ToInt16(language);
             Settings.setrandomdirection(Convert.ToInt16(jumpin));
-            UnsavedSettings.drawuntilplayable = Settings.getdrawuntilplayable();
-            setlanguage();
+            UnsavedSettings.DrawUntilPlatable = Settings.DrawUntilPlayable;
+            SetLanguage();
             reader.Close();
         }
-        private void keydown(object sender, KeyEventArgs e)
+
+        private void ApplicationKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape)
             {
-                if (Items.gameitem.gamegrid.Children.Contains(Items.draworplayitem))
+                if (Items.GameItem.gamegrid.Children.Contains(Items.DrawOrPlayItem))
                 {
-                    Items.draworplayitem.draw(sender, e);
+                    Items.DrawOrPlayItem.DrawCard(sender, e);
                 }
                 else if (Settings.getgameopened() == true)
                 {
                     if (Settings.getgamemenuopened() == false)
                     {
-                        Items.gameitem.menu(sender, e);
+                        Items.GameItem.OpenMenuButton(sender, e);
                     }
                     else
                     {
-                        Items.gamemenuitem.resume(sender, e);
+                        Items.GameMenuItem.Resume(sender, e);
                     }
                 }
-                else if (Settings.getsettingsopened() == true)
+                else if (Settings.SettingsOpened == true)
                 {
-                    Items.settingsitem.closesettings(sender, e);
+                    Items.SettingsItem.CloseSettings(sender, e);
                 }
                 else if(Settings.getexitconfirmationopened() == true)
                 {
-                    Items.exitconfirmationitem.cancel(sender, e);
+                    Items.ExitConfirmationItem.Close(sender, e);
                 }
                 else
                 {
-                    exitmenubutton(sender, e);
+                    ExitMenuButton(sender, e);
                 }
             }
         }

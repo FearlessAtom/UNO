@@ -9,8 +9,8 @@
         Height="750" Width="1200"
         MinHeight="750" MinWidth="1200"
         Icon="assets/icon.ico"
-        Loaded="setsettings"
-        KeyDown="keydown"
+        Loaded="SetSettings"
+        KeyDown="ApplicationKeyDown"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None">
     <Window.Resources>
@@ -46,7 +46,7 @@
                 <ColumnDefinition Width="2*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button x:Name="play" Click="playbutton" MouseLeave="buttonmouseleave" Background="AliceBlue" MouseEnter="buttonmouseenter" Style="{StaticResource menubutton}" Grid.Column="1" Grid.Row="2" Content="Play"></Button>
+            <Button x:Name="play" Click="PlayButton" MouseLeave="ButtonMouseLeave" Background="AliceBlue" MouseEnter="ButtonMouseEnter" Style="{StaticResource menubutton}" Grid.Column="1" Grid.Row="2" Content="Play"></Button>
         </Grid>
         <Grid>
             <Grid.RowDefinitions>
@@ -63,8 +63,8 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button x:Name="settings" MouseLeave="buttonmouseleave" Background="AliceBlue" MouseEnter="buttonmouseenter" BorderBrush="Black" Style="{StaticResource menubutton}" Grid.Column="2" Grid.Row="3" Click="settingsbutton" Content="Settings"></Button>
-            <Button x:Name="exit" MouseLeave="buttonmouseleave" Background="AliceBlue" MouseEnter="buttonmouseenter" BorderBrush="Black" Style="{StaticResource menubutton}" Grid.Column="1" Grid.Row="3" Click="exitmenubutton" Content="Exit">
+            <Button x:Name="settings" MouseLeave="ButtonMouseLeave" Background="AliceBlue" MouseEnter="ButtonMouseEnter" BorderBrush="Black" Style="{StaticResource menubutton}" Grid.Column="2" Grid.Row="3" Click="SettingsButton" Content="Settings"></Button>
+            <Button x:Name="exit" MouseLeave="ButtonMouseLeave" Background="AliceBlue" MouseEnter="ButtonMouseEnter" BorderBrush="Black" Style="{StaticResource menubutton}" Grid.Column="1" Grid.Row="3" Click="ExitMenuButton" Content="Exit">
             </Button>
         </Grid>
     </Grid>

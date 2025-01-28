@@ -1,129 +1,127 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace UNOui.UserControls
 {
-    /// <summary>
-    /// Interaction logic for ScoreBoard.xaml
-    /// </summary>
     public partial class ScoreBoard : UserControl
     {
         public ScoreBoard()
         {
             InitializeComponent();
         }
-        public void toenglish()
+        public void ToEnglish()
         {
             mainmenubutton.Content = "Main menu";
             restartbutton.Content = "Restart";
             exitthegamebutton.Content = "Exit the game";
         }
-        public void toukrainian()
+
+        public void ToUkrainina()
         {
             mainmenubutton.Content = "Головне меню";
             restartbutton.Content = "Рестарт";
             exitthegamebutton.Content = "Вийти з гри";
         }
-        private void loaded(object sender, RoutedEventArgs e)
+
+        private void Load(object sender, RoutedEventArgs e)
         {
-            scoreboard();
-            if(Settings.getlanguage() == 2)
+            LoadScoreBoard();
+            if(Settings.Language == 2)
             {
-                toukrainian();
+                ToUkrainina();
             }
             else
             {
-                toenglish();
+                ToEnglish();
             }
         }
-        public int getpoints(CardHolder thing)
+        public int GetPoints(CardHolder thing)
         {
             int result = 0;
-            for(int index = 0; index < thing.cards.Count; index++)
+            for(int index = 0; index < thing.Cards.Count; index++)
             {
-                if (thing.cards[index].number == -5 || thing.cards[index].number == -4 || thing.cards[index].number == -3 || thing.cards[index].number == -2 || thing.cards[index].number == -1)
+                if (thing.Cards[index].number == -5 || thing.Cards[index].number == -4 || thing.Cards[index].number == -3 || thing.Cards[index].number == -2 || thing.Cards[index].number == -1)
                 {
                     result = result + 20;
                 }
                 else
                 {
-                    result = result + thing.cards[index].number;
+                    result = result + thing.Cards[index].number;
                 }
             }
             return result;
         }
-        public void swap(CardHolder a, CardHolder b)
+
+        public void Swap(CardHolder a, CardHolder b)
         {
-            string tempname = a.name;
-            a.name = b.name;
-            b.name = tempname;
-            List<Card> tempcards = a.cards;
-            a.cards = b.cards;
-            b.cards = tempcards;
+            string tempname = a.Name;
+            a.Name = b.Name;
+            b.Name = tempname;
+            List<Card> tempcards = a.Cards;
+            a.Cards = b.Cards;
+            b.Cards = tempcards;
         }
-        public static int allpoints = 0;
-        public void scoreboard()
+
+        public static int AllPoints = 0;
+
+        public void LoadScoreBoard()
         {
-            List<CardHolder> copy = CardHolder.allcards;
+            List<CardHolder> copy = CardHolder.AllCards;
             for(int index = 0; index < copy.Count - 1; index++)
             {
                 for(int j = 0; j < copy.Count - 1 - index; j++)
                 {
-                    if (getpoints(copy[j]) > getpoints(copy[j + 1]))
+                    if (GetPoints(copy[j]) > GetPoints(copy[j + 1]))
                     {
-                        swap(copy[j], copy[j + 1]);
+                        Swap(copy[j], copy[j + 1]);
                     }
                 }
             }
             for(int index = 0; index < copy.Count; ++index)
             {
-                int points = getpoints(copy[index]);
-                allpoints = allpoints + points;
-                Bot.allcards[index].points = points;
-                ScoreBoardItem item = new ScoreBoardItem(copy[index].name, copy[index].cards, copy[index].points);
+                int points = GetPoints(copy[index]);
+                AllPoints = AllPoints + points;
+                Bot.AllCards[index].Points = points;
+                ScoreBoardItem item = new ScoreBoardItem(copy[index].Name, copy[index].Cards, copy[index].Points);
                 stackpanel.Children.Add(item);
             }
             stackpanel.SetHorizontalOffset(0);
             stackpanel.SetVerticalOffset(0);
         }
-        public void remove()
+
+        public void Close()
         {
             Grid parent = (Grid)Parent;
             parent.Children.Remove(this);
         }
-        private void exit(object sender, RoutedEventArgs e)
+
+        private void ExitButton(object sender, RoutedEventArgs e)
         {
-            Items.mainwindowitem.Close();
+            Items.MainWindowItem.Close();
         }
-        private void mainmenu(object sender, RoutedEventArgs e)
+
+        private void MainMenuButton(object sender, RoutedEventArgs e)
         {
-            remove();
-            Items.gameitem.closegame();
+            Close();
+            Items.GameItem.CloseGameButton();
         }
-        private void restart(object sender, RoutedEventArgs e)
+
+        private void RestartButton(object sender, RoutedEventArgs e)
         {
-            remove();
-            Items.gameitem.loaded(new object(), new RoutedEventArgs());
+            Close();
+            Items.GameItem.LoadGame(new object(), new RoutedEventArgs());
         }
-        private void mouseenter(object sender, MouseEventArgs e)
+
+        private void ButtonMouseEnter(object sender, MouseEventArgs e)
         {
-            Items.mainwindowitem.buttonmouseenter(sender, e);
+            Items.MainWindowItem.ButtonMouseEnter(sender, e);
         }
-        private void mouseleave(object sender, MouseEventArgs e)
+
+        private void ButtonMouseLeave(object sender, MouseEventArgs e)
         {
-            Items.mainwindowitem.buttonmouseleave(sender, e);
+            Items.MainWindowItem.ButtonMouseLeave(sender, e);
         }
     }
 }

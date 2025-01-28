@@ -1,46 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace UNOui.UserControls
 {
-    /// <summary>
-    /// Interaction logic for ScoreBoardItem.xaml
-    /// </summary>
     public partial class ScoreBoardItem : UserControl
     {
-        public string name;
-        public List<Card> cards;
-        public int points;
-        public ScoreBoardItem(string name, List<Card> cards, int points)
+        public string PlayName;
+        public List<Card> Cards;
+        public int Points;
+
+        public ScoreBoardItem(string PlayerName, List<Card> Cards, int Points)
         {
             InitializeComponent();
-            this.points = points;
-            this.cards = cards;
-            this.name = name;
-            nickname.Text = (char.IsDigit(name[0]) ? (Settings.getlanguage() == 2 ? "Бот " : "Bot ") : "") + (name == "You" ? (Settings.getlanguage() == 2 ? "Ви" : "You") : name ) + "(" + points + ")";
-            addcards();
+            this.Points = Points;
+            this.Cards = Cards;
+            this.PlayName = PlayerName;
+            nickname.Text = (char.IsDigit(Name[0]) ? (Settings.Language == 2 ? "Бот " : "Bot ") : "") +
+                (Name == "You" ?(Settings.Language == 2 ? "Ви" : "You") : Name) + "(" + Points + ")";
+            
+            AddCards();
         }
-        public void addcards()
+
+        public void AddCards()
         {
-            if(points == 0)
+            if(Points == 0)
             {
                 TextBlock score = new TextBlock()
                 {
                     FontSize = 40,
                     FontFamily = new FontFamily("Verdana"),
-                    Text = (Settings.getlanguage() == 2 ? "Переможець" : "Winner"),
+                    Text = (Settings.Language == 2 ? "Переможець" : "Winner"),
                     HorizontalAlignment = HorizontalAlignment.Left,
                     VerticalAlignment = VerticalAlignment.Center,
                 };
@@ -49,12 +40,12 @@ namespace UNOui.UserControls
             }
             else
             {
-                for (int index = 0; index < cards.Count; index++)
+                for (int index = 0; index < Cards.Count; index++)
                 {
                     Image image = new Image();
                     image.Width = 60;
                     image.Height = 95;
-                    image.Source = cards[index].image.Source;
+                    image.Source = Cards[index].image.Source;
                     items.Children.Add(image);
                 }
             }

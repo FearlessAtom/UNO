@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:UNOui.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             Loaded="loaded">
+             Loaded="Load">
     <UserControl.Resources>
         <Style TargetType="Button" x:Key="menubutton">
             <Setter Property="FontSize" Value="40"></Setter>
@@ -44,9 +44,9 @@
                     <RowDefinition Height="5*"></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
-                <Button x:Name="restartbutton" MouseLeave="mouseleave" MouseEnter="mouseenter" Click="restart" FontSize="20" FontFamily="Verdana" Content="Restart" Grid.Column="0" Grid.Row="1" Style="{StaticResource menubutton}"></Button>
-                <Button x:Name="mainmenubutton" MouseLeave="mouseleave" MouseEnter="mouseenter" Click="mainmenu" FontSize="20" FontFamily="Verdana" Content="Main menu" Grid.Column="1" Grid.Row="1" Style="{StaticResource menubutton}"></Button>
-                <Button x:Name="exitthegamebutton" MouseLeave="mouseleave" MouseEnter="mouseenter" Click="exit" FontSize="20" FontFamily="Verdana" Content="Exit the game" Grid.Column="2" Grid.Row="1" Style="{StaticResource menubutton}"></Button>
+                <Button x:Name="restartbutton" MouseLeave="ButtonMouseLeave" MouseEnter="ButtonMouseEnter" Click="RestartButton" FontSize="20" FontFamily="Verdana" Content="Restart" Grid.Column="0" Grid.Row="1" Style="{StaticResource menubutton}"></Button>
+                <Button x:Name="mainmenubutton" MouseLeave="ButtonMouseLeave" MouseEnter="ButtonMouseEnter" Click="MainMenuButton" FontSize="20" FontFamily="Verdana" Content="Main menu" Grid.Column="1" Grid.Row="1" Style="{StaticResource menubutton}"></Button>
+                <Button x:Name="exitthegamebutton" MouseLeave="ButtonMouseLeave" MouseEnter="ButtonMouseEnter" Click="ExitButton" FontSize="20" FontFamily="Verdana" Content="Exit the game" Grid.Column="2" Grid.Row="1" Style="{StaticResource menubutton}"></Button>
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" Grid.ColumnSpan="3" Grid.Row="0" Grid.Column="0">
                     <StackPanel x:Name="stackpanel"></StackPanel>
                 </ScrollViewer>
