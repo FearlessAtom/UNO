@@ -127,7 +127,7 @@ namespace UNOui
             Items.playbutton = play;
             Items.settingsbutton = settings;
             Items.exitbutton = exit;
-            const string path = "C:\\Users\\357\\Desktop\\UNO\\UNOui\\Data\\settings.txt";
+            const string path = @"..\..\..\data\settings.txt";
             StreamReader reader = new StreamReader(path);
             string playercount = reader.ReadLine();
             string fullscreen = reader.ReadLine();

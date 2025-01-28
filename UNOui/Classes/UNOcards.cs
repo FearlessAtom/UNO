@@ -603,8 +603,8 @@ namespace UNOui
         public static Image getcardimage(string card)
         {
             Image image = new Image();
-            string source = "C:\\Users\\357\\Desktop\\UNO\\UNOui\\assets\\UNOcards\\" + card + ".png";
-            image.Source = new BitmapImage(new Uri(source));
+            string source = @"..\..\..\assets\UNOcards\" + card + ".png";
+            image.Source = new BitmapImage(new Uri(source, UriKind.Relative));
             return image;
         }
         public static void turndelay()

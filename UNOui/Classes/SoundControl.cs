@@ -24,21 +24,21 @@ namespace Project.Assets.ControlClasses
             {
                 return;
             }
-            soundplayer.Open(new Uri(path));
+            soundplayer.Open(new Uri(path, UriKind.Relative));
             soundplayer.Play();
         }
         public static void playcardsound()
         {
-            playsound("C:\\Users\\357\\\\Desktop\\UNO\\UNOui\\Music\\cardsound.mp3");
+            playsound(@"..\..\..\Music\cardsound.mp3");
         }
         public static void playcardtakesound()
         {
-            playsound("C:\\Users\\357\\Desktop\\UNO\\UNOui\\Music\\cardtake.mp3");
+            playsound(@"..\..\..\Music\cardtake.mp3");
         }
         public static void playunosound()
         {
             soundplayer.Volume = 0.1;
-            playsound("C:\\Users\\357\\Desktop\\UNO\\UNOui\\Music\\unosound.mp3");
+            playsound(@"..\..\..\Music\unosound.mp3");
             soundplayer.Volume = 0.5;
         }
     }
