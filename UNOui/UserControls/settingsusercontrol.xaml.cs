@@ -280,6 +280,7 @@ namespace UNOui
                 forceplayoff.FontSize = 20;
                 forceplayoff.Background = Brushes.Gray;
             }
+
             else
             {
                 forceplayon.Margin = new Thickness(0, 3, 0, 3);

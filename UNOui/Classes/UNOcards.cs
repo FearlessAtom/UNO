@@ -84,7 +84,7 @@ namespace UNOui
                 }
             }, TaskScheduler.FromCurrentSynchronizationContext());
         }
-        public void RefreshPlayerCards()
+        public override void RefreshCards(int gappy)
         {
             Items.GameItem.gamecanvas.Children.Clear();
             Table.topcard.image.Width = Table.topcard.image.Height = 150;
@@ -387,7 +387,7 @@ namespace UNOui
             }, TaskScheduler.FromCurrentSynchronizationContext());
         }
 
-        public void RefreshBotsDeck(int gap)
+        override public void RefreshCards(int gap)
         {
             if (Settings.PlayerCount >= 2)
             {
@@ -438,8 +438,10 @@ namespace UNOui
         }
     }
 
-    public class CardHolder
+    public abstract class CardHolder
     {
+        public abstract void RefreshCards(int gap);
+
         public bool IsUno = false;
         public string? Name;
         public int Points;
@@ -849,7 +851,7 @@ namespace UNOui
                 return;
             }
 
-            Items.GameItem.player.RefreshPlayerCards();
+            Items.GameItem.player.RefreshCards(0);
             RefreshDeck(0);
             Playable();
             RefreshTopCards();
@@ -900,16 +902,13 @@ namespace UNOui
         }
         private static void RefreshBotsCards(int gap)
         {
-            Items.GameItem.botone.RefreshBotsDeck(gap);
-
-            if (CardHolder.AllCards.Count >= 3)
+            for (int index = 0; index < CardHolder.AllCards.Count; index++)
             {
-                Items.GameItem.bottwo.RefreshBotsDeck(gap);
-            }
-
-            if (CardHolder.AllCards.Count == 4)
-            {
-                Items.GameItem.botthree.RefreshBotsDeck(gap);
+                if (index == 0)
+                {
+                    continue;
+                }
+                CardHolder.AllCards[index].RefreshCards(gap);
             }
         }
 
