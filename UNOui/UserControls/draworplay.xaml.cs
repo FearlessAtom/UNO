@@ -11,6 +11,12 @@ namespace UNOui
         public DrawOrPlay()
         {
             InitializeComponent();
+
+            drawbutton.MouseEnter += (sender, e) => Items.MainWindowItem.ButtonMouseEnter(sender, e);
+            drawbutton.MouseLeave += (sender, e) => Items.MainWindowItem.ButtonMouseLeave(sender, e);
+
+            playbutton.MouseEnter += (sender, e) => Items.MainWindowItem.ButtonMouseEnter(sender, e);
+            playbutton.MouseLeave += (sender, e) => Items.MainWindowItem.ButtonMouseLeave(sender, e);
         }
 
         private void Load(object sender, RoutedEventArgs e)
@@ -75,16 +81,6 @@ namespace UNOui
                     Items.GameItem.player.CheckForWildCards();
                 }
             }, TaskScheduler.FromCurrentSynchronizationContext());
-        }
-
-        private void ButtonMouseEnter(object sender, MouseEventArgs e)
-        {
-            Items.MainWindowItem.ButtonMouseEnter(sender, e);
-        }
-
-        private void ButtonMouseLeave(object sender, MouseEventArgs e)
-        {
-            Items.MainWindowItem.ButtonMouseLeave(sender, e);
         }
     }
 }

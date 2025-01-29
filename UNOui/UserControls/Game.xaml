@@ -48,7 +48,7 @@
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <Button x:Name="MenuButton" MouseLeave="MenuButtonMouseLeave" MouseEnter="MenuButtonMouseEnter" FontSize="30" Content="Menu" Click="OpenMenuButton" Style="{StaticResource menubutton}" Grid.Column="0" Grid.Row="8"></Button>
+            <Button x:Name="MenuButton" FontSize="30" Content="Menu" Click="OpenMenuButton" Style="{StaticResource menubutton}" Grid.Column="0" Grid.Row="8"></Button>
         </Grid>
         <Grid>
             <Canvas x:Name="gamecanvas"></Canvas>

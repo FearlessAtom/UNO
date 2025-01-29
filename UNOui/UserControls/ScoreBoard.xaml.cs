@@ -10,7 +10,17 @@ namespace UNOui.UserControls
         public ScoreBoard()
         {
             InitializeComponent();
+
+            mainmenubutton.MouseEnter += (sender, e) => Items.MainWindowItem.ButtonMouseEnter(sender, e);
+            mainmenubutton.MouseLeave += (sender, e) => Items.MainWindowItem.ButtonMouseLeave(sender, e);
+
+            restartbutton.MouseEnter += (sender, e) => Items.MainWindowItem.ButtonMouseEnter(sender, e);
+            restartbutton.MouseLeave += (sender, e) => Items.MainWindowItem.ButtonMouseLeave(sender, e);
+
+            exitthegamebutton.MouseEnter += (sender, e) => Items.MainWindowItem.ButtonMouseEnter(sender, e);
+            exitthegamebutton.MouseLeave += (sender, e) => Items.MainWindowItem.ButtonMouseLeave(sender, e);
         }
+
         public void ToEnglish()
         {
             mainmenubutton.Content = "Main menu";
@@ -112,16 +122,6 @@ namespace UNOui.UserControls
         {
             Close();
             Items.GameItem.LoadGame(new object(), new RoutedEventArgs());
-        }
-
-        private void ButtonMouseEnter(object sender, MouseEventArgs e)
-        {
-            Items.MainWindowItem.ButtonMouseEnter(sender, e);
-        }
-
-        private void ButtonMouseLeave(object sender, MouseEventArgs e)
-        {
-            Items.MainWindowItem.ButtonMouseLeave(sender, e);
         }
     }
 }

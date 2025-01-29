@@ -9,6 +9,15 @@ namespace UNOui
         public Confirmation()
         {
             InitializeComponent();
+
+            dontsavebutton.MouseEnter += (sender, e) => Items.MainWindowItem.ButtonMouseLeave(sender, e);
+            dontsavebutton.MouseLeave += (sender, e) => Items.MainWindowItem.ButtonMouseLeave(sender, e);
+
+            cancelbutton.MouseEnter += (sender, e) => Items.MainWindowItem.ButtonMouseLeave(sender, e);
+            cancelbutton.MouseLeave += (sender, e) => Items.MainWindowItem.ButtonMouseLeave(sender, e);
+
+            savebutton.MouseEnter += (sender, e) => Items.MainWindowItem.ButtonMouseLeave(sender, e);
+            savebutton.MouseLeave += (sender, e) => Items.MainWindowItem.ButtonMouseLeave(sender, e);
         }
 
         public void Cancel(object sender, RoutedEventArgs e)
@@ -16,16 +25,6 @@ namespace UNOui
             Settings.Confirmation = false;
             Grid panel = (Grid)Parent;
             panel.Children.Remove(this);
-        }
-
-        private void ButtonMouseEnter(object sender, MouseEventArgs e)
-        {
-            Items.MainWindowItem.ButtonMouseEnter(sender, e);
-        }
-
-        private void ButtonMouseLeave(object sender, MouseEventArgs e)
-        {
-            Items.MainWindowItem.ButtonMouseLeave(sender, e);
         }
 
         private void DontSave(object sender, RoutedEventArgs e)
@@ -48,6 +47,7 @@ namespace UNOui
             {
                 ToEnglish();
             }
+
             else
             {
                 ToUkrainian();

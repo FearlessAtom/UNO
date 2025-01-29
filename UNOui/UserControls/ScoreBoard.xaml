@@ -44,9 +44,9 @@
                     <RowDefinition Height="5*"></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
-                <Button x:Name="restartbutton" MouseLeave="ButtonMouseLeave" MouseEnter="ButtonMouseEnter" Click="RestartButton" FontSize="20" FontFamily="Verdana" Content="Restart" Grid.Column="0" Grid.Row="1" Style="{StaticResource menubutton}"></Button>
-                <Button x:Name="mainmenubutton" MouseLeave="ButtonMouseLeave" MouseEnter="ButtonMouseEnter" Click="MainMenuButton" FontSize="20" FontFamily="Verdana" Content="Main menu" Grid.Column="1" Grid.Row="1" Style="{StaticResource menubutton}"></Button>
-                <Button x:Name="exitthegamebutton" MouseLeave="ButtonMouseLeave" MouseEnter="ButtonMouseEnter" Click="ExitButton" FontSize="20" FontFamily="Verdana" Content="Exit the game" Grid.Column="2" Grid.Row="1" Style="{StaticResource menubutton}"></Button>
+                <Button x:Name="restartbutton" Click="RestartButton" FontSize="20" FontFamily="Verdana" Content="Restart" Grid.Column="0" Grid.Row="1" Style="{StaticResource menubutton}"></Button>
+                <Button x:Name="mainmenubutton" Click="MainMenuButton" FontSize="20" FontFamily="Verdana" Content="Main menu" Grid.Column="1" Grid.Row="1" Style="{StaticResource menubutton}"></Button>
+                <Button x:Name="exitthegamebutton" Click="ExitButton" FontSize="20" FontFamily="Verdana" Content="Exit the game" Grid.Column="2" Grid.Row="1" Style="{StaticResource menubutton}"></Button>
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" Grid.ColumnSpan="3" Grid.Row="0" Grid.Column="0">
                     <StackPanel x:Name="stackpanel"></StackPanel>
                 </ScrollViewer>
