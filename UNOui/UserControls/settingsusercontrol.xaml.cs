@@ -9,6 +9,15 @@ namespace UNOui
         public SettingsUserControl()
         {
             InitializeComponent();
+            
+            CloseButton.MouseEnter += (sender, e) => Items.MainWindowItem.ButtonMouseEnter(sender, e);
+            CloseButton.MouseLeave += (sender, e) => Items.MainWindowItem.ButtonMouseLeave(sender, e);
+            
+            SaveButton.MouseEnter += (sender, e) => Items.MainWindowItem.ButtonMouseEnter(sender, e);
+            SaveButton.MouseLeave += (sender, e) => Items.MainWindowItem.ButtonMouseLeave(sender, e);
+            
+            ResetButton.MouseEnter += (sender, e) => Items.MainWindowItem.ButtonMouseEnter(sender, e);
+            ResetButton.MouseLeave += (sender, e) => Items.MainWindowItem.ButtonMouseLeave(sender, e);
 
             SaveButton.Click += (sender, e) =>
             {
@@ -69,16 +78,6 @@ namespace UNOui
         {
             SolidColorBrush solidbrush = (SolidColorBrush)brush;
             return solidbrush.Color;
-        }
-
-        private void ButtonMouseEnter(object sender, MouseEventArgs e)
-        {
-            Items.MainWindowItem.ButtonMouseEnter(sender, e);
-        }
-
-        private void ButtonMouseLeave(object sender, MouseEventArgs e)
-        {
-            Items.MainWindowItem.ButtonMouseLeave(sender, e);
         }
 
         private void PlayerCountChange(object sender, RoutedEventArgs e)

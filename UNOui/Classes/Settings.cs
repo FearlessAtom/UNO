@@ -93,7 +93,6 @@ namespace UNOui
             writer.WriteLine(Language.ToString());
             writer.WriteLine(RandomDirection.ToString());
             writer.Close();
-            //Saved();
         }
 
         static public bool AreSaved()

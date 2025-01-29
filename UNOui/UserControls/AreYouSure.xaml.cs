@@ -12,6 +12,12 @@ namespace UNOui
         {
             InitializeComponent();
             this.Action = action;
+
+            exitbutton.MouseEnter += (sender, e) => Items.MainWindowItem.ButtonMouseEnter(sender, e);
+            exitbutton.MouseLeave+= (sender, e) => Items.MainWindowItem.ButtonMouseLeave(sender, e);
+
+            cancelbutton.MouseEnter += (sender, e) => Items.MainWindowItem.ButtonMouseEnter(sender, e);
+            cancelbutton.MouseLeave += (sender, e) => Items.MainWindowItem.ButtonMouseLeave(sender, e);
         }
 
         private void ToEnglish()
@@ -68,16 +74,6 @@ namespace UNOui
                     Items.GameItem.CloseGameButton();
                     break;
             }
-        }
-
-        private void ButtonMouseEnter(object sender, MouseEventArgs e)
-        {
-            Items.MainWindowItem.ButtonMouseEnter(sender, e);
-        }
-
-        private void ButtonMouseLeave(object sender, MouseEventArgs e)
-        {
-            Items.MainWindowItem.ButtonMouseLeave(sender, e);
         }
     }
 }

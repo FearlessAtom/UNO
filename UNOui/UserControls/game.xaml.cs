@@ -10,16 +10,9 @@ namespace UNOui
         public Game()
         {
             InitializeComponent();
-        }
 
-        private void MenuButtonMouseEnter(object sender, MouseEventArgs e)
-        {
-            Items.MainWindowItem.ButtonMouseEnter(sender, e);
-        }
-
-        private void MenuButtonMouseLeave(object sender, MouseEventArgs e)
-        {
-            Items.MainWindowItem.ButtonMouseLeave(sender, e);
+            MenuButton.MouseEnter += (sender, e) => Items.MainWindowItem.ButtonMouseEnter(sender, e);
+            MenuButton.MouseLeave += (sender, e) => Items.MainWindowItem.ButtonMouseLeave(sender, e);
         }
 
         public void ToEnglish()
