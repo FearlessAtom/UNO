@@ -51,7 +51,7 @@ namespace UNOui
         private void Load(object sender, RoutedEventArgs e)
         {
             Items.GameMenuItem = this;
-            if (Settings.Language == 2)
+            if (Settings.LanguageSetting == UNOui.Language.Ukrainian)
             {
                 ToUkrainian();
             }

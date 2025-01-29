@@ -92,7 +92,7 @@ namespace UNOui
 
         public void SetLanguage()
         {
-            if(Settings.Language == 1)
+            if(Settings.LanguageSetting == UNOui.Language.English)
             {
                 ToEnglish();
             }
@@ -143,7 +143,7 @@ namespace UNOui
             string drawuntilplayable = reader.ReadLine();
             string forceplay = reader.ReadLine();
             string stacking = reader.ReadLine();
-            string language = reader.ReadLine();
+            string LanguageSetting = reader.ReadLine();
             string jumpin = reader.ReadLine();
             Settings.PlayerCount = Convert.ToInt16(playercount);
             Settings.Fullscreen = Convert.ToBoolean(fullscreen);
@@ -151,7 +151,7 @@ namespace UNOui
             Settings.DrawUntilPlayable = Convert.ToBoolean(drawuntilplayable);
             Settings.ForcePlay = Convert.ToBoolean(forceplay);
             Settings.EnabledSounds = Convert.ToBoolean(stacking);
-            Settings.Language = Convert.ToInt16(language);
+            Settings.LanguageSetting = Enum.Parse<Language>(LanguageSetting);
             Settings.RandomDirection = Convert.ToBoolean(jumpin);
             Settings.UnsavedDrawUntilPlayable = Settings.DrawUntilPlayable;
             SetLanguage();

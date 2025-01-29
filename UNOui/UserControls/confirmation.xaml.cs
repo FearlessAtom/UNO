@@ -43,7 +43,7 @@ namespace UNOui
 
         private void Load(object sender, RoutedEventArgs e)
         {
-            if(Settings.UnsavedLanguage == 1)
+            if(Settings.UnsavedLanguage == UNOui.Language.English)
             {
                 ToEnglish();
             }

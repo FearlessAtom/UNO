@@ -37,7 +37,7 @@ namespace UNOui
         private void Load(object sender, RoutedEventArgs e)
         {
             Items.ExitConfirmationItem = this;
-            if(Settings.Language == 2)
+            if(Settings.LanguageSetting == UNOui.Language.Ukrainian)
             {
                 ToUkrainian();
             }

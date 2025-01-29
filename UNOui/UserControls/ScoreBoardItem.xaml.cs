@@ -17,8 +17,8 @@ namespace UNOui.UserControls
             this.Points = Points;
             this.Cards = Cards;
             this.PlayName = PlayerName;
-            nickname.Text = (char.IsDigit(Name[0]) ? (Settings.Language == 2 ? "Бот " : "Bot ") : "") +
-                (Name == "You" ?(Settings.Language == 2 ? "Ви" : "You") : Name) + "(" + Points + ")";
+            nickname.Text = (char.IsDigit(Name[0]) ? (Settings.LanguageSetting == UNOui.Language.Ukrainian ? "Бот " : "Bot ") : "") +
+                (Name == "You" ?(Settings.LanguageSetting == UNOui.Language.Ukrainian ? "Ви" : "You") : Name) + "(" + Points + ")";
             
             AddCards();
         }
@@ -31,7 +31,7 @@ namespace UNOui.UserControls
                 {
                     FontSize = 40,
                     FontFamily = new FontFamily("Verdana"),
-                    Text = (Settings.Language == 2 ? "Переможець" : "Winner"),
+                    Text = (Settings.LanguageSetting == UNOui.Language.Ukrainian ? "Переможець" : "Winner"),
                     HorizontalAlignment = HorizontalAlignment.Left,
                     VerticalAlignment = VerticalAlignment.Center,
                 };

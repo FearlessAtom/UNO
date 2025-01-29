@@ -54,7 +54,7 @@ namespace UNOui
         {
             Table.SetRandomTopCard();
 
-            if(Settings.Language == 2) { ToUkrainian(); }
+            if(Settings.LanguageSetting == UNOui.Language.Ukrainian) { ToUkrainian(); }
             else { ToEnglish(); }
 
             Items.GameItem = this;

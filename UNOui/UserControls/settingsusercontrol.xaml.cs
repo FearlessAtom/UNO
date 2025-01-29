@@ -35,7 +35,7 @@ namespace UNOui
             ForcePlay(Settings.ForcePlay);
             DrawUntilPlayable(Settings.DrawUntilPlayable);
             Stacking(Settings.EnabledSounds);
-            Language(Settings.Language);
+            LanguageSetting(Settings.LanguageSetting);
             JumpIn(Settings.RandomDirection);
             IsSaved();
         }
@@ -381,20 +381,20 @@ namespace UNOui
             Button button = (Button)sender;
             if(button == english)
             {
-                Language(1);
+                LanguageSetting(UNOui.Language.English);
             }
             else
             {
-                Language(2);
+                LanguageSetting(UNOui.Language.Ukrainian);
             }
         }
 
-        private void Language(int number)
+        private void LanguageSetting(Language lang)
         {
-            if (number == 2)
+            if (lang == UNOui.Language.Ukrainian)
             {
                 ToUkrainian();
-                Settings.UnsavedLanguage = 2;
+                Settings.UnsavedLanguage = UNOui.Language.Ukrainian;
                 ukrainian.Background = Brushes.LightGreen;
                 ukrainian.FontSize = 25;
                 ukrainian.Margin = new Thickness(0);
@@ -406,7 +406,7 @@ namespace UNOui
             else
             {
                 ToEnglish();
-                Settings.UnsavedLanguage = 1;
+                Settings.UnsavedLanguage = UNOui.Language.English;
 
                 english.Background = Brushes.LightGreen;
                 english.FontSize = 25;
@@ -416,13 +416,13 @@ namespace UNOui
                 ukrainian.FontSize = 20;
                 ukrainian.Margin = new Thickness(0, 3, 0, 3);
             }
-            Settings.UnsavedLanguage = number;
+            Settings.UnsavedLanguage = lang;
             IsSaved();
         }
 
         public void ToEnglish()
         {
-            languagetextblock.Text = "Language";
+            languagetextblock.Text = "LanguageSetting";
             english.Content = "English";
             ukrainian.Content = "Ukrainian";
             fullscreentextblock.Text = "Fullscreen";

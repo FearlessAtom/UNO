@@ -422,7 +422,7 @@ namespace UNOui
                     }
                     TextBlock nickname = new TextBlock()
                     {
-                        Text = (Settings.Language == 2 ? "Бот " : "Bot ") + Name,
+                        Text = (Settings.LanguageSetting == Language.Ukrainian ? "Бот " : "Bot ") + Name,
                         FontSize = 50,
                         FontWeight = FontWeights.Bold,
                         Foreground = IsItsTurn ? Brushes.Blue : Brushes.Black,

@@ -11,7 +11,7 @@ namespace UNOui
         public static bool DrawUntilPlayable { get; set; }
         public static bool ForcePlay { get; set; }
         public static bool EnabledSounds { get; set; }
-        public static int Language { get; set; }
+        public static Language LanguageSetting { get; set; }
         public static bool RandomDirection { get; set; }
         public static bool IsGameMenuOpened { get; set; }
         public static bool IsExitConfirmationOpened { get; set; }
@@ -57,7 +57,7 @@ namespace UNOui
         public static bool UnsavedDrawUntilPlayable { get; set; }
         public static bool UnsavedForcePlay { get; set; }
         public static bool UnsavedEnabledSounds { get; set; }
-        public static int UnsavedLanguage { get; set; }
+        public static Language UnsavedLanguage { get; set; }
         public static bool UnsavedRandomDirection { get; set; }
 
 
@@ -69,7 +69,7 @@ namespace UNOui
             DrawUntilPlayable = UnsavedDrawUntilPlayable;
             ForcePlay = UnsavedForcePlay;
             EnabledSounds = UnsavedEnabledSounds;
-            Language = UnsavedLanguage;
+            LanguageSetting = UnsavedLanguage;
             RandomDirection = UnsavedRandomDirection;
             StreamWriter writer = null;
 
@@ -90,7 +90,7 @@ namespace UNOui
             writer.WriteLine(DrawUntilPlayable.ToString());
             writer.WriteLine(ForcePlay.ToString());
             writer.WriteLine(EnabledSounds.ToString());
-            writer.WriteLine(Language.ToString());
+            writer.WriteLine(LanguageSetting.ToString());
             writer.WriteLine(RandomDirection.ToString());
             writer.Close();
         }
@@ -103,7 +103,7 @@ namespace UNOui
                 DrawUntilPlayable == UnsavedDrawUntilPlayable &&
                 ForcePlay == UnsavedForcePlay &&
                 EnabledSounds == UnsavedEnabledSounds &&
-                Language == UnsavedLanguage &&
+                LanguageSetting == UnsavedLanguage &&
                 RandomDirection == UnsavedRandomDirection;
         } 
     }
