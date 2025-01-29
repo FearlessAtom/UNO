@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -48,72 +49,41 @@ namespace UNOui
         }
 
         public Player player = new Player("You");
-        public Bot botone;
-        public Bot bottwo;
-        public Bot botthree;
 
         public void LoadGame(object sender, RoutedEventArgs e)
         {
-            if(Settings.Language == 2)
-            {
-                ToUkrainian();
-            }
-            else
-            {
-                ToEnglish();
-            }
+            Table.SetRandomTopCard();
+
+            if(Settings.Language == 2) { ToUkrainian(); }
+            else { ToEnglish(); }
+
             Items.GameItem = this;
             gamecanvas.Children.Clear();
             Table.turn = 1;
             CardHolder.AllCards.Clear();
             CardHolder.AllCards.Add(player);
             Random random = new Random();
-            if(Settings.RandomDirection == 1)
+
+            Table.direction = (Settings.RandomDirection == 1 ?
+                (Table.direction = random .Next(0, 2) == 0 ? true : false) :
+                Table.direction = true);
+
+            for (int index = 0; index < Settings.PlayerCount - 1; index++)
             {
-                Table.direction = random .Next(0, 2) == 0 ? true : false;
+                Bot Bot = new Bot(index + 1, (index + 1).ToString());
+                Bot.SetCards();
+                Bot.AllCards.Add(Bot);
             }
-            else
-            {
-                Table.direction = true;
-            }
-            if(Settings.PlayerCount == 2)
-            {
-                botone = new Bot(2, "1");
-                Bot.AllCards.Add(botone);
-            }
-            else if (Settings.PlayerCount == 3)
-            {
-                botone = new Bot(1, "1");
-                Bot.AllCards.Add(botone);
-                bottwo = new Bot(3, "2");
-                Bot.AllCards.Add(bottwo);
-            }
-            else if (Settings.PlayerCount == 4)
-            {
-                botone = new Bot(1, "1");
-                CardHolder.AllCards.Add(botone);
-                bottwo = new Bot(2, "2");
-                Bot.AllCards.Add(bottwo);
-                botthree = new Bot(3, "3");
-                Bot.AllCards.Add(botthree);
-            }
+
             Table.TopCardsClear();
-            Table.SetRandomTopCard();
+
             if (Table.topcard.IsWildCard())
             {
                 UserControl colorchange = new ColorChange();
                 gamegrid.Children.Add(colorchange);
             }
+
             player.SetCards();
-            botone.SetCards();
-            if (Settings.PlayerCount >= 3)
-            {
-                bottwo.SetCards(); 
-            }
-            if (Settings.PlayerCount == 4)
-            {
-                botthree.SetCards();
-            }
             player.CheckForUno();
             player.RefreshUNO();
         }
