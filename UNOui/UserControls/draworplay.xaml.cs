@@ -21,7 +21,7 @@ namespace UNOui
 
         private void Load(object sender, RoutedEventArgs e)
         {
-            if (Settings.ForcePlay == 1)
+            if (Settings.ForcePlay)
             {
                 playbutton.VerticalAlignment = VerticalAlignment.Center;
                 Grid.SetColumnSpan(playbutton, 2);

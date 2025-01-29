@@ -27,7 +27,7 @@ namespace UNOui
 
         public void Resume(object sender, RoutedEventArgs e)
         {
-            Settings.GameMenuOpened = false;
+            Settings.IsGameMenuOpened = false;
             Grid parent = (Grid)Parent;
             parent.Children.Remove(this);
         }
@@ -51,7 +51,7 @@ namespace UNOui
         private void Load(object sender, RoutedEventArgs e)
         {
             Items.GameMenuItem = this;
-            if (Settings.Language == 2)
+            if (Settings.LanguageSetting == UNOui.Language.Ukrainian)
             {
                 ToUkrainian();
             }

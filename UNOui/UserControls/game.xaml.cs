@@ -28,7 +28,7 @@ namespace UNOui
 
         public void OpenMenuButton(object sender, RoutedEventArgs e)
         {
-            Settings.GameMenuOpened = true;
+            Settings.IsGameMenuOpened = true;
             UserControl menu = new GameMenu();
             gamegrid.Children.Add(menu);
         }
@@ -40,7 +40,7 @@ namespace UNOui
 
         public void CloseGameButton()
         {
-            Settings.GameOpened = false;
+            Settings.IsGameOpened = false;
             Items.MainWindowItem.play.Visibility = Visibility.Visible;
             Items.MainWindowItem.settings.Visibility = Visibility.Visible;
             Items.MainWindowItem.exit.Visibility = Visibility.Visible;
@@ -54,7 +54,7 @@ namespace UNOui
         {
             Table.SetRandomTopCard();
 
-            if(Settings.Language == 2) { ToUkrainian(); }
+            if(Settings.LanguageSetting == UNOui.Language.Ukrainian) { ToUkrainian(); }
             else { ToEnglish(); }
 
             Items.GameItem = this;
@@ -64,7 +64,7 @@ namespace UNOui
             CardHolder.AllCards.Add(player);
             Random random = new Random();
 
-            Table.direction = (Settings.RandomDirection == 1 ?
+            Table.direction = (Settings.RandomDirection ?
                 (Table.direction = random .Next(0, 2) == 0 ? true : false) :
                 Table.direction = true);
 

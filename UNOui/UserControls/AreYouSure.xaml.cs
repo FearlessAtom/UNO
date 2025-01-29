@@ -37,7 +37,7 @@ namespace UNOui
         private void Load(object sender, RoutedEventArgs e)
         {
             Items.ExitConfirmationItem = this;
-            if(Settings.Language == 2)
+            if(Settings.LanguageSetting == UNOui.Language.Ukrainian)
             {
                 ToUkrainian();
             }
@@ -51,7 +51,7 @@ namespace UNOui
         {
             if (Action == 1)
             {
-                Settings.ExitConfirmationOpened = false;
+                Settings.IsExitConfirmationOpened = false;
             }
             Grid parent = (Grid)Parent;
             parent.Children.Remove(this);
