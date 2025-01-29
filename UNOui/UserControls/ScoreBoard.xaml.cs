@@ -20,6 +20,9 @@ namespace UNOui.UserControls
     /// </summary>
     public partial class ScoreBoard : UserControl
     {
+        private const int SpecialCardPoints = 20;
+        private static readonly int[] SpecialCardNumbers = { -5, -4, -3, -2, -1 };
+
         public ScoreBoard()
         {
             InitializeComponent();
@@ -51,19 +54,36 @@ namespace UNOui.UserControls
         public int getpoints(CardHolder thing)
         {
             int result = 0;
-            for(int index = 0; index < thing.cards.Count; index++)
+            foreach (var card in thing.cards)
             {
-                if (thing.cards[index].number == -5 || thing.cards[index].number == -4 || thing.cards[index].number == -3 || thing.cards[index].number == -2 || thing.cards[index].number == -1)
+                if (SpecialCardNumbers.Contains(card.number))
                 {
-                    result = result + 20;
+                    result += SpecialCardPoints;
                 }
                 else
                 {
-                    result = result + thing.cards[index].number;
+                    result += card.number;
                 }
             }
             return result;
         }
+
+        //public int getpoints(CardHolder thing)
+        //{
+        //    int result = 0;
+        //    for(int index = 0; index < thing.cards.Count; index++)
+        //    {
+        //        if (thing.cards[index].number == -5 || thing.cards[index].number == -4 || thing.cards[index].number == -3 || thing.cards[index].number == -2 || thing.cards[index].number == -1)
+        //        {
+        //            result = result + 20;
+        //        }
+        //        else
+        //        {
+        //            result = result + thing.cards[index].number;
+        //        }
+        //    }
+        //    return result;
+        //}
         public void swap(CardHolder a, CardHolder b)
         {
             string tempname = a.name;
