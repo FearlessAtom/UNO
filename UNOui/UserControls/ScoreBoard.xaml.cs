@@ -74,30 +74,37 @@ namespace UNOui.UserControls
             b.cards = tempcards;
         }
         public static int allpoints = 0;
+
         public void scoreboard()
         {
-            List<CardHolder> copy = CardHolder.allcards;
-            for(int index = 0; index < copy.Count - 1; index++)
+            List<CardHolder> sortedCardHolders = SortCardHoldersByPoints(CardHolder.allcards);
+            UpdateScoreBoard(sortedCardHolders);
+            ResetScrollOffsets();
+        }
+
+        private List<CardHolder> SortCardHoldersByPoints(List<CardHolder> cardHolders)
+        {
+            return cardHolders.OrderBy(ch => getpoints(ch)).ToList();
+        }
+
+        private void UpdateScoreBoard(List<CardHolder> sortedCardHolders)
+        {
+            foreach (var cardHolder in sortedCardHolders)
             {
-                for(int j = 0; j < copy.Count - 1 - index; j++)
-                {
-                    if (getpoints(copy[j]) > getpoints(copy[j + 1]))
-                    {
-                        swap(copy[j], copy[j + 1]);
-                    }
-                }
-            }
-            for(int index = 0; index < copy.Count; ++index)
-            {
-                int points = getpoints(copy[index]);
-                allpoints = allpoints + points;
-                Bot.allcards[index].points = points;
-                ScoreBoardItem item = new ScoreBoardItem(copy[index].name, copy[index].cards, copy[index].points);
+                int points = getpoints(cardHolder);
+                allpoints += points;
+                Bot.allcards[sortedCardHolders.IndexOf(cardHolder)].points = points;
+                ScoreBoardItem item = new ScoreBoardItem(cardHolder.name, cardHolder.cards, cardHolder.points);
                 stackpanel.Children.Add(item);
             }
+        }
+
+        private void ResetScrollOffsets()
+        {
             stackpanel.SetHorizontalOffset(0);
             stackpanel.SetVerticalOffset(0);
         }
+
         public void remove()
         {
             Grid parent = (Grid)Parent;
