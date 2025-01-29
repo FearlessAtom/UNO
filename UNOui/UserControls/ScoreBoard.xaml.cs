@@ -51,6 +51,7 @@ namespace UNOui.UserControls
                 toenglish();
             }
         }
+
         public int getpoints(CardHolder thing)
         {
             int result = 0;
@@ -68,22 +69,6 @@ namespace UNOui.UserControls
             return result;
         }
 
-        //public int getpoints(CardHolder thing)
-        //{
-        //    int result = 0;
-        //    for(int index = 0; index < thing.cards.Count; index++)
-        //    {
-        //        if (thing.cards[index].number == -5 || thing.cards[index].number == -4 || thing.cards[index].number == -3 || thing.cards[index].number == -2 || thing.cards[index].number == -1)
-        //        {
-        //            result = result + 20;
-        //        }
-        //        else
-        //        {
-        //            result = result + thing.cards[index].number;
-        //        }
-        //    }
-        //    return result;
-        //}
         public void swap(CardHolder a, CardHolder b)
         {
             string tempname = a.name;
