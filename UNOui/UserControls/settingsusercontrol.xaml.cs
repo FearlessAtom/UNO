@@ -34,7 +34,7 @@ namespace UNOui
             StartCardChange(Settings.CardCount);
             ForcePlay(Settings.ForcePlay);
             DrawUntilPlayable(Settings.DrawUntilPlayable);
-            Stacking(Settings.AnabledSounds);
+            Stacking(Settings.EnabledSounds);
             Language(Settings.Language);
             JumpIn(Settings.RandomDirection);
             Saved();
@@ -301,13 +301,13 @@ namespace UNOui
 
             if(button == stackingon)
             {
-                Settings.UnsavedAnabledSounds = 1;
+                Settings.UnsavedEnabledSounds = 1;
                 Stacking(1);
             }
 
             else
             {
-                Settings.UnsavedAnabledSounds = 2;
+                Settings.UnsavedEnabledSounds = 2;
                 Stacking(2);
             }
         }
@@ -333,7 +333,7 @@ namespace UNOui
                 stackingoff.FontSize = 25;
                 stackingoff.Background = Brushes.OrangeRed;
             }
-            Settings.UnsavedAnabledSounds = number;
+            Settings.UnsavedEnabledSounds = number;
             Saved();
         }
 

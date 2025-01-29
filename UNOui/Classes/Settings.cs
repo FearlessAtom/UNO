@@ -10,7 +10,7 @@ namespace UNOui
         public static int CardCount { get; set; }
         public static int DrawUntilPlayable { get; set; }
         public static int ForcePlay { get; set; }
-        public static int AnabledSounds { get; set; }
+        public static int EnabledSounds { get; set; }
         public static int Language { get; set; }
         public static int RandomDirection { get; set; }
         public static bool GameMenuOpened { get; set; }
@@ -56,7 +56,7 @@ namespace UNOui
         public static int UnsavedCardCount { get; set; }
         public static int UnsavedDrawUntilPlayable { get; set; }
         public static int UnsavedForcePlay { get; set; }
-        public static int UnsavedAnabledSounds { get; set; }
+        public static int UnsavedEnabledSounds { get; set; }
         public static int UnsavedLanguage { get; set; }
         public static int UnsavedRandomDirection { get; set; }
 
@@ -68,7 +68,7 @@ namespace UNOui
             CardCount = UnsavedCardCount;
             DrawUntilPlayable = UnsavedDrawUntilPlayable;
             ForcePlay = UnsavedForcePlay;
-            AnabledSounds = UnsavedAnabledSounds;
+            EnabledSounds = UnsavedEnabledSounds;
             Language = UnsavedLanguage;
             RandomDirection = UnsavedRandomDirection;
             StreamWriter writer = null;
@@ -89,7 +89,7 @@ namespace UNOui
             writer.WriteLine(CardCount.ToString());
             writer.WriteLine(DrawUntilPlayable.ToString());
             writer.WriteLine(ForcePlay.ToString());
-            writer.WriteLine(AnabledSounds.ToString());
+            writer.WriteLine(EnabledSounds.ToString());
             writer.WriteLine(Language.ToString());
             writer.WriteLine(RandomDirection.ToString());
             writer.Close();
@@ -102,7 +102,7 @@ namespace UNOui
                 PlayerCount == UnsavedPlayerCount &&
                 DrawUntilPlayable == UnsavedDrawUntilPlayable &&
                 ForcePlay == UnsavedForcePlay &&
-                AnabledSounds == UnsavedAnabledSounds &&
+                EnabledSounds == UnsavedEnabledSounds &&
                 Language == UnsavedLanguage &&
                 RandomDirection == UnsavedRandomDirection;
         } 
