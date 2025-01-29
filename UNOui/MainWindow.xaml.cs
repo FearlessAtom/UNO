@@ -151,7 +151,7 @@ namespace UNOui
             Settings.DrawUntilPlayable = Convert.ToBoolean(drawuntilplayable);
             Settings.ForcePlay = Convert.ToBoolean(forceplay);
             Settings.EnabledSounds = Convert.ToBoolean(stacking);
-            Settings.EnabledSounds = Convert.ToBoolean(language);
+            Settings.Language = Convert.ToInt16(language);
             Settings.RandomDirection = Convert.ToBoolean(jumpin);
             Settings.UnsavedDrawUntilPlayable = Settings.DrawUntilPlayable;
             SetLanguage();
