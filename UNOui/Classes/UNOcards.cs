@@ -145,7 +145,7 @@ namespace UNOui
             }
             else
             {
-                if (Settings.DrawUntilPlayable == 1 && !card.CardIsPlayable())
+                if (Settings.DrawUntilPlayable && !card.CardIsPlayable())
                 {
                     Task.Delay(TimeSpan.FromSeconds(1)).ContinueWith(task =>
                     {
@@ -371,7 +371,7 @@ namespace UNOui
                     }
                     else
                     {
-                        if(Settings.DrawUntilPlayable == 1)
+                        if(Settings.DrawUntilPlayable)
                         {
                             PlayCard();
                         }

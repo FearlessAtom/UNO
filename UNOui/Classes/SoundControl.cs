@@ -13,7 +13,7 @@ namespace Project.Assets.ControlClasses
 
         public static void PlaySound(string path)
         {
-            if (Settings.EnabledSounds == 2)
+            if (!Settings.EnabledSounds)
             {
                 return;
             }

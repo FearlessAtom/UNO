@@ -27,7 +27,7 @@ namespace UNOui
 
         public void Resume(object sender, RoutedEventArgs e)
         {
-            Settings.GameMenuOpened = false;
+            Settings.IsGameMenuOpened = false;
             Grid parent = (Grid)Parent;
             parent.Children.Remove(this);
         }

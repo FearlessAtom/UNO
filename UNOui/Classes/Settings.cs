@@ -8,24 +8,24 @@ namespace UNOui
     {
         public static int PlayerCount { get; set; }
         public static int CardCount { get; set; }
-        public static int DrawUntilPlayable { get; set; }
-        public static int ForcePlay { get; set; }
-        public static int EnabledSounds { get; set; }
+        public static bool DrawUntilPlayable { get; set; }
+        public static bool ForcePlay { get; set; }
+        public static bool EnabledSounds { get; set; }
         public static int Language { get; set; }
-        public static int RandomDirection { get; set; }
-        public static bool GameMenuOpened { get; set; }
-        public static bool ExitConfirmationOpened { get; set; }
-        public static bool SettingsOpened { get; set; }
-        public static bool GameOpened { get; set; }
-        public static bool Saved { get; set; }
+        public static bool RandomDirection { get; set; }
+        public static bool IsGameMenuOpened { get; set; }
+        public static bool IsExitConfirmationOpened { get; set; }
+        public static bool IsSettingsOpened { get; set; }
+        public static bool IsGameOpened { get; set; }
+        public static bool IsSaved { get; set; }
         public static bool Confirmation  { get; set; } = false;
 
-        protected static int _Fullscreen;
-        public static int Fullscreen
+        protected static bool _Fullscreen;
+        public static bool Fullscreen
         {
             get
             {
-                if (_Fullscreen == 1)
+                if (_Fullscreen == true)
                 {
                     Items.MainWindowItem.WindowState = System.Windows.WindowState.Maximized;
                 }
@@ -35,7 +35,7 @@ namespace UNOui
 
             set
             {
-                if(_Fullscreen == 1)
+                if(_Fullscreen == true)
                 {
                     Items.MainWindowItem.WindowState = System.Windows.WindowState.Maximized;
                 }
@@ -44,7 +44,7 @@ namespace UNOui
             }
         }
         
-        public Settings(int PlayerCount, int Fullscreen, int CardCount)
+        public Settings(int PlayerCount, bool Fullscreen, int CardCount)
         {
             Settings.PlayerCount = PlayerCount;
             Settings.Fullscreen = Fullscreen;
@@ -52,13 +52,13 @@ namespace UNOui
         }
 
         public static int UnsavedPlayerCount { get; set; }
-        public static int UnsavedFullscreen { get; set; }
+        public static bool UnsavedFullscreen { get; set; }
         public static int UnsavedCardCount { get; set; }
-        public static int UnsavedDrawUntilPlayable { get; set; }
-        public static int UnsavedForcePlay { get; set; }
-        public static int UnsavedEnabledSounds { get; set; }
+        public static bool UnsavedDrawUntilPlayable { get; set; }
+        public static bool UnsavedForcePlay { get; set; }
+        public static bool UnsavedEnabledSounds { get; set; }
         public static int UnsavedLanguage { get; set; }
-        public static int UnsavedRandomDirection { get; set; }
+        public static bool UnsavedRandomDirection { get; set; }
 
 
         static public void SaveSettings()

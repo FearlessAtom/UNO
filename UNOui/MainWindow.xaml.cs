@@ -29,36 +29,36 @@ namespace UNOui
 
         public void ExitMenuButton(object sender, RoutedEventArgs e)
         {
-            if (Settings.SettingsOpened)
+            if (Settings.IsSettingsOpened)
             {
                 return;
             }
 
-            Settings.ExitConfirmationOpened = true;
+            Settings.IsExitConfirmationOpened = true;
             UserControl exit = new ExitConfirmation(1);
             MainGrid.Children.Add(exit); 
         }
 
         private void SettingsButton(object sender, RoutedEventArgs e)
         {
-            if (Settings.SettingsOpened)
+            if (Settings.IsSettingsOpened)
             {
                 return;
             }
 
             UserControl settings = new SettingsUserControl();
             MainGrid.Children.Add(settings);
-            Settings.SettingsOpened = true;
+            Settings.IsSettingsOpened = true;
         }
 
         private void PlayButton(object sender, RoutedEventArgs e)
         {
-            if (Settings.SettingsOpened)
+            if (Settings.IsSettingsOpened)
             {
                 return;
             }
 
-            Settings.GameOpened = true;
+            Settings.IsGameOpened = true;
             UserControl game = new Game();
             MainGrid.Children.Add(game);
         }
@@ -146,13 +146,13 @@ namespace UNOui
             string language = reader.ReadLine();
             string jumpin = reader.ReadLine();
             Settings.PlayerCount = Convert.ToInt16(playercount);
-            Settings.Fullscreen = Convert.ToInt16(fullscreen);
+            Settings.Fullscreen = Convert.ToBoolean(fullscreen);
             Settings.CardCount = Convert.ToInt16(cardcount);
-            Settings.DrawUntilPlayable = Convert.ToInt16(drawuntilplayable);
-            Settings.ForcePlay = Convert.ToInt16(forceplay);
-            Settings.EnabledSounds = Convert.ToInt16(stacking);
-            Settings.EnabledSounds = Convert.ToInt16(language);
-            Settings.RandomDirection = Convert.ToInt16(jumpin);
+            Settings.DrawUntilPlayable = Convert.ToBoolean(drawuntilplayable);
+            Settings.ForcePlay = Convert.ToBoolean(forceplay);
+            Settings.EnabledSounds = Convert.ToBoolean(stacking);
+            Settings.EnabledSounds = Convert.ToBoolean(language);
+            Settings.RandomDirection = Convert.ToBoolean(jumpin);
             Settings.UnsavedDrawUntilPlayable = Settings.DrawUntilPlayable;
             SetLanguage();
             reader.Close();
@@ -166,9 +166,9 @@ namespace UNOui
                 {
                     Items.DrawOrPlayItem.DrawCard(sender, e);
                 }
-                else if (Settings.GameOpened == true)
+                else if (Settings.IsGameOpened == true)
                 {
-                    if (Settings.GameMenuOpened == false)
+                    if (Settings.IsGameMenuOpened == false)
                     {
                         Items.GameItem.OpenMenuButton(sender, e);
                     }
@@ -177,11 +177,11 @@ namespace UNOui
                         Items.GameMenuItem.Resume(sender, e);
                     }
                 }
-                else if (Settings.SettingsOpened == true)
+                else if (Settings.IsSettingsOpened == true)
                 {
                     Items.SettingsItem.CloseSettings(sender, e);
                 }
-                else if(Settings.ExitConfirmationOpened == true)
+                else if(Settings.IsExitConfirmationOpened == true)
                 {
                     Items.ExitConfirmationItem.Close(sender, e);
                 }

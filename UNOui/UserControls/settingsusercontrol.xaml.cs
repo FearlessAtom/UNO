@@ -22,7 +22,7 @@ namespace UNOui
             SaveButton.Click += (sender, e) =>
             {
                 Settings.SaveSettings();
-                Saved();
+                IsSaved();
             };
         }
 
@@ -37,27 +37,27 @@ namespace UNOui
             Stacking(Settings.EnabledSounds);
             Language(Settings.Language);
             JumpIn(Settings.RandomDirection);
-            Saved();
+            IsSaved();
         }
 
-        public void Saved()
+        public void IsSaved()
         {
             if (Settings.AreSaved())
             {
                 unsavedchanges.Visibility = Visibility.Hidden;
-                Settings.Saved = true;
+                Settings.IsSaved = true;
             }
 
             else
             {
                 unsavedchanges.Visibility = Visibility.Visible;
-                Settings.Saved = false;
+                Settings.IsSaved = false;
             }
         }
 
         public void CloseSettings(object sender, RoutedEventArgs e)
         {
-            if (Settings.Saved == false && !Settings.Confirmation)
+            if (Settings.IsSaved == false && !Settings.Confirmation)
             {
                 UserControl confirmation = new Confirmation();
                 maingridsettings.Children.Add(confirmation);
@@ -67,7 +67,7 @@ namespace UNOui
             else
             {
                 Settings.Confirmation = false;
-                Settings.SettingsOpened = false;
+                Settings.IsSettingsOpened = false;
                 SetLoadedSettings(sender, e);
                 Grid grid = (Grid)Parent;
                 grid.Children.Remove(this);
@@ -122,7 +122,7 @@ namespace UNOui
                 }
             }
             Settings.UnsavedPlayerCount = number;
-            Saved();
+            IsSaved();
         }
 
 
@@ -131,22 +131,22 @@ namespace UNOui
             Button button = (Button)sender;
             if (sender == fullscreenoff)
             {
-                Fullscreen(2);
+                Fullscreen(false);
                 Items.MainWindowItem.WindowState = WindowState.Normal;
             }
 
             else
             {
-                Fullscreen(1);
+                Fullscreen(true);
                 Items.MainWindowItem.WindowState = WindowState.Maximized;
             }
         }
 
-        private void Fullscreen(int opponent)
+        private void Fullscreen(bool state)
         {
-            if (opponent == 2)
+            if (!state)
             {
-                Settings.UnsavedFullscreen = 2;
+                Settings.UnsavedFullscreen = false;
                 fullscreenoff.Background = Brushes.LightGreen;
                 fullscreenoff.FontSize = 25;
                 fullscreenoff.Margin = new Thickness(0);
@@ -157,7 +157,7 @@ namespace UNOui
             }
             else
             {
-                Settings.UnsavedFullscreen = 1;
+                Settings.UnsavedFullscreen = true;
 
                 fullscreenon.Background = Brushes.LightGreen;
                 fullscreenon.FontSize = 25;
@@ -167,7 +167,7 @@ namespace UNOui
                 fullscreenoff.FontSize = 20;
                 fullscreenoff.Margin = new Thickness(0, 3, 0, 3);
             }
-            Saved();
+            IsSaved();
         }
 
         private void CardCountButton(object sender, RoutedEventArgs e)
@@ -188,7 +188,7 @@ namespace UNOui
                     }
                 }
             StartCardChange(Settings.UnsavedCardCount);
-            Saved();
+            IsSaved();
         }
 
         private void StartCardChange(int number)
@@ -214,9 +214,9 @@ namespace UNOui
             startingcardscount.Text = number.ToString();
         }
 
-        private void DrawUntilPlayable(int number)
+        private void DrawUntilPlayable(bool state)
         {
-            if(number == 1)
+            if(state)
             {
                 drawuntilplayableon.Margin = new Thickness(0);
                 drawuntilplayableon.FontSize = 25;
@@ -236,21 +236,21 @@ namespace UNOui
                 drawuntilplayableoff.FontSize = 25;
                 drawuntilplayableoff.Background = Brushes.OrangeRed;
             }
-            Settings.UnsavedDrawUntilPlayable = number;
-            Saved();
+            Settings.UnsavedDrawUntilPlayable = state;
+            IsSaved();
         }
         private void DrawUntilPlayableButton(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
             if(button == drawuntilplayableon)
             {
-                Settings.UnsavedDrawUntilPlayable = 1;
-                DrawUntilPlayable(1);
+                Settings.UnsavedDrawUntilPlayable = true;
+                DrawUntilPlayable(true);
             }
             else
             {
-                Settings.UnsavedDrawUntilPlayable = 2;
-                DrawUntilPlayable(2);
+                Settings.UnsavedDrawUntilPlayable = false;
+                DrawUntilPlayable(false);
                 drawuntilplayableoff.Background = Brushes.OrangeRed;
             }
         }
@@ -259,18 +259,18 @@ namespace UNOui
             Button button = (Button)sender;
             if(button == forceplayon)
             {
-                Settings.UnsavedForcePlay = 1;
-                ForcePlay(1);
+                Settings.UnsavedForcePlay = true;
+                ForcePlay(true);
             }
             else
             {
-                Settings.UnsavedForcePlay = 2;
-                ForcePlay(2);
+                Settings.UnsavedForcePlay = false;
+                ForcePlay(false);
             }
         }
-        private void ForcePlay(int number)
+        private void ForcePlay(bool state)
         {
-            if (number == 1)
+            if (state)
             {
                 forceplayon.Margin = new Thickness(0);
                 forceplayon.FontSize = 25;
@@ -291,8 +291,8 @@ namespace UNOui
                 forceplayoff.FontSize = 25;
                 forceplayoff.Background = Brushes.OrangeRed;
             }
-            Settings.UnsavedForcePlay = number;
-            Saved();
+            Settings.UnsavedForcePlay = state;
+            IsSaved();
         }
 
         private void StackingButton(object sender, RoutedEventArgs e)
@@ -301,19 +301,19 @@ namespace UNOui
 
             if(button == stackingon)
             {
-                Settings.UnsavedEnabledSounds = 1;
-                Stacking(1);
+                Settings.UnsavedEnabledSounds = true;
+                Stacking(true);
             }
 
             else
             {
-                Settings.UnsavedEnabledSounds = 2;
-                Stacking(2);
+                Settings.UnsavedEnabledSounds = false;
+                Stacking(false);
             }
         }
-        private void Stacking(int number)
+        private void Stacking(bool state)
         {
-            if (number == 1)
+            if (state)
             {
                 stackingon.Margin = new Thickness(0);
                 stackingon.FontSize = 25;
@@ -333,8 +333,8 @@ namespace UNOui
                 stackingoff.FontSize = 25;
                 stackingoff.Background = Brushes.OrangeRed;
             }
-            Settings.UnsavedEnabledSounds = number;
-            Saved();
+            Settings.UnsavedEnabledSounds = state;
+            IsSaved();
         }
 
         private void JumpInButton(object sender, RoutedEventArgs e)
@@ -342,17 +342,17 @@ namespace UNOui
             Button button = (Button)sender;
             if(button == jumpinon)
             {
-                JumpIn(1);
+                JumpIn(true);
             }
             else
             {
-                JumpIn(2);
+                JumpIn(false);
             }
         }
 
-        private void JumpIn(int number)
+        private void JumpIn(bool state)
         {
-            if (number == 1)
+            if (state)
             {
                 jumpinon.Margin = new Thickness(0);
                 jumpinon.FontSize = 25;
@@ -372,8 +372,8 @@ namespace UNOui
                 jumpinoff.FontSize = 25;
                 jumpinoff.Background = Brushes.OrangeRed;
             }
-            Settings.UnsavedRandomDirection = number;
-            Saved();
+            Settings.UnsavedRandomDirection = state;
+            IsSaved();
         }
 
         private void LanguageButton(object sender, RoutedEventArgs e)
@@ -417,7 +417,7 @@ namespace UNOui
                 ukrainian.Margin = new Thickness(0, 3, 0, 3);
             }
             Settings.UnsavedLanguage = number;
-            Saved();
+            IsSaved();
         }
 
         public void ToEnglish()
