@@ -61,51 +61,60 @@ namespace UNOui
         public Bot botone;
         public Bot bottwo;
         public Bot botthree;
+
         public void loaded(object sender, RoutedEventArgs e)
         {
-            if(Settings.getlanguage() == 2)
-            {
+            SetLanguage();
+            InitializeGame();
+            SetupBots();
+            SetupTable();
+            InitializePlayerCards();
+        }
+
+        private void SetLanguage()
+        {
+            if (Settings.getlanguage() == 2)
                 toukrainian();
-            }
             else
-            {
                 toenglish();
-            }
+        }
+
+        private void InitializeGame()
+        {
             Items.gameitem = this;
             gamecanvas.Children.Clear();
             Table.turn = 1;
             CardHolder.allcards.Clear();
             CardHolder.allcards.Add(player);
             Random random = new Random();
-            if(Settings.getrandomdirection() == 1)
-            {
-                Table.direction = random .Next(0, 2) == 0 ? true : false;
-            }
+            if (Settings.getrandomdirection() == 1)
+                Table.direction = random.Next(0, 2) == 0 ? true : false;
             else
-            {
                 Table.direction = true;
-            }
-            if(Settings.getplayercount() == 2)
-            {
-                botone = new Bot(2, "1");
-                Bot.allcards.Add(botone);
-            }
-            else if (Settings.getplayercount() == 3)
-            {
-                botone = new Bot(1, "1");
-                Bot.allcards.Add(botone);
-                bottwo = new Bot(3, "2");
-                Bot.allcards.Add(bottwo);
-            }
-            else if (Settings.getplayercount() == 4)
+        }
+
+        private void SetupBots()
+        {
+            int playerCount = Settings.getplayercount();
+            if (playerCount >= 2)
             {
                 botone = new Bot(1, "1");
                 CardHolder.allcards.Add(botone);
-                bottwo = new Bot(2, "2");
-                Bot.allcards.Add(bottwo);
-                botthree = new Bot(3, "3");
-                Bot.allcards.Add(botthree);
             }
+            if (playerCount >= 3)
+            {
+                bottwo = new Bot(2, "2");
+                CardHolder.allcards.Add(bottwo);
+            }
+            if (playerCount == 4)
+            {
+                botthree = new Bot(3, "3");
+                CardHolder.allcards.Add(botthree);
+            }
+        }
+
+        private void SetupTable()
+        {
             Table.clear();
             Table.settopcard();
             if (Table.topcard.wildcard())
@@ -113,19 +122,83 @@ namespace UNOui
                 UserControl colorchange = new colorchange();
                 gamegrid.Children.Add(colorchange);
             }
+        }
+
+        private void InitializePlayerCards()
+        {
             player.setcards();
-            botone.setcards();
-            if (Settings.getplayercount() >= 3)
-            {
-                bottwo.setcards(); 
-            }
-            if (Settings.getplayercount() == 4)
-            {
-                botthree.setcards();
-            }
+            botone?.setcards();
+            bottwo?.setcards();
+            botthree?.setcards();
             player.checkforuno();
             player.refreshuno();
         }
+
+        //public void loaded(object sender, RoutedEventArgs e)
+        //{
+        //    if(Settings.getlanguage() == 2)
+        //    {
+        //        toukrainian();
+        //    }
+        //    else
+        //    {
+        //        toenglish();
+        //    }
+        //    Items.gameitem = this;
+        //    gamecanvas.Children.Clear();
+        //    Table.turn = 1;
+        //    CardHolder.allcards.Clear();
+        //    CardHolder.allcards.Add(player);
+        //    Random random = new Random();
+        //    if(Settings.getrandomdirection() == 1)
+        //    {
+        //        Table.direction = random .Next(0, 2) == 0 ? true : false;
+        //    }
+        //    else
+        //    {
+        //        Table.direction = true;
+        //    }
+        //    if(Settings.getplayercount() == 2)
+        //    {
+        //        botone = new Bot(2, "1");
+        //        Bot.allcards.Add(botone);
+        //    }
+        //    else if (Settings.getplayercount() == 3)
+        //    {
+        //        botone = new Bot(1, "1");
+        //        Bot.allcards.Add(botone);
+        //        bottwo = new Bot(3, "2");
+        //        Bot.allcards.Add(bottwo);
+        //    }
+        //    else if (Settings.getplayercount() == 4)
+        //    {
+        //        botone = new Bot(1, "1");
+        //        CardHolder.allcards.Add(botone);
+        //        bottwo = new Bot(2, "2");
+        //        Bot.allcards.Add(bottwo);
+        //        botthree = new Bot(3, "3");
+        //        Bot.allcards.Add(botthree);
+        //    }
+        //    Table.clear();
+        //    Table.settopcard();
+        //    if (Table.topcard.wildcard())
+        //    {
+        //        UserControl colorchange = new colorchange();
+        //        gamegrid.Children.Add(colorchange);
+        //    }
+        //    player.setcards();
+        //    botone.setcards();
+        //    if (Settings.getplayercount() >= 3)
+        //    {
+        //        bottwo.setcards(); 
+        //    }
+        //    if (Settings.getplayercount() == 4)
+        //    {
+        //        botthree.setcards();
+        //    }
+        //    player.checkforuno();
+        //    player.refreshuno();
+        //}
         public int actualgap = 10;
         private void mouseenter(object sender, MouseEventArgs e)
         {
