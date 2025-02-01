@@ -1,6 +1,7 @@
 ﻿using Project.Assets.ControlClasses;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -208,55 +209,25 @@ namespace UNOui
                 }
             }
         }
-        public void CardChangeColor(out string color, out string imagepath, int number)
+        private static readonly Dictionary<string, string> colorToImageMap = new()
         {
-            int blue = 0;
-            int yellow = 0;
-            int green = 0;
-            int red = 0;
-            for(int index = 0; index < Cards.Count; index++)
-            {
-                switch(Cards[index].color)
-                {
-                    case "Blue":
-                        blue++;
-                        break;
-                    case "Yellow":
-                        yellow++;
-                        break;
-                    case "Green":
-                        green++;
-                        break;
-                    case "Red":
-                        red++;
-                        break;
-                }
-            }
+            { "Blue", "bluewildcard" },
+            { "Yellow", "yellowwildcard" },
+            { "Green", "greenwildcard" },
+            { "Red", "redwildcard" }
+        };
 
-            int max = Math.Max(blue, Math.Max(yellow, Math.Max(green, red)));
-            color = "";
-            imagepath = "";
-            if(max == blue)
-            {
-                color = "Blue";
-                imagepath = (number == -5 ? "bluewildcard" : "bluedrawfour");
-            }
-            else if (max == yellow)
-            {
-                color = "Yellow";
-                imagepath = (number == -5 ? "yellowwildcard" : "yellowdrawfour");
-            }
-            else if (max == green)
-            {
-                color = "Green";
-                imagepath = (number == -5 ? "greenwildcard" : "greendrawfour");
-            }
-            else if (max == red)
-            {
-                color = "Red";
-                imagepath = (number == -5 ? "redwildcard" : "reddrawfour");
-            }
+        public void CardChangeColor(out string color, out string imagePath, int number)
+        {
+            var groupedColors = Cards.Where(c => colorToImageMap.ContainsKey(c.color))
+                                     .GroupBy(c => c.color)
+                                     .OrderByDescending(g => g.Count())
+                                     .FirstOrDefault();
+
+            color = groupedColors?.Key ?? "Blue"; // Якщо немає карт, вибираємо "Blue" як стандартний варіант
+            imagePath = number == -5 ? $"{color.ToLower()}wildcard" : $"{color.ToLower()}drawfour";
         }
+
 
         public Card? PlayCardLogic()
         {
